@@ -1,0 +1,74 @@
+html,body{
+	height: 100%;
+}
+.login{
+	width: 100%;
+	height: 100%;
+	background: url("@{img}/loginbg.png");
+	background-size: cover;
+	position: relative;
+
+	.loginbox{
+		width: 360px;
+		// height: 410px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -255px;
+		margin-left: -231px;
+		padding: 50px;
+		background: rgba(0,0,0,0.5);
+		border:1px solid rgba(255,255,255,0.05);
+		._clearfix();
+		// background: #ff0000;
+		.head{
+			p{
+				margin-bottom: 20px;
+				font-size: 16px;
+				&:last-child{
+					margin-bottom: 30px;
+				}
+			}
+		}
+		.formg{
+			margin-bottom: 30px;
+			&:last-child{
+				margin-bottom: 0px;
+			}
+			.inputbox{
+				// background: rgba(255,255,255,0.4);
+				background: url("@{img}/inputbg.png");
+				
+				height: 50px;
+				line-height: 50px;
+				i{
+					display: block;
+					height: 24px;
+					line-height: 24px;
+					display: block;
+					float: left;
+					padding: 0px 13px;
+					margin: 13px 0px;
+					border-right: 1px solid #fff;
+					color:  #fff;
+				}
+				input{
+					float: left;
+					border:none;
+					background: none;
+					color: #fff;
+					height: 50px;
+					line-height: 50px;
+					width: 70%;
+					padding: 0px 10px;
+				}
+				img{
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	    <title>众筹管理后台</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <!-- Le styles -->
+	    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+	    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.min.css">
+	     
+	    <!--[if lte IE 7]>
+	    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
+	    <![endif]-->
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="bootstrap/js/html5.js"></script>
+	    <![endif]-->
+	    <link rel="stylesheet" type="text/css" href="css/frame.css">
+	    <link rel="stylesheet" type="text/css" href="css/user.css">
+	    <link rel="shortcut icon" href="img/ico/favicon.ico">
+	</head>
+	<body>
+
+		<div class="box">
+			<div class="leftbar" id="leftbar">
+	<ul>
+		<li class="active">
+			<a href="home.html">
+				<i class="ico ico-home"></i>
+				首页
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-user"></i>
+				<i class="icoside ico-left"></i>
+				用户管理
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-cube"></i>
+				<i class="icoside ico-left"></i>
+				项目管理
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-yuan"></i>
+				<i class="icoside ico-left"></i>
+				财务管理
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-statistics"></i>
+				<i class="icoside ico-left"></i>
+				统计管理
+			</a>
+		</li>
+
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-set"></i>
+				<i class="icoside ico-left"></i>
+				系统配置
+			</a>
+		</li>
+	</ul>
+				
+</div>
+
+<div class="left2bar" id="left2bar">
+
+	<div class="slidebtn">
+		<div class="inbtnl">
+			<i class="ico-left"></i>
+		</div>
+		<div class="inbtnr">
+			<i class="ico-right"></i>
+		</div>
+		
+	</div>
+
+
+	<ul>
+
+		<li>
+			<a href="createUser.html">
+				<div class="row-fluid">
+					<div class="span10">新建用户</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="ordinaryusers_list.html">
+				<div class="row-fluid">
+					<div class="span10">自然投资人管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+		</li>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">领投人管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="certificationleaders_list.html">认证通过领投人</a>
+				</li>
+				<li> 
+					<a href="uncertificationleaders_list.html">认证拒绝领投人</a>
+				</li>
+				
+			</ul>
+		</li>
+		<li>
+			<a href="institutionusers_list.html">
+				<div class="row-fluid">
+					<div class="span10">机构投资人管理</div>
+					<div class="span2">+</div>
+				</div>
+				
+			</a>
+		</li>
+		<li>
+			<a href="projectsponsors.html">
+				<div class="row fluid">
+					<div class="span10">项目方用户管理</div>
+					<div class="span2">+</div>
+				</div>
+			
+			</a>
+		</li>
+		
+	</ul>
+
+	<ul>
+
+		<li>
+			<a href="createproject.html" >
+				<div class="row-fluid">
+					<div class="span10">新建项目</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			
+
+		</li>
+		<li  class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">众筹项目</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="allprojects_list.html">所有项目</a>
+				</li>
+				<li> 
+					<a href="warmupprojects_list.html">预热项目</a>
+				</li>
+				<li> 
+					<a href="waitingreleasedprojects_list.html">待发布项目</a>
+				</li>
+
+				<li> 
+					<a href="raisingprojects_list.html">筹款中项目</a>
+				</li>
+
+				<li> 
+					<a href="pendingprojects_list.html">待放款项目</a>
+				</li>
+				<li> 
+					<a href="repayingprojects_list.html">还款项目</a>
+				</li>
+				<li> 
+					<a href="failureprojects_list.html">流标项目</a>
+				</li>
+				<li> 
+					<a href="raisedprojectsmanagement_list.html">投后项目</a>
+				</li>
+			</ul>
+
+		</li>
+
+
+
+		<li  class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">新三板定增</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="registration_list.html">登记统计</a>
+				</li>
+				
+			</ul>
+
+		</li>
+
+	</ul>
+
+
+	<ul>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">充值管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="rechargerecord_list.html">充值记录</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">提现管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="withdrawrecord_list.html">提现记录</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+
+	<ul>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">项目统计</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="javascript:void(0)">项目数量统计</a>
+					<a href="javascript:void(0)">项目资金统计</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">投资人统计</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="javascript:void(0)">投资人数统计</a>
+				</li>
+			</ul>
+		</li>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">资金报表</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="rechargestatements_list.html">充值报表</a>
+					<a href="investmentstatements_list.html">投资报表</a>
+					<a href="withdrawstatements_list.html">提现报表</a>
+					<a href="raisingprojectsstatements_list.html">筹款中报表</a>
+					<a href="pendingprojectsstatements_list.html">放款报表</a>
+					<a href="failureprojectsstatements_list.html">流标报表</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+
+
+
+
+
+
+	<ul>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">前台系统管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="javascript:void(0)">图片管理</a>
+					<a href="javascript:void(0)">文章管理</a>
+					<a href="javascript:void(0)">新手指引配置</a>
+					<a href="javascript:void(0)">菜单配置</a>
+					<a href="javascript:void(0)">企业基本信息</a>
+					<a href="javascript:void(0)">明星投资人配置</a>
+					<a href="javascript:void(0)">成功案例配置</a>
+					<a href="javascript:void(0)">黑名单配置</a>
+				</li>
+			</ul>
+
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">系统参数配置</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="javascript:void(0)">商户费率配置</a>
+					<a href="javascript:void(0)">行业配置</a>
+					<a href="javascript:void(0)">发展阶段</a>
+					<a href="javascript:void(0)">地区配置</a>
+					<a href="javascript:void(0)">短信配置</a>
+					<a href="javascript:void(0)">支付配置</a>
+
+					<a href="javascript:void(0)">实名认证配置</a>
+
+					<a href="javascript:void(0)">装让配置</a>
+
+					<a href="javascript:void(0)">商户管理</a>
+
+					<a href="javascript:void(0)">消息管理</a>
+
+
+				</li>
+			</ul>
+
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">后台系统管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="javascript:void(0)">管理员管理</a>
+					<a href="javascript:void(0)">管理员群组</a>
+					<a href="javascript:void(0)">管理员权限</a>
+					<a href="javascript:void(0)">后台图片配置</a>
+					<a href="javascript:void(0)">操作日志</a>
+					
+				</li>
+			</ul>
+
+		</li>
+	</ul>
+
+	
+	
+
+	
+
+	
+
+	
+</div>
+			<header>
+	<section>
+		<a href="home.html">
+			<img src="img/logo.png" alt="">
+
+		</a>
+		后台管理系统
+
+		<div class="pull-right">
+			欢迎您，admin，超级管理员
+			<a href="exit" class="exit">退出</a>
+		</div>
+	</section>
+</header>
+			<div class="containerme">
+
+				
+				
+				<div class="pagecontent" id="pagecontent">
+					<section class="crumbs">
+						<i class="ico-dibiao"></i><a href="home.html">首页</a> > <a href="javascript:void(0)">用户管理</a> > 新建项目
+					</section>
+					<div class="createUser">
+						
+						<div class="icotitle">
+							<span class="step_on">项目发起人信息</span>
+							<span>商品设置</span>
+							<span>确认信息</span>
+							<span>完成</span>
+						</div>
+			            <div class="viewbtnbox" style="display: block;">
+			            	<h2 class="titles">项目信息</h2>
+
+							<form class="form-horizontal">
+					
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目发起人：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" class="input-xxlarge" id="inputEmail" placeholder="">
+							    </div>
+							  </div>
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目类型：&nbsp;&nbsp;</label>
+							    <div class="controls">
+
+							    	<div class="row radusbox">
+
+							    		<label class="radio pull-left">
+							            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">优先股众筹
+							            </label>
+
+							            <label class="radio pull-left">
+							            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">股权众筹
+							            </label>
+
+							            <label class="radio pull-left">
+							            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">产品众筹
+							            </label>
+
+							            <label class="radio pull-left">
+							            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">店铺众筹
+							            </label>
+							    		
+							    	</div>
+							      	
+
+						          
+
+
+						          
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目标题：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" class="input-xxlarge" id="inputEmail" placeholder="">
+							    </div>
+							  </div>
+
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目简介：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<textarea name="" id="" cols="30" rows="10" class="input-xxlarge"></textarea>
+							      <!-- <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> -->
+							    </div>
+							  </div>
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目标签：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" class="input-xxlarge" id="inputEmail" placeholder="">
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目类型：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<select class="input-xxlarge" >
+							    		<option value="">农业</option>
+							    		<option value="">出版</option>
+							    		<option value="">娱乐</option>
+							    		<option value="">艺术</option>
+							    		<option value="">店铺</option>
+							    		<option value="">房产</option>
+							    		<option value="">金融</option>
+							    	</select>
+							     
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目阶段：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<select class="input-xxlarge" >
+							    		<option value="">种子期</option>
+							    		<option value="">成长期</option>
+							    		<option value="">扩张器</option>
+							    		<option value="">成熟期</option>
+							    		
+							    	</select>
+							     
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">所在地区：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<select class="input-xxlarge" >
+							    		<option value="">北京</option>
+							    		
+							    		
+							    	</select>
+							     
+							    </div>
+							  </div>
+
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">年化收益：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	  <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> %
+							     
+							    </div>
+							  </div>
+
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">筹资金额：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	  <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 元
+							     
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">投资份数：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	  <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 份
+							     
+							    </div>
+							  </div>
+
+
+							   <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">筹资天数：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	  <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 天
+							     
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目方出资：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	  <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> %
+							     
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目方收益：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	  <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> %
+							     
+							    </div>
+							  </div>
+
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">列表页图片：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<div class="tt">
+							    		<input type="file">
+								    	<button class="btn btn-large btn-primary" type="button">上传列表页图片</button>
+								    	<span class="hui">支持jpg、jpeg、png、gif格式，大小：280 X 256px</span>
+							    	</div>
+
+							    </div>
+							  </div>
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<div class="picebox">
+										照片缩略图
+										<img src="img/temp/p1.png" alt="">
+										<div class="closed">-</div>
+									</div>
+
+									<div class="picebox">
+										照片缩略图
+										<img src="img/temp/p1.png" alt="">
+										<div class="closed">-</div>
+									</div>
+
+
+									<div class="picebox">
+										照片缩略图
+										<img src="img/temp/p1.png" alt="">
+										<div class="closed">-</div>
+									</div>
+							     
+							    </div>
+							  </div>
+
+
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目图片：&nbsp;&nbsp;</label>
+							    <div class="controls">
+
+							    	<div class="tt">
+							    		<input type="file">
+								    	<button class="btn btn-large btn-primary" type="button">上传项目图片</button>
+
+							    		<span class="hui">支持jpg、jpeg、png、gif格式，大小：280 X 256px</span>
+							    	</div>
+							    	
+							     
+							    </div>
+							  </div>
+
+
+
+							 <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<div class="picebox">
+										照片缩略图
+										<img src="img/temp/p1.png" alt="">
+										<div class="closed">-</div>
+									</div>
+
+									<div class="picebox">
+										照片缩略图
+										<img src="img/temp/p1.png" alt="">
+										<div class="closed">-</div>
+									</div>
+
+
+									<div class="picebox">
+										照片缩略图
+										<img src="img/temp/p1.png" alt="">
+										<div class="closed">-</div>
+									</div>
+							     
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">项目详情：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<textarea name="" id="" cols="30" rows="10" class="input-xxlarge" placeholder="富文本编辑器"></textarea>
+							      <!-- <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> -->
+							    </div>
+							  </div>
+
+
+
+
+
+					
+
+
+						
+
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span4" for="inputEmail">&nbsp;&nbsp;</label>
+							    <div class="controls">
+							     	<span class="rowbox">
+							     		<div class="row-fluid">
+							     			<div class="input-xxlarge">
+							     				<button class="btn btn-large btn-block btn-primary" id="createproject" type="button">创建</button>
+							     			</div>
+							     		</div>
+							     	</span>
+							    </div>
+							  </div>
+					
+						
+							</form>
+							
+			            </div>
+			            <div class="viewbtnbox" style="display: none;">
+			            	<h2 class="titles">商品设置</h2>
+
+
+			            	<table class="botbor table-hover">
+								<thead>
+									<tr>
+										<td>序号</td>
+										<td>支持金额</td>
+										<td>名额</td>
+										<td>回报内容</td>
+										<td>回报时间</td>
+
+										<td>运费</td>
+
+										<td>操作</td>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>100.00元</td>
+										<td>50</td>
+										<td>行行行行行行行想嘻嘻嘻嘻嘻嘻</td>
+										<td>2015-10-16 21:22:42</td>
+										<td>500</td>
+
+										<td>
+											<a href="javascript:void(0)" class="btns edit">编辑</a>
+											<a href="javascript:void(0)" class="btns delete">删除</a>
+										</td>
+										
+									</tr>
+
+
+									<tr>
+										<td>1</td>
+										<td>100.00元</td>
+										<td>50</td>
+										<td>行行行行行行行想嘻嘻嘻嘻嘻嘻</td>
+										<td>2015-10-16 21:22:42</td>
+										<td>500</td>
+
+										<td>
+											<a href="javascript:void(0)" class="btns edit">编辑</a>
+											<a href="javascript:void(0)" class="btns delete">删除</a>
+										</td>
+										
+									</tr>
+
+									
+
+									
+
+
+								
+									
+								</tbody>
+							</table>
+
+
+
+							<div>
+								<button class="btn btn-large btn-primary" id="addReturn" type="button">添加回报</button>
+							
+							</div>
+
+
+							<div class="showmsg" style="display:none">
+								<form class="form-horizontal">
+					
+					
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">商品类别：&nbsp;&nbsp;</label>
+									    <div class="controls">
+
+									    	<div class="row radusbox">
+
+									    		<label class="radio pull-left">
+									            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">实物
+									            </label>
+
+									            <label class="radio pull-left">
+									            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">虚拟物品
+									            </label>
+
+									           
+									    		
+									    	</div>
+									      	
+
+								          
+
+
+								          
+									    </div>
+									  </div>
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">支持金额：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									      <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 元
+									    </div>
+									  </div>
+
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">回报内容：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									    	<textarea name="" id="" cols="30" rows="10" class="input-xxlarge"></textarea>
+									      <!-- <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> -->
+									    </div>
+									  </div>
+
+								
+
+								
+
+
+							
+
+							
+
+
+						
+
+
+						
+
+					
+
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">产品图片：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									    	<div class="tt">
+									    		<input type="file">
+										    	<button class="btn btn-large btn-primary" type="button">上传产品图片</button>
+										    	<span class="hui">支持jpg、jpeg、png、gif格式，大小：280 X 256px</span>
+									    	</div>
+
+									    </div>
+									  </div>
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">&nbsp;&nbsp;</label>
+									    <div class="controls">
+									    	<div class="picebox">
+												照片缩略图
+												<img src="img/temp/p1.png" alt="">
+												<div class="closed">-</div>
+											</div>
+
+											<div class="picebox">
+												照片缩略图
+												<img src="img/temp/p1.png" alt="">
+												<div class="closed">-</div>
+											</div>
+
+
+											<div class="picebox">
+												照片缩略图
+												<img src="img/temp/p1.png" alt="">
+												<div class="closed">-</div>
+											</div>
+									     
+									    </div>
+									  </div>
+
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">商品数量：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									      <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 份
+									    </div>
+									  </div>
+
+
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">上传优惠码：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									    	<div class="tt">
+									    		<input type="file">
+										    	<button class="btn btn-primary" type="button">上传</button>
+										    	<span class="hui">优惠码上传规范表.xlsx</span>
+
+
+										    	<br />
+									    	<br />
+
+
+									    	<a href="" class="mark block">点击下载优惠码上传规范表.xlsx</a>
+									    	</div>
+									    	
+
+									    </div>
+									  </div>
+
+
+
+
+
+
+
+				
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">&nbsp;&nbsp;</label>
+									    <div class="controls">
+									     	<span class="rowbox">
+									     		<div class="row-fluid">
+									     			<div class="input-xxlarge">
+									     				<button class="btn  btn-primary"  id="submitadd" type="button">确定</button>
+
+									     				<button class="btn  btn-warning"  id="canceladd" type="button">取消</button>
+									     			</div>
+									     		</div>
+									     	</span>
+									    </div>
+									  </div>
+							
+								
+								</form>
+								
+							</div>
+
+
+							<div class="row-fluid myform" >
+							    <label class="control-label span4" for="inputEmail">&nbsp;&nbsp;</label>
+							    <div class="controls">
+							     	<span class="rowbox">
+							     		<div class="row-fluid" style="width:613px">
+							     			<div class="span6">
+							     				<button class="btn btn-large btn-block btn-primary" id="next_0" type="button">上一步</button>
+							     			</div>
+
+							     			<div class="span6">
+							     				<button class="btn btn-large btn-block btn-warning" id="next_3" type="button">下一步</button>
+							     			</div>
+							     		</div>
+							     	</span>
+							    </div>
+							  </div>
+
+
+				
+			            	
+			            </div>
+			            <div class="viewbtnbox" style="display: none;">
+
+			            	<h2 class="titles">确认信息</h2>
+			            	
+							<form class="form-horizontal">
+					
+					
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">银行账户：&nbsp;&nbsp;</label>
+									    <div class="controls">
+
+									    	<div class="row radusbox">
+
+									    		<label class="radio pull-left">
+									            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">个人账户
+									            </label>
+
+									            <label class="radio pull-left">
+									            	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">公司账户
+									            </label>
+
+									           
+									    		
+									    	</div>
+									      	
+
+								          
+
+
+								          
+									    </div>
+									  </div>
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">收款人姓名：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									      <input type="text" class="input-xxlarge" id="inputEmail" placeholder="">
+									    </div>
+									  </div>
+
+
+
+			
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">银行：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									      <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 
+									    </div>
+									  </div>
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">支行：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									      <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 
+									    </div>
+									  </div>
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">银行卡号：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									      <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 
+									    </div>
+									  </div>
+
+
+									  <div class="row-fluid myform">
+									    <label class="control-label span4" for="inputEmail">确认银行卡号：&nbsp;&nbsp;</label>
+									    <div class="controls">
+									      <input type="text" class="input-xxlarge" id="inputEmail" placeholder=""> 
+									    </div>
+									  </div>
+
+
+
+
+
+
+
+
+
+
+				
+
+									  <div class="row-fluid myform" >
+									    <label class="control-label span4" for="inputEmail">&nbsp;&nbsp;</label>
+									    <div class="controls">
+									     	<span class="rowbox">
+									     		<div class="row-fluid" style="width:613px">
+									     			<div class="span6">
+									     				<button class="btn btn-large btn-block btn-primary" id="next_2" type="button">上一步</button>
+									     			</div>
+
+									     			<div class="span6">
+									     				<button class="btn btn-large btn-block btn-warning" id="next_4" type="button">提交</button>
+									     			</div>
+									     		</div>
+									     	</span>
+									    </div>
+									  </div>
+									
+								
+							</form>
+			            	
+			            </div>
+
+
+			            <div class="viewbtnbox" style="display: none;">
+			            	
+			            	<h2 class="titles">完成</h2>
+			            	<div class="samile">
+			            		<i class="ico-smile"></i>
+			            		提交成功！
+
+			            	</div>
+			            </div>
+						
+					</div>
+				</div>
+			</div>
+
+			
+			
+		</div>
+
+
+
+
+		
+		<script type="text/javascript" src="js/vendor/jquery-1.7.2.min.js"></script>
+	    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	    <script type="text/javascript" src="js/vendor/layer/layer.js"></script>
+	    <script type="text/javascript" src="js/public.js"></script>
+
+	    <script type="text/javascript">
+	    	$(".closed").on("click",function(){
+				var p=$(this).parents(".picebox");
+				var piceLength=$(this).parents(".controls").find(".picebox").length;
+				if(piceLength>1){
+					p.remove();
+					layer.msg('删除成功');
+				}else{
+					$(this).hide();
+					p.find("img").remove();
+					layer.msg('删除成功');
+				}
+				
+			})
+
+
+
+			/*创建项目*/
+
+			$("#createproject").on("click",function(){
+				$(".icotitle span:eq(1)").addClass("step_on");
+
+				$(".viewbtnbox:eq(1)").show().siblings(".viewbtnbox").hide();
+
+			})
+
+			$("#next_0").on("click",function(){
+				$(".icotitle span:eq(0)").addClass("step_on").siblings("span").removeClass("step_on");
+
+				$(".viewbtnbox:eq(0)").show().siblings(".viewbtnbox").hide();
+
+			});
+
+
+			$("#next_3").on("click",function(){
+		
+				$(".icotitle span:lt(3)").addClass("step_on");
+
+				$(".viewbtnbox:eq(2)").show().siblings(".viewbtnbox").hide();
+
+			});
+
+
+
+			$("#next_4").on("click",function(){
+		
+				$(".icotitle span").addClass("step_on");
+
+				$(".viewbtnbox:eq(3)").show().siblings(".viewbtnbox").hide();
+
+			});
+
+
+
+			$("#next_2").on("click",function(){
+		
+				$(".icotitle span:gt(1)").removeClass("step_on");
+
+				$(".viewbtnbox:eq(1)").show().siblings(".viewbtnbox").hide();
+
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+			$("#addReturn").on("click",function(){
+
+				if($(".showmsg").is(":hidden")){
+					$(".showmsg").show();
+				}
+			})
+
+
+	$(".edit").on("click",function(){
+		if($(".showmsg").is(":hidden")){
+			$(".showmsg").show();
+		}
+
+	})
+
+	$("#submitadd").on("click",function(){
+		$(".showmsg").hide();
+	})
+
+	$("#canceladd").on("click",function(){
+		$(".showmsg").hide();
+	})
+
+
+
+	$(".delete").live("click",function(){
+		var box=$(this).parents("tr");
+		var id = $(this).parents("tr").index();
+		// alert(id)
+		layer.confirm('是否删除地址？', {
+		    btn: ['删除','不删除'] //按钮
+		}, function(){
+			box.eq(id).remove();
+		    layer.msg('删除成功');
+		});
+	})
+
+
+
+	$(".close").on("click",function(){
+		var p=$(this).parents(".picebox");
+		var piceLength=$(this).parents(".inputbox").find(".picebox").length;
+		if(piceLength>1){
+			p.remove();
+			layer.msg('删除成功');
+		}else{
+			$(this).hide();
+			p.find("img").remove();
+			layer.msg('删除成功');
+		}
+		
+	})
+
+
+	    </script>
+
+	 
+	</body>
+</html>

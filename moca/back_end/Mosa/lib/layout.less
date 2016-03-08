@@ -1,0 +1,492 @@
+html,body{
+	min-height: 100%;
+	background-image: url("@{img}/bodybg.png");
+	background-repeat: repeat-y;
+	background-color: @docBgColor;
+
+}
+
+
+a{
+	&:hover{
+		color: @markColor;
+	}
+}
+
+body{
+	// ._clearfix();
+}
+
+.box{
+	.leftbar{
+		width: 74px;
+		min-height: 100%;
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		background: @barbgColor;
+		// padding-top: 55px;
+		color: #ffffff;
+		text-align: center;
+		font-size: 14px;
+		z-index: 2;
+		&>ul{
+			margin-top: 56px;
+			li{
+				width: 74px;
+				margin-bottom: 15px;
+				position: relative;
+
+
+				a{
+					color: #ffffff;
+					padding: 13px 0px;
+
+					display: block;
+					width: 100%;
+					// height: 100%;
+					.ico{
+						width: 26px;
+						height: 26px;
+						display: block;
+						margin: 0px auto;
+						font-size: 26px;
+					}
+					.icoside{
+						color: #ebebf5;
+						position: absolute;
+						right: -4px;
+						top: 20px;
+						display: none;
+					}
+					&:hover{
+						color: @markColor;
+					}
+
+				}
+				&.active{
+					a{
+						background: darken(@barbgColor, 5%);
+						color: @markColor;
+					}
+				}
+			}
+
+		}
+	}
+
+	.left2bar{
+		width: 138px;
+		height: 100%;
+		position:fixed;
+		z-index: 1;
+		background: #ebebf5;
+		left: -64px;
+
+		.slidebtn{
+			display: none;
+			width: 30px;
+			height: 52px;
+			right: -15px;
+			overflow: hidden;
+			position: absolute;
+			top: 50%;
+			margin-top: -26px;
+
+
+			.inbtnl{
+				cursor: pointer;
+				border: 1px solid #dfdff2;
+				border-right: 0px;
+				width: 14px;
+				height: 50px;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				background: #ffffff;
+				border-radius: 10px 0px 0px 10px;
+				line-height: 50px;
+				font-size: 12px;
+				color: @baseTextColor;
+				text-align: center;
+			}
+			.inbtnr{
+				cursor: pointer;
+				border: 1px solid #dfdff2;
+				border-left: 0px;
+				width: 14px;
+				height: 50px;
+				position: absolute;
+				right: 0px;
+				top: 0px;
+				background: #ffffff;
+				border-radius: 0px 10px 10px 0px;
+				line-height: 50px;
+				font-size: 12px;
+				color: @baseTextColor;
+				text-align: center;
+
+			}
+		}
+
+		ul{
+			display: none;
+			margin-top: 56px;
+			font-size: 12px;
+			li{
+				line-height: 40px;
+				border-bottom: 1px solid #dfdff2;
+				// padding:0 15px;
+				&>a{
+					color: #6c6c80;
+					display: block;
+					padding:0px 15px;
+					&.active{
+						color: @markColor;
+					}
+				}
+				.span2{
+					display: none;
+					text-align: right;
+				}
+
+				&.bar2{
+					.span2{
+						display: block;
+					}
+					ul{
+						background: #ffffff;
+						margin-top: 0px;
+						li{
+							line-height: 40px;
+							border-bottom: 1px solid #f5f5fa;
+							padding:0 -15px;
+							&:last-child{
+								border-bottom: none;
+							}
+
+						}
+					}
+				}
+				
+
+			}
+		}
+	}
+	&>header{
+		width: 100%;
+		// min-width: 1000px;
+		background: @barbgColor;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		height: auto;
+		z-index: 3;
+	
+		section{
+			height: 24px;
+			line-height: 24px;
+			padding: 16px;
+			color: #ffffff;
+			margin-left: 50px;
+			._clearfix();
+			img{
+				height: 38px;
+				margin-top: -8px;
+				margin-right: 10px;
+			}
+			a{
+				color: #ffffff;
+				padding-left: 10px;
+				&:hover{
+					color: @markColor;
+				}
+			}
+
+		}
+	}
+
+.containerme{
+	padding-left: 74px;
+	padding-top: 56px;
+	
+
+}
+
+}
+
+
+
+
+.pagecontent{
+	padding: 0px 24px;
+
+}
+
+
+
+.icotitle{
+	height: 40px;
+	text-align: center;
+	
+	margin: 35px auto 20px auto;
+	span{
+		font-weight: bold;
+
+		display: inline-block;
+		width: 211px;
+		height: 40px;
+		background: url("@{img}/title.png") no-repeat -211px 0px;
+		color: @titleTextColor;
+		font-size: @navSize;
+		line-height: 40px;
+		text-align: center;
+		&.step_on{
+			color: #ffffff;
+			background-position: 0px 0px;
+		}
+	}
+}
+
+
+._table(table,botbor);
+
+.toobox{
+	margin-bottom: 20px;
+}
+
+.text-right{
+	text-align: right!important;
+}
+
+.text-left{
+	text-align: left!important;
+}
+
+.lin22{
+	line-height: 22px;
+}
+.text-center{
+	text-align: center!important;
+}
+.mark{
+	color: @markColor;
+}
+.asst{
+	color: @baseTextColor;
+}
+a{
+	&.mark{
+		color: @markColor;
+		&:hover{
+			color: darken(@markColor, 10%)
+		}
+
+	}
+}
+
+.samile{
+	text-align: center;
+	color: @markColor;
+	font-weight: bold;
+	font-size: 16px;
+	i{
+
+		display: block;
+		margin: 50px auto 10px auto;
+		width: 60px;
+		height: 60px;
+		line-height: 60px;
+		font-size: 48px;
+		text-align: center;
+	}
+}
+
+.tabview{
+	height: 50px;
+	line-height: 50px;
+	font-size: @navSize;
+	background: @borderColor;
+
+	a{
+		display: inline-block;
+		text-align: center;
+		padding: 0px 30px;
+		
+		&.active{
+			background: #ffffff;
+		}
+		&:hover{
+			color: @titleTextColor;
+		}
+
+	}
+}
+.viewbtnbox{
+	.titles{
+		font-size: 16px;
+		width: 1024px;
+		font-weight: bold;
+		margin: 0px 0 20px 0;
+	}
+	padding: 0px 24px;
+}
+.form-horizontal{
+	font-size: 14px;
+}
+.row-fluid{
+	.input-xxlarge{
+		width: 600px + 15;
+	}
+	.controls{
+		._clearfix();
+		position: relative;
+		input[type='text'],
+		input[type='password'],
+		select{
+			width: 240px;
+
+
+			&.input-xxlarge{
+				width: 600px;
+			}
+			
+		}
+		button{
+			position: relative;
+			&.bfb{
+				width: 100%;
+			}
+			
+			&.input-xxlarge{
+				width: 600px + 14;
+			}
+		}
+		select{
+			height: 40px;
+			line-height: 40px;
+
+			width: 240px + 15;
+
+			&.input-xxlarge{
+				width: 615px;
+			}
+
+		}
+		textarea{
+			&.input-xxlarge{
+				width: 600px - 10;
+				padding: 10px;
+				height: 88px;
+			}
+		}
+		.tt{
+			position: relative;
+			display: inline-block;
+
+		}
+		input[type='file'] {
+		  height: 40px;
+		  width: 200px;
+		  position: absolute;
+		  left: 0px;
+		  top: 0px;
+		  .-text ._opacity(0);
+		  z-index: 999;
+		  
+		  cursor: pointer;
+		}
+		.radusbox{
+			padding-top: 9px;
+			label{
+				margin-right: 20px;
+				color: @baseTextColor;
+			}
+		}
+		.picebox{
+			width: 256px;
+			height: 144px;
+			line-height: 144px;
+			// text-align: center;
+			background: @activeTextColor;
+			color: #ffffff;
+			position: relative;
+			text-align: center;
+			margin-bottom: 10px;
+			float: left;
+			margin-right: 10px;
+			img{
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				z-index: 1;
+			}
+			.closed{
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				z-index: 2;
+				right: -8px;
+				top: -8px;
+				cursor: pointer;
+				background: #ee0000;
+				border-radius: 50%;
+				line-height: 20px;
+				text-align: center;
+				color: #ffffff;
+
+				// background: url("@{img}/ico1.png") no-repeat -50px -227px;
+			}
+		}
+
+	}
+	.rowbox{
+		display: inline-block;
+		width: 254px;
+	}
+
+	&.myform{
+		margin-bottom: 14px;
+	}
+
+}
+.popup{
+	line-height: 30px;
+	p{
+		// color: @baseTextColor;
+		
+		margin-bottom: 5px;
+	}
+}
+.fileup{
+	position: relative;
+	input[type='file']{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		.-text ._opacity(0);
+		width: 80px;
+
+	}
+}
+
+input{
+	outline: none;
+	&:focus{
+		outline: none!important;
+	}
+}
+
+.hui{
+	color: @baseTextColor;
+}
+
+a{
+	&:visited{
+		outline: none!important;
+
+	}
+}

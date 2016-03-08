@@ -1,0 +1,23 @@
+//crumbs.less
+
+.crumbs{
+	line-height: 55px;
+	font-size: @baseFontSize;
+	color: @baseTextColor;
+	padding: 0px 0px;
+	background: @docBgColor;
+	._clearfix();
+	i{
+		font-size: 18px;
+		float: left;
+		display: block;
+		margin-right: 5px;
+		margin-top: 19px;
+	}
+	a{
+		color: @baseTextColor;
+		&:hover{
+			color: @markColor;
+		}
+	}
+}
