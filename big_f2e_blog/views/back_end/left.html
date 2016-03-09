@@ -1,7 +1,7 @@
 <div class="leftbar" id="leftbar">
 	<ul>
 		<li class="active">
-			<a href="home">
+			<a href="/admin/home">
 				<i class="ico ico-home"></i>
 				首页
 			</a>
@@ -53,7 +53,9 @@
 				
 </div>
 
-<div class="left2bar" id="left2bar">
+
+
+<div class="left2bar" id="left2bar" <%if (typeof homestyle === 'undefined' ){ %> style="left: 74px" <% } %>>
 
 	<div class="slidebtn">
 		<div class="inbtnl">
@@ -105,7 +107,7 @@
 						<a href="javascript:void(0)">关于我们</a>
 					</li>
 					<li> 
-						<a href="javascript:void(0)">普通文章</a>
+						<a href="/admin/article_management/articles">普通文章</a>
 					</li>
 					
 				</ul>

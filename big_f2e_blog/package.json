@@ -4,7 +4,7 @@
   "description": "f2e blog",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app"
   },
   "keywords": [
     "javascreipt",
@@ -24,6 +24,7 @@
     "express-session": "^1.13.0",
     "morgan": "^1.7.0",
     "multer": "^1.1.0",
-    "mysql": "^2.10.2"
+    "mysql": "^2.10.2",
+    "ueditor": "^1.1.1"
   }
 }

@@ -253,10 +253,10 @@ a:hover {
   position: fixed;
   z-index: 1;
   background: #ebebf5;
-  left: -64px;
+  left: -74px;
 }
 .box .left2bar .slidebtn {
-  display: none;
+  display: block;
   width: 30px;
   height: 52px;
   right: -15px;
@@ -296,6 +296,7 @@ a:hover {
   font-size: 12px;
   color: #a6a6a6;
   text-align: center;
+  display: none;
 }
 .box .left2bar ul {
   display: none;
