@@ -9,7 +9,6 @@
 	    <!-- Le styles -->
 	    <link rel="stylesheet" type="text/css" href="/adm/bootstrap/css/bootstrap.css">
 	    <link rel="stylesheet" type="text/css" href="/adm/bootstrap/css/bootstrap-responsive.min.css">
-	     
 	    <!--[if lte IE 7]>
 	    <link rel="stylesheet" type="text/css" href="/adm/bootstrap/css/ie.css">
 	    <![endif]-->
@@ -25,7 +24,7 @@
 		<div class="login">
 			<div class="loginbox">
 				<div class="text-center head">
-					<p><img src="/adm/img/logo.png" alt=""></p>
+					<p><img src="/adm/img/logoselp.png" alt=""></p>
 					<p class="mark"><%= title %></p>
 				</div>
 				<form action="">
@@ -48,10 +47,13 @@
 					<div class="row-fluid formg">
 						<div class="span7 inputbox">
 							<i class="ico-pice"></i>
-							<input type="text" placeholder="验证码">
+							<input type="text"  id="verify" placeholder="验证码">
 						</div>
 						<div class="span5 inputbox">
-							<img src="/admin/captcha" id="yzm" class="yzm"  alt="">
+							<img src="/admin/captcha" class="yzm" id="piceVerify" alt="">
+						</div>
+						<div class="inputbox span1" id="reVerify">
+							<i class="ico-shuaxin"></i>
 						</div>
 					</div>
 
@@ -69,11 +71,15 @@
 	    <script type="text/javascript" src="/adm/js/vendor/jquery-1.7.2.min.js"></script>
 	    <script type="text/javascript" src="/adm/bootstrap/js/bootstrap.js"></script>
 	     <script type="text/javascript" src="/adm/js/vendor/layer/layer.js"></script>
-	    <!-- <script type="text/javascript" src="/adm/js/public.js"></script> -->
 
 	    <script type="text/javascript">
 	    	$("#loginSubmit").on("click",function(){
-	    		var data={"login_name":$("#login_name").val(),password:$("#password").val()};
+	    		var data={
+	    			"login_name":$("#login_name").val(),
+	    			password:$("#password").val(),
+	    			verify:$("#verify").val()
+
+	    		};
 	    		if(data['login_name'].length==0){
 	    			layer.msg('用户名不能为空');
 	    			return ;
@@ -100,23 +106,33 @@
 	    			}
 	    		})
 	    	})
-	    	// $(function(){
-	    	// 	$.ajax({
-	    	// 		url:"/admin/captcha",
-	    	// 		type:"GET",
-	    	// 		// async: false, 
-	    	// 		success:function(data){
-	    				
-	    	// 			if(data.code==200){
-	    	// 				console.log(data.captcha);
-	    	// 				// console.log(data.pice);
 
-	    	// 				$("#yzm").attr("src",data.pice);
-	    	// 			}
-	    	// 		},
 
-	    	// 	})
-	    	// })
+	    	$("#reVerify").on("click",function(){
+	    		$.ajax({
+	    			url:"/admin/captcha",
+	    			type:"GET",
+	    			// async: false, 
+	    			success:function(data){
+	    				// console.log(data);
+	    				$("#piceVerify").attr("src","/admin/captcha");
+	    			},
+
+	    		})
+	    	})
+
+
+	    	$("#reVerify").hover(function(){
+    			layer.tips('点击刷新验证码','#reVerify',{
+    				 tips: [2, '#41dbb9']
+    			});
+	    	},function(){
+	    		layer.close(layer.tips('默认就是向右的','#reVerify'))
+	    	})
+
+
+	    	
+	    
 	    </script>
 	</body>
 </html>

@@ -29,6 +29,13 @@ app.use(session({
 	}
 }));
 
+/*图片验证码*/
+// app.use(function(req,res,next){
+// 	var captchaNumber=parseInt(Math.random()*90000+10000);
+// 		req.session.verify=captchaNumber;
+// 		next();
+// })
+
 
 // app.use(function(req, res, next){
 // 	  res.locals.user = req.session.user;

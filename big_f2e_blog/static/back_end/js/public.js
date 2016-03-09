@@ -565,11 +565,11 @@ $(function(){
         var parent=$(this).parents(".bar2");
         if(parent.find("ul").is(":hidden")){
             parent.find("ul").slideDown(200);
-            parent.siblings(".bar2").find("ul").slideUp(200);
+            // parent.siblings(".bar2").find("ul").slideUp(200);
             parent.find(".span2").html("-");
-             parent.siblings(".bar2").find(".span2").html("+");
+             // parent.siblings(".bar2").find(".span2").html("+");
             $(this).addClass("active");
-            parent.siblings("li").find("a").removeClass("acitve");
+            // parent.siblings("li").find("a").removeClass("acitve");
 
         }else{
             parent.find("ul").slideUp(200);
