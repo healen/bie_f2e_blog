@@ -128,3 +128,33 @@ button:focus{ outline-style:none; }/* for Firefox，IE8.0等 */
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
     background: none;
 }
+
+
+input,button,select,textarea
+{
+      outline:none;
+      -webkit-appearance:none;
+}
+textarea
+{
+     resize:none;
+}
+
+input#login_name:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px rgba(255,255,255,0) inset;
+    background-color: rgba(0,0,0,0)!important;
+    border : 0px solid #CCC!important ;
+    background-color: #ff0000!important;
+    background-image: url( ../img/inputbg.png)!important
+
+
+}
+
+
+// input : -webkit-autofill {
+// // -webkit-box-shadow : 0 0 0px 1000px white inset ;
+
+// height : 27px!important ;
+// line-height : 27px!important ;
+// border-radius : 0 4px 4px 0 ;
+// }
