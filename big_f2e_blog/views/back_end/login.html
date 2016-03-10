@@ -24,7 +24,7 @@
 		<div class="login">
 			<div class="loginbox">
 				<div class="text-center head">
-					<p><img src="/adm/img/logoselp.png" alt=""></p>
+					<p><img src="/adm/img/logo.png" alt=""></p>
 					<p class="mark"><%= title %></p>
 				</div>
 				<form action="">
@@ -96,6 +96,16 @@
 	    				if(data.code==200){
 	    					window.location.href="home";
 	    				}else{
+	    					$.ajax({
+				    			url:"/admin/captcha",
+				    			type:"GET",
+				    			// async: false, 
+				    			success:function(data){
+				    				// console.log(data);
+				    				$("#piceVerify").attr("src","/admin/captcha");
+				    			},
+
+				    		})
 	    					layer.msg(data.msg);
 	    				}
 	    			},

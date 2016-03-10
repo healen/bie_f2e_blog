@@ -82,6 +82,15 @@ body{
 		z-index: 1;
 		background: #ebebf5;
 		left: -74px;
+		-webkit-transition: all 350ms ease-in;
+		-moz-transition: all 350ms ease-in;
+		-ms-transition: all 350ms ease-in;
+		-o-transition: all 350ms ease-in;
+		transition: all 350ms ease-in;
+
+		&.left2barshow{
+			left: 74px;
+		}
 
 		.slidebtn{
 			display: block;
@@ -131,7 +140,7 @@ body{
 		}
 
 		ul{
-			display: none;
+			// display: none;
 			margin-top: 56px;
 			font-size: 12px;
 			li{
@@ -156,6 +165,7 @@ body{
 						display: block;
 					}
 					ul{
+						display: none;
 						background: #ffffff;
 						margin-top: 0px;
 						li{
@@ -225,6 +235,14 @@ body{
 
 .pagecontent{
 	padding: 0px 24px;
+	-webkit-transition: all 350ms ease-in;
+	-moz-transition: all 350ms ease-in;
+	-ms-transition: all 350ms ease-in;
+	-o-transition: all 350ms ease-in;
+	transition: all 350ms ease-in;
+	&.pagecontentshow{
+		margin-left: 134px;
+	}
 
 }
 

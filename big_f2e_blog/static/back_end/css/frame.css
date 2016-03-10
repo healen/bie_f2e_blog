@@ -254,6 +254,14 @@ a:hover {
   z-index: 1;
   background: #ebebf5;
   left: -74px;
+  -webkit-transition: all 350ms ease-in;
+  -moz-transition: all 350ms ease-in;
+  -ms-transition: all 350ms ease-in;
+  -o-transition: all 350ms ease-in;
+  transition: all 350ms ease-in;
+}
+.box .left2bar.left2barshow {
+  left: 74px;
 }
 .box .left2bar .slidebtn {
   display: block;
@@ -299,7 +307,6 @@ a:hover {
   display: none;
 }
 .box .left2bar ul {
-  display: none;
   margin-top: 56px;
   font-size: 12px;
 }
@@ -323,6 +330,7 @@ a:hover {
   display: block;
 }
 .box .left2bar ul li.bar2 ul {
+  display: none;
   background: #ffffff;
   margin-top: 0px;
 }
@@ -388,6 +396,14 @@ a:hover {
 }
 .pagecontent {
   padding: 0px 24px;
+  -webkit-transition: all 350ms ease-in;
+  -moz-transition: all 350ms ease-in;
+  -ms-transition: all 350ms ease-in;
+  -o-transition: all 350ms ease-in;
+  transition: all 350ms ease-in;
+}
+.pagecontent.pagecontentshow {
+  margin-left: 134px;
 }
 .icotitle {
   height: 40px;

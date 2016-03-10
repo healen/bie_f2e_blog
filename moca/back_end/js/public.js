@@ -533,8 +533,6 @@ $(function(){
         var index=$(this).index()-1;
         $(this).find(".icoside").show();
         $(this).siblings("li").find(".icoside").hide();
-        $("#left2bar > ul").eq(index).show();
-        $("#left2bar > ul").eq(index).siblings("ul").hide();
         if(left<-10){
             $("#left2bar").find(".slidebtn .inbtnr").hide();
             $("#left2bar").find(".slidebtn .inbtnl").show();

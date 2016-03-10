@@ -25,7 +25,6 @@
 		<script type="text/javascript" src="/adm/js/public.js"></script>
 	</head>
 	<body>
-
 		<div class="box">
 			<% include left.html %>
 			<% include head.html %>
@@ -34,33 +33,21 @@
 					<section class="crumbs">
 						<i class="ico-dibiao"></i>
 						<a href="home.html">首页</a> &gt; 
-
 						<% crumbs.forEach(function(itmes,i){ %>
-						
 						 	<% if(itmes.content.href==null){ %>
 						 		<% if(i < crumbs.length-1){ %>
 						 			<%= itmes.content %> &gt; 
 						 			<% return %>
 						 		<% } %>
 						 		  <%= itmes.content %> 
-								
 							<% } else {%>
 								<% if(i < crumbs.length-1){ %>
 									<a href="<%= itmes.href %>"> <%=  itmes.content  %></a> &gt; 
 									<% return %>
 						 		<% } %>
 						 		<a href="<%= itmes.href %>"> <%=  itmes.content  %></a>
-								
 							<% } %>
-
-
-							
-
 						<% }) %>
-							
-						
-						
-
 					</section>
 				</div>
 
@@ -243,4 +230,25 @@
 		
 		
 	</body>
+
+	<% if (typeof home === 'undefined' ){ %> 
+		<script type="text/javascript">
+			setTimeout(function(){
+				$("#left2bar").addClass("left2barshow");
+				$("#pagecontent").addClass("pagecontentshow")
+
+			},50)
+		</script>
+	<% }else{%>
+		<script type="text/javascript">
+			setTimeout(function(){
+				$("#left2bar").removeClass("left2barshow");
+				$("#pagecontent").removeClass("pagecontentshow")
+
+			},50)
+		</script>
+
+	<%} %>
+
+	
 </html>

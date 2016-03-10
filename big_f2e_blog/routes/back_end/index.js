@@ -1,25 +1,26 @@
 var mysqlUtil=require("../../bin/mysql-util");
-var Db=new mysqlUtil();
+
 var md5=require("../../bin/encryption");
 
 var express = require("express");
 var captchapng = require('captchapng');
 var fs=require("fs");
 var router=express.Router();
+var GL=require("./global").global;
+// var basename=path.basename(__filename,".js");
 // var fs=require("fs")
-
-
-
-
-
 router
 	.get("/",function(req,res){
 		// console.log(req.session.admin);
 		if(req.session.admin){
+			console.log(GL(req,res).Memu);
 			res.render("back_end/home",{
 				title:"管理首页",
 				username:req.session.admin.login_name,
-				homestyle:"1"
+				home:"1",
+				mid:0,
+				memuName:"home",
+				memu:GL(req,res).Memu
 			})
 
 		}else{
@@ -27,12 +28,16 @@ router
 		}
 	})
 	.get("/home",function(req,res){
-		console.log(req.session.admin);
+		// console.log(req.session.admin);
 		if(req.session.admin){
+			console.log(GL(req,res).Memu);
 			res.render("back_end/home",{
 				title:"管理首页",
 				username:req.session.admin.login_name,
-				homestyle:"1"
+				home:"1",
+				mid:0,
+				memuName:"home",
+				memu:GL(req,res).Memu
 			})
 
 		}else{
@@ -61,9 +66,9 @@ router
 
 	.get("/captcha",function(req,res){
 
-		var captchaNumber=parseInt(Math.random()*90000+10000);
+		var captchaNumber=parseInt(Math.random()*9+1);
 		req.session.verify=captchaNumber;
-		console.log(req.session.verify);
+		// console.log(req.session.verify);
 		// console.log(__dirname);
 		 var p = new captchapng(144,50,req.session.verify);
 		 p.color(255, 255, 255, 30);
@@ -77,15 +82,15 @@ router
 
 router
 	.post("/login",function(req,res){
+		var Db=new mysqlUtil();
 		var admin_data={
 			login_name:req.body.login_name,
 			password:req.body.password
-
 		}
 
 		Db.find("admin","login_name='"+req.body.login_name+"' and password='"+md5.encryption(req.body.password,"md5")+"'",function(results){
 			if(results.length!=0){
-				console.log(req.session.verify + " " +req.body.verify);
+				// console.log(req.session.verify + " " +req.body.verify);
 				if(req.body.verify == req.session.verify){
 					req.session.admin=admin_data;
 					res.json({msg:"ok",code:200});

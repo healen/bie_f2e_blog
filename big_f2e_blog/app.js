@@ -8,18 +8,28 @@ var session = require("express-session");
 var logger = require("morgan");
 var ejs=require("ejs");
 var ueditor=require("ueditor");
-// var port = (process.env.POST || 3000);
-
-
 var BASE_DIR = __dirname;
 var app = express();
 
+/*路由配置*/
+var Routes={
+    frout:{
+        routes:require("./routes/front_end")
+    },
+    admin:{
+        admin:require("./routes/back_end"),
+        member_mana:require("./routes/back_end/member_mana"),
+        article_mana:require("./routes/back_end/article_mana"),
+        pice_mana:require("./routes/back_end/pice_mana"),
+        timeline_mana:require("./routes/back_end/timeline_mana"),
+        statistic_mana:require("./routes/back_end/statistic_mana"),
+        system_config:require("./routes/back_end/system_config"),
+        
 
+    }
+}
 
-var routes=require("./routes/front_end");
-var admin=require("./routes/back_end");
-var admin_article_management=require("./routes/back_end/admin_article_management");
-
+/*使用中间件*/
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +43,7 @@ app.use(session({
 	}
 }));
 
-
+/*编辑器*/
 app.use("back_end/lib/ueditor/ue", ueditor(path.join(__dirname, 'static'), function(req, res, next) {
     // ueditor 客户发起上传图片请求
     if(req.query.action === 'uploadimage'){
@@ -56,25 +66,29 @@ app.use("back_end/lib/ueditor/ue", ueditor(path.join(__dirname, 'static'), funct
         res.redirect('/lib/ueditor/config.json')
     }}));
 
-
-
-
 app.use("/adm",express.static(path.join(BASE_DIR,"static","back_end")));
 app.use(express.static(path.join(BASE_DIR,"static","front_end")));
-
 app.set("views",path.join(path.join(BASE_DIR,"views")));
 app.engine("html",ejs.__express);
 app.set("view engine","html");
-
 app.set('port', process.env.PORT || 3000);
 
 
 
-app.use("/",routes);
+app.use("/",Routes.frout.routes);
 
-app.use("/admin",admin);
 
-app.use("/admin/article_management",admin_article_management);
+
+app.use("/admin",Routes.admin.admin);
+
+app.use("/admin/member_mana",Routes.admin.member_mana);
+app.use("/admin/article_mana",Routes.admin.article_mana);
+app.use("/admin/pice_mana",Routes.admin.pice_mana);
+app.use("/admin/timeline_mana",Routes.admin.timeline_mana);
+app.use("/admin/statistic_mana",Routes.admin.statistic_mana);
+app.use("/admin/system_config",Routes.admin.system_config);
+
+
 
 
 
