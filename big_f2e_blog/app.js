@@ -13,9 +13,13 @@ var app = express();
 
 /*路由配置*/
 var Routes={
+    /*前台*/
     frout:{
-        routes:require("./routes/front_end")
+        routes:require("./routes/front_end"),
+         member:require("./routes/front_end/member")
     },
+
+    /*后台*/
     admin:{
         admin:require("./routes/back_end"),
         member_mana:require("./routes/back_end/member_mana"),
@@ -24,8 +28,6 @@ var Routes={
         timeline_mana:require("./routes/back_end/timeline_mana"),
         statistic_mana:require("./routes/back_end/statistic_mana"),
         system_config:require("./routes/back_end/system_config"),
-        
-
     }
 }
 
@@ -77,10 +79,12 @@ app.set('port', process.env.PORT || 3000);
 
 app.use("/",Routes.frout.routes);
 
+app.use("/member",Routes.frout.member);
 
 
+
+/*后台模块*/
 app.use("/admin",Routes.admin.admin);
-
 app.use("/admin/member_mana",Routes.admin.member_mana);
 app.use("/admin/article_mana",Routes.admin.article_mana);
 app.use("/admin/pice_mana",Routes.admin.pice_mana);

@@ -189,6 +189,23 @@ textarea:-webkit-autofill,
 select:-webkit-autofill {
   background: none;
 }
+input,
+button,
+select,
+textarea {
+  outline: none;
+  -webkit-appearance: none;
+}
+textarea {
+  resize: none;
+}
+input#login_name:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0) inset;
+  background-color: rgba(0, 0, 0, 0) !important;
+  border: 0px solid #CCC!important ;
+  background-color: #ff0000!important;
+  background-image: url(../img/inputbg.png) !important;
+}
 /*主体框架样式*/
 html,
 body {
@@ -254,11 +271,11 @@ a:hover {
   z-index: 1;
   background: #ebebf5;
   left: -74px;
-  -webkit-transition: all 350ms ease-in;
-  -moz-transition: all 350ms ease-in;
-  -ms-transition: all 350ms ease-in;
-  -o-transition: all 350ms ease-in;
-  transition: all 350ms ease-in;
+  -webkit-transition: all 200ms ease-in;
+  -moz-transition: all 200ms ease-in;
+  -ms-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
 }
 .box .left2bar.left2barshow {
   left: 74px;
@@ -396,11 +413,11 @@ a:hover {
 }
 .pagecontent {
   padding: 0px 24px;
-  -webkit-transition: all 350ms ease-in;
-  -moz-transition: all 350ms ease-in;
-  -ms-transition: all 350ms ease-in;
-  -o-transition: all 350ms ease-in;
-  transition: all 350ms ease-in;
+  -webkit-transition: all 200ms ease-in;
+  -moz-transition: all 200ms ease-in;
+  -ms-transition: all 200ms ease-in;
+  -o-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
 }
 .pagecontent.pagecontentshow {
   margin-left: 134px;

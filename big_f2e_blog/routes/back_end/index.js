@@ -66,7 +66,7 @@ router
 
 	.get("/captcha",function(req,res){
 
-		var captchaNumber=parseInt(Math.random()*9+1);
+		var captchaNumber=parseInt(Math.random()*9000+1000);
 		req.session.verify=captchaNumber;
 		// console.log(req.session.verify);
 		// console.log(__dirname);
