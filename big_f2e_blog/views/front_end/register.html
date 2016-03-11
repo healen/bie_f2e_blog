@@ -21,153 +21,255 @@
 	<link rel="stylesheet" type="text/css" href="/adm/css/frame.css">
 	<link rel="stylesheet" type="text/css" href="/adm/css/user.css">
 	<link rel="shortcut icon" href="/adm/img/ico/favicon.ico">
+	<style type="text/css">
+		.has-error{
+			color:red;
+		}
+		.has-error .label{
+			color:red;
+		}
+		.has-error .controls input{
+			border-color: #ff0000;
+		}
+		.controls .log{
+			display: none;
+		}
+		.has-ok{
+			color:red;
+		}
+		.has-ok .label{
+			color:#00ff00;
+		}
+		.has-ok .controls input{
+			
+		}
+		.has-ok .controls .log{
+			color: #009900;
+		}
+		
+	</style>
+
+	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
 </head>
 
 
 <body>
-	<div class="viewbtnbox" style="display: block;">
 
-		<form class="form-horizontal">
-			<div class="row-fluid myform">
-				<label class="control-label span6" for="username">用户名：&nbsp;&nbsp;</label>
-				<div class="controls">
-					<input type="text" id="username" class="input-danger " placeholder="注册之后不能修改">
-				</div>
-			</div>
-			<div class="row-fluid myform">
-				<label class="control-label span6" for="password">密码：&nbsp;&nbsp;</label>
-				<div class="controls">
-					<input type="password" id="password" placeholder="">
-				</div>
-			</div>
-			<div class="row-fluid myform">
-				<label class="control-label span6" for="password1">确认密码：&nbsp;&nbsp;</label>
-				<div class="controls">
-					<input type="password" id="password1" placeholder="">
-				</div>
-			</div>
-			<div class="row-fluid myform">
-				<label class="control-label span6" for="email">邮箱：&nbsp;&nbsp;</label>
-				<div class="controls">
-					<input type="text" id="email" placeholder="输入真实邮箱，方便找回密码">
-				</div>
+	<div class="box">
+		<% include left.html %>
+		<% include head.html %>
+
+			<div class="viewbtnbox" style="display: block;padding-top:25px">
+				<form class="form-horizontal">
+					<div class="row-fluid myform">
+						<label class="control-label span6" for="username">用户名：&nbsp;&nbsp;</label>
+						<div class="controls">
+							<input type="text" id="username" class="input-danger" placeholder="注册之后不能修改长度5-8位">
+							<span class="log">fdsfsdfds</span>
+						</div>
+					</div>
+					<div class="row-fluid myform">
+						<label class="control-label span6" for="password">密码：&nbsp;&nbsp;</label>
+						<div class="controls">
+							<input type="password" id="password" placeholder="密码长度5-18位">
+							<span class="log"></span>
+						</div>
+
+					</div>
+					<div class="row-fluid myform">
+						<label class="control-label span6" for="password1">确认密码：&nbsp;&nbsp;</label>
+						<div class="controls">
+							<input type="password" id="password1" placeholder="确认密码">
+							<span class="log"></span>
+						</div>
+					</div>
+					<div class="row-fluid myform">
+						<label class="control-label span6" for="email">邮箱：&nbsp;&nbsp;</label>
+						<div class="controls">
+							<input type="text" id="email" placeholder="输入真实邮箱，方便找回密码">
+							<span class="log"></span>
+						</div>
+					</div>
+
+					<div class="row-fluid myform">
+						<label class="control-label span6" for="verify">验证码：&nbsp;&nbsp;</label>
+						<div class="controls">
+							<input type="text" id="verify" placeholder="输入图片验证码" style="width:132px">
+							<img src="/member/captcha"  style="height:38px" alt="">
+							<span class="log"></span>
+						</div>
+					</div>
+			
+					<div class="row-fluid myform">
+						<label class="control-label span6" for="inputEmail">&nbsp;&nbsp;</label>
+						<div class="controls">
+							<span class="rowbox">
+						 		<div class="row-fluid">
+						 			<div class="span12">
+						 				<button class="btn btn-large btn-block btn-primary" id="Register" type="button">注册</button>
+						 			</div>
+						 		</div>
+						 	</span>
+						</div>
+					</div>
+				</form>
 			</div>
 
-			<div class="row-fluid myform">
-				<label class="control-label span6" for="email">验证码：&nbsp;&nbsp;</label>
-				<div class="controls">
-					<input type="text" id="email" placeholder="输入真实邮箱，方便找回密码">
-					<img src="/adm/img/temp/yzm.png" width="150" alt="">
-				</div>
-			</div>
-	
-			<div class="row-fluid myform">
-				<label class="control-label span6" for="inputEmail">&nbsp;&nbsp;</label>
-				<div class="controls">
-					<span class="rowbox">
-				 		<div class="row-fluid">
-				 			<div class="span12">
-				 				<button class="btn btn-large btn-block btn-primary" id="Register" type="button">注册</button>
-				 			</div>
-				 		</div>
-				 	</span>
-				</div>
-			</div>
-		</form>
+		<% include foot.html %>
 	</div>
-	<script type="text/javascript" src="/adm/js/vendor/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/adm/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/adm/js/vendor/layer/layer.js"></script>
+
 	<script type="text/javascript">
-
-		$("#Register").on("click",function(){
-			var reg={
-				username:/\w{4,8}/,
-				password:/\w{5,17}/,
-				email:/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
-			}
-
-
-
-
-			var register={
+			var ele={
 				username:$("#username"),
 				password:$("#password"),
-				"email":$("#email")
+				password1:$("#password1"),
+				email:$("#email"),
+				verify:$("#verify")
 			}
-		})
+			var log={
+				showErrorMsg:function(ele,logbox,log){
+					ele.addClass("has-error");
+					logbox.next(".log").show().text(log);
+				},
+				showSuccessMsg:function(ele,logbox,log){
+					ele.removeClass("has-error");
+					logbox.next(".log").show().text(log);
+
+				}
+			}
+			var reg={
+					username:/\w{4,8}/,
+					password:/\w{5,18}/,
+					email:/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
+				}
+
+			/**
+			 * 用户名验证 
+			 */
+			ele.username.on("blur",function(){
+				var _this=$(this);
+				var parent=$(this).parents(".myform");
+				if($(this).val().length==0){
+					log.showErrorMsg(parent,$(this),"用户名不能为空！");
+					return;
+				}
+				if(!reg.username.test($(this).val())){
+					log.showErrorMsg(parent,$(this),"用户名格式不正确 请输入4到8位字符!");
+					return;
+				}
+
+				$.ajax({
+					url:"/member/usertesting",
+					type:"POST",
+					data:{username:_this.val()},
+					success:function(result){
+						if(result.code==200){
+							log.showSuccessMsg(parent,_this,"验证通过可以注册");
+						}else{
+							log.showErrorMsg(parent,$(this),"用户名已被占用!");
+							return;
+
+						}
+					},
+					error:function(data, status, e){
+						if(status=="error"){
+							log.showErrorMsg(parent,$(this),"服务器错误"+status);
+							return;
+						}
+					}
+
+				})
+				log.showSuccessMsg(parent,$(this),"通过");
+			})
+
+			/**
+			 * 密码验证 
+			 */
+			ele.password.on("blur",function(){
+				var _this=$(this);
+				var parent=$(this).parents(".myform");
+				if($(this).val().length==0){
+					log.showErrorMsg(parent,$(this),"密码不能为空");
+					
+					return;
+				}
+				if(!reg.password.test($(this).val())){
+					log.showErrorMsg(parent,$(this),"密码格式不正确，请输入5到17位");
+					
+					return;
+
+				}
+				log.showSuccessMsg(parent,$(this),"通过");
+				
+			})
+			ele.password1.on("blur",function(){
+				var _this=$(this);
+				var parent=$(this).parents(".myform");
+				if($(this).val()!==ele.password.val()){
+					log.showErrorMsg(parent,$(this),"两次密码输入不一致");
+					return;
+				}
+				log.showSuccessMsg(parent,$(this),"通过");
+			})
+
+			ele.email.on("blur",function(){
+				var _this=$(this);
+				var parent=$(this).parents(".myform");
+				if($(this).val().length==0){
+					log.showErrorMsg(parent,$(this),"邮箱不能为空");
+					
+					return;
+				}
+				if(!reg.email.test($(this).val())){
+					log.showErrorMsg(parent,$(this),"邮箱格式错误");
+					
+					return;
+
+				}
+				log.showSuccessMsg(parent,$(this),"通过");
+				
+			})
+
+			ele.verify.on("blur",function(){
+				var data={verify:$(this.val())};
+				$.ajax({
+					url:"/member/userVerify",
+					type:"POST",
+					data:data,
+					success:function(result){
+
+					},
+					error:function(data,status,e){
+
+					}
+				})
+
+			})
+			$("#Register").on("click",function(){
+				
+				var registerData={
+					username:ele.username.val(),
+					password:ele.password.val(),
+					email:ele.email.val(),
+					verify:ele.verify.val()
+				}
+
+				if(!reg.username.test(registerData.username)){
+					layer.msg('用户名格式不正确,请输入4-8位字符');
+					return;
+				}
+
+			})
 
 
 
 
-		// $("#loginSubmit").on("click", function() {
-		// 	var data = {
-		// 		login_name: $("#login_name").val(),
-		// 		password: $("#password").val(),
-		// 		verify: $("#verify").val()
-
-		// 	};
-		// 	if (data['login_name'].length == 0) {
-		// 		layer.msg('用户名不能为空');
-		// 		return;
-		// 	}
-		// 	if (data['password'].length == 0) {
-		// 		layer.msg('密码不能为空');
-		// 		return;
-		// 	}
-		// 	$.ajax({
-		// 		url: "/admin/login",
-		// 		type: "POST",
-		// 		data: data,
-		// 		success: function(data) {
-		// 			if (data.code == 200) {
-		// 				window.location.href = "home";
-		// 			} else {
-		// 				$.ajax({
-		// 					url: "/admin/captcha",
-		// 					type: "GET",
-		// 					// async: false, 
-		// 					success: function(data) {
-		// 						// console.log(data);
-		// 						$("#piceVerify").attr("src", "/admin/captcha");
-		// 					},
-
-		// 				})
-		// 				layer.msg(data.msg);
-		// 			}
-		// 		},
-		// 		error: function(data, status, e) {
-		// 			if (status == "error") {
-		// 				var layloding = layer.msg('请求错误', {
-		// 					icon: 4
-		// 				});
-		// 			}
-		// 		}
-		// 	})
-		// })
 
 
-		// $("#reVerify").on("click", function() {
-		// 	$.ajax({
-		// 		url: "/admin/captcha",
-		// 		type: "GET",
-		// 		// async: false, 
-		// 		success: function(data) {
-		// 			// console.log(data);
-		// 			$("#piceVerify").attr("src", "/admin/captcha");
-		// 		},
-
-		// 	})
-		// })
 
 
-		// $("#reVerify").hover(function() {
-		// 	layer.tips('点击刷新验证码', '#reVerify', {
-		// 		tips: [2, '#41dbb9']
-		// 	});
-		// }, function() {
-		// 	layer.close(layer.tips('默认就是向右的', '#reVerify'))
-		// })
 	</script>
 </body>
 

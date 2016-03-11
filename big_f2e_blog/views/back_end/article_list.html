@@ -28,207 +28,29 @@
 		<div class="box">
 			<% include left.html %>
 			<% include head.html %>
-			<div class="containerme">
-				<div class="pagecontent" id="pagecontent">
-					<section class="crumbs">
-						<i class="ico-dibiao"></i>
-						<a href="home.html">首页</a> &gt; 
-						<% crumbs.forEach(function(itmes,i){ %>
-						 	<% if(itmes.content.href==null){ %>
-						 		<% if(i < crumbs.length-1){ %>
-						 			<%= itmes.content %> &gt; 
-						 			<% return %>
-						 		<% } %>
-						 		  <%= itmes.content %> 
-							<% } else {%>
-								<% if(i < crumbs.length-1){ %>
-									<a href="<%= itmes.href %>"> <%=  itmes.content  %></a> &gt; 
-									<% return %>
-						 		<% } %>
-						 		<a href="<%= itmes.href %>"> <%=  itmes.content  %></a>
-							<% } %>
-						<% }) %>
-					</section>
-				</div>
-
-				<!-- <div class="pagecontent" id="pagecontent">
-						<section class="crumbs">
-							<i class="ico-dibiao"></i><a href="home.html">首页</a> &gt; <a href="javascript:void(0)">统计报表</a> &gt; 资金报表 &gt; 投资报表
-						</section>
-
-						<div class="list-page-content">
-							<form class="form-inline">
-
-
-	 
-	  
-
-	 
-	  
-
-
-								<div class="input-group">
-									<label class="checkbox">
-										项目名称：
-									</label>
-									<input type="text" class="input-small" placeholder="">
-									
-								</div>
-
-								<div class="input-group">
-									<label class="checkbox">
-										项目发起人：
-									</label>
-									<input type="text" class="input-small" placeholder="">
-									
-								</div>
-
-
-								<div class="input-group">
-									<label class="checkbox">
-										投资人：
-									</label>
-									<input type="text" class="input-small" placeholder="">
-									
-								</div>
-
-
-								<div class="input-group">
-									<label class="checkbox">
-										投资金额：
-									</label>
-									<input type="text" class="input-small" placeholder=""> 至 
-									<input type="text" class="input-small" placeholder="">
-									
-								</div>
-
-
-
-
-							
-
-
-
-
-
-								<div class="input-group">
-									<label class="checkbox">
-										投资时间：
-
-									</label>
-									<input type="text" class="input-small" placeholder="" onclick="laydate()"> 至 
-									<input type="text" class="input-small" placeholder="" onclick="laydate()">
-							
-									
-								</div>
-
-								
-								
-								
-								<button type="button" class="btn btn-primary">搜索</button>
-								<button type="button" class="btn">导出</button>
-
-						
-
-							</form>
-							<table class="botbor table-hover">
-								<thead>
-									<tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-										<td>项目标号</td>
-										<td>项目名称</td>
-										<td>项目发起人</td>
-										<td>目标筹资（元）</td>
-										<td>项目地区</td>
-										<td>投资用户</td>
-										<td>投资人类型</td>
-										<td>投资金额</td>
-										<td>发布时间</td>
-										<td>筹款截止时间</td>
-										
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-										<td>JK20112200</td>
-										<td>山城缘重庆火锅</td>
-										<td>云飞同學</td>
-										<td>100,000,000.00</td>
-										<td>北京</td>
-										<td>云飞同學</td>
-										<td>普通投资人</td>
-										<td>10,000.00</td>
-										<td>2015-12-28  14:09</td>
-										<td>2015-12-28  14:09</td>
-									</tr>
-
-
-								</tbody>
-							</table>
-
-
-							<div class="text-right">
-								<div class="pagination">
-								  <ul>
-								    <li><a href="#">上一页</a></li>
-								    <li><a href="#">1</a></li>
-								    <li><a href="#">2</a></li>
-								    <li><a href="#">3</a></li>
-								    <li><a href="#">4</a></li>
-								    <li><a href="#">5</a></li>
-								    <li><a href="#">下一页</a></li>
-								  </ul>
-								</div>
-								
-							</div>
-
-
-							
-						</div>
-				</div> -->
-		
 			
-			</div>
-			
+				
+			<section class="crumbs">
+				<i class="ico-dibiao"></i>
+				<a href="home.html">首页</a> &gt; 
+				<% crumbs.forEach(function(itmes,i){ %>
+				 	<% if(itmes.content.href==null){ %>
+				 		<% if(i < crumbs.length-1){ %>
+				 			<%= itmes.content %> &gt; 
+				 			<% return %>
+				 		<% } %>
+				 		  <%= itmes.content %> 
+					<% } else {%>
+						<% if(i < crumbs.length-1){ %>
+							<a href="<%= itmes.href %>"> <%=  itmes.content  %></a> &gt; 
+							<% return %>
+				 		<% } %>
+				 		<a href="<%= itmes.href %>"> <%=  itmes.content  %></a>
+					<% } %>
+				<% }) %>
+			</section>
+			<% include foot.html %>
 		</div>
-
-		
-		
 	</body>
 
 	<% if (typeof home === 'undefined' ){ %> 

@@ -18,6 +18,7 @@ module.exports = function() {
 	}
 	this.close=function(){
 		dbClient.end();
+		console.log("数据库关闭");
 	}
 
 	/*执行数据库*/
