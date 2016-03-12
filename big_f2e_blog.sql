@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-03-10 23:58:07
+Date: 2016-03-12 18:16:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -182,6 +182,7 @@ CREATE TABLE `user` (
   `username` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '登录名',
   `password` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '登录密码',
   `email` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '邮箱',
+  `email_verify` int(11) NOT NULL DEFAULT '0',
   `real_name` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '真实姓名',
   `gender` varchar(5) COLLATE utf8_bin DEFAULT '',
   `birthday` date DEFAULT NULL,
@@ -194,11 +195,14 @@ CREATE TABLE `user` (
   `create_at` datetime DEFAULT NULL,
   `update_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('35', 'healen', 'dce0fe7698ca225764ab4096f06d0c1d', 'love_web@sina.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('36', 'hddda', 'dce0fe7698ca225764ab4096f06d0c1d', 'love_web@di.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('37', 'admin', 'dce0fe7698ca225764ab4096f06d0c1d', 'love_ss@sina.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
 
 -- ----------------------------
 -- Table structure for `user_article`

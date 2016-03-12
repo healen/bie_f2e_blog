@@ -1,13 +1,17 @@
 <header>
 	<section>
 		<a href="home">
-			<img src="/adm/img/logo.png" alt="">
+			<img src="/adm/img/logoselp.png" alt="">
 
 		</a>
 		
 		<div class="pull-right">
-			欢迎您，，超级管理员
-			<a href="/admin/logout" class="logout">退出</a>
+		<% if(typeof username === 'undefined'){ %>
+			<a href="/member/login">登录</a>	 | <a href="/member/register" style="padding-left:0px" >注册</a>
+		<%  }else{ %>
+			欢迎您，<%= username  %>，登录
+			<a href="/member/logout">退出</a>
+		<% } %>
 		</div>
 	</section>
 </header>

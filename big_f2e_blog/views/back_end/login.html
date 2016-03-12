@@ -2,152 +2,137 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>
-        <%= title %>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Le styles -->
-    <link rel="stylesheet" type="text/css" href="/adm/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/adm/bootstrap/css/bootstrap-responsive.min.css">
-    <!--[if lte IE 7]>
-	    <link rel="stylesheet" type="text/css" href="/adm/bootstrap/css/ie.css">
-	    <![endif]-->
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-	      <script src="/adm/bootstrap/js/html5.js"></script>
-	    <![endif]-->
-    <link rel="stylesheet" type="text/css" href="/adm/css/frame.css">
-    <link rel="shortcut icon" href="/adm/img/ico/favicon.ico">
+	<meta charset="utf-8">
+	<title>
+		<%= title %>
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Le styles -->
+	<link rel="stylesheet" type="text/css" href="/cdn/admin/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/admin/bootstrap/css/bootstrap-responsive.min.css">
+	<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/cdn/admin/bootstrap/css/ie.css">
+		<![endif]-->
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		  <script src="/cdn/admin/bootstrap/js/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/cdn/admin/css/frame.css">
+	<link rel="shortcut icon" href="/cdn/admin/img/ico/favicon.ico">
 </head>
 
 <body>
 
-    <div class="login">
-        <div class="loginbox">
-            <div class="text-center head">
-                <p><img src="/adm/img/logo.png" alt=""></p>
-                <p class="mark">
-                    <%= title %>
-                </p>
-            </div>
-            <form action="">
+	<div class="login">
+		<div class="loginbox">
+			<div class="text-center head">
+				<p><img src="/cdn/admin/img/logoselp.png" alt=""></p>
+				<p class="mark">
+					<%= title %>
+				</p>
+			</div>
+			<form action="">
 
-                <div class="row-fluid formg">
-                    <div class="span12 inputbox">
-                        <i class="ico-user"></i>
-                        <input type="text" id="login_name" placeholder="用户名">
-                    </div>
-                </div>
+				<div class="row-fluid formg">
+					<div class="span12 inputbox">
+						<i class="ico-user"></i>
+						<input type="text" id="login_name" placeholder="用户名">
+					</div>
+				</div>
 
-                <div class="row-fluid formg">
-                    <div class="span12 inputbox">
-                        <i class="ico-pass"></i>
-                        <input type="password" id="password" placeholder="密码">
-                    </div>
-                </div>
+				<div class="row-fluid formg">
+					<div class="span12 inputbox">
+						<i class="ico-pass"></i>
+						<input type="password" id="password" placeholder="密码">
+					</div>
+				</div>
+				<div class="row-fluid formg">
+					<div class="span7 inputbox">
+						<i class="ico-pice"></i>
+						<input type="text" id="verify" placeholder="验证码">
+					</div>
+					<div class="span5 inputbox">
+						<img src="/admin/captcha" class="yzm" id="piceVerify" alt="">
+					</div>
+					<div class="inputbox span1" id="reVerify">
+						<i class="ico-shuaxin"></i>
+					</div>
+				</div>
+				<div class="row-fluid formg">
+					<button class="btn btn-large btn-block btn-primary" id="loginSubmit" type="button">登录</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript" src="/cdn/admin/js/vendor/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/cdn/admin/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/cdn/admin/js/vendor/layer/layer.js"></script>
+	<script type="text/javascript">
+		$("#loginSubmit").on("click", function() {
+			var data = {
+				"login_name": $("#login_name").val(),
+				password: $("#password").val(),
+				verify: $("#verify").val()
+			};
+			if (data['login_name'].length == 0) {
+				layer.msg('用户名不能为空');
+				return;
+			}
+			if (data['password'].length == 0) {
+				layer.msg('密码不能为空');
+				return;
+			}
+			$.ajax({
+				url: "/admin/login",
+				type: "POST",
+				data: data,
+				success: function(data) {
+					if (data.code == 200) {
+						window.location.href = "home";
+					} else {
+						$.ajax({
+							url: "/admin/captcha",
+							type: "GET",
+							// async: false, 
+							success: function(data) {
+								// console.log(data);
+								$("#piceVerify").attr("src", "/admin/captcha");
+							},
 
+						})
+						layer.msg(data.msg);
+					}
+				},
+				error: function(data, status, e) {
+					if (status == "error") {
+						var layloding = layer.msg('请求错误', {
+							icon: 4
+						});
+					}
+				}
+			})
+		})
+		$("#reVerify").on("click", function() {
+			$.ajax({
+				url: "/admin/captcha",
+				type: "GET",
+				// async: false, 
+				success: function(data) {
+					// console.log(data);
+					$("#piceVerify").attr("src", "/admin/captcha");
+				},
 
-                <div class="row-fluid formg">
-                    <div class="span7 inputbox">
-                        <i class="ico-pice"></i>
-                        <input type="text" id="verify" placeholder="验证码">
-                    </div>
-                    <div class="span5 inputbox">
-                        <img src="/admin/captcha" class="yzm" id="piceVerify" alt="">
-                    </div>
-                    <div class="inputbox span1" id="reVerify">
-                        <i class="ico-shuaxin"></i>
-                    </div>
-                </div>
-
-
-                <div class="row-fluid formg">
-                    <button class="btn btn-large btn-block btn-primary" id="loginSubmit" type="button">登录</button>
-                </div>
-
-
-            </form>
-        </div>
-
-    </div>
-
-    <script type="text/javascript" src="/adm/js/vendor/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/adm/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/adm/js/vendor/layer/layer.js"></script>
-
-    <script type="text/javascript">
-        $("#loginSubmit").on("click", function() {
-            var data = {
-                "login_name": $("#login_name").val(),
-                password: $("#password").val(),
-                verify: $("#verify").val()
-
-            };
-            if (data['login_name'].length == 0) {
-                layer.msg('用户名不能为空');
-                return;
-            }
-            if (data['password'].length == 0) {
-                layer.msg('密码不能为空');
-                return;
-            }
-            $.ajax({
-                url: "/admin/login",
-                type: "POST",
-                data: data,
-                success: function(data) {
-                    if (data.code == 200) {
-                        window.location.href = "home";
-                    } else {
-                        $.ajax({
-                            url: "/admin/captcha",
-                            type: "GET",
-                            // async: false, 
-                            success: function(data) {
-                                // console.log(data);
-                                $("#piceVerify").attr("src", "/admin/captcha");
-                            },
-
-                        })
-                        layer.msg(data.msg);
-                    }
-                },
-                error: function(data, status, e) {
-                    if (status == "error") {
-                        var layloding = layer.msg('请求错误', {
-                            icon: 4
-                        });
-                    }
-                }
-            })
-        })
-
-
-        $("#reVerify").on("click", function() {
-            $.ajax({
-                url: "/admin/captcha",
-                type: "GET",
-                // async: false, 
-                success: function(data) {
-                    // console.log(data);
-                    $("#piceVerify").attr("src", "/admin/captcha");
-                },
-
-            })
-        })
-
-
-        $("#reVerify").hover(function() {
-            layer.tips('点击刷新验证码', '#reVerify', {
-                tips: [2, '#41dbb9']
-            });
-        }, function() {
-            layer.close(layer.tips('默认就是向右的', '#reVerify'))
-        })
-    </script>
+			})
+		})
+		$("#reVerify").hover(function() {
+			layer.tips('点击刷新验证码', '#reVerify', {
+				tips: [2, '#41dbb9']
+			});
+		}, function() {
+			layer.close(layer.tips('默认就是向右的', '#reVerify'))
+		})
+	</script>
 </body>
-
 </html>

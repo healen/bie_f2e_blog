@@ -10,6 +10,8 @@ var GL=require("./global").global;
 // var basename=path.basename(__filename,".js");
 // var fs=require("fs")
 router
+	
+	/*渲染管理首页*/
 	.get("/",function(req,res){
 		// console.log(req.session.admin);
 		if(req.session.admin){
@@ -27,6 +29,7 @@ router
 			res.redirect('/admin/login');
 		}
 	})
+	/*渲染管理首页*/
 	.get("/home",function(req,res){
 		// console.log(req.session.admin);
 		if(req.session.admin){
@@ -44,10 +47,13 @@ router
 			res.redirect('/admin/login');
 		}
 	})
+
+	/*退出功能设定*/
 	.get("/logout",function(req,res){
 		req.session.admin=null;
 		res.redirect('/admin/login');
 	})
+	/*登录页面设定*/
 	.get("/login",function(req,res){
 
 		if(!req.session.admin){
@@ -60,10 +66,13 @@ router
 			
 		}
 	})
+
+	/*获取验证码*/
 	.get("/verify",function(req,res){
 		res.send(req.session.verify.toString());
 	})
 
+	/*图片*/
 	.get("/captcha",function(req,res){
 
 		var captchaNumber=parseInt(Math.random()*9000+1000);

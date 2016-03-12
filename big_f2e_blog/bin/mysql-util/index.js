@@ -25,7 +25,7 @@ module.exports = function() {
 	this.query=function(sql,callback){
 		dbClient.query(sql,function(err,result){
 			if(err){
-				callback&&callback("query sql bad error="+err);
+				callback&&callback("查询错误"+err);
 			}else{
 				callback&&callback(result);
 			}
@@ -52,7 +52,7 @@ module.exports = function() {
 			if(err){
 				callback&&callback("insert bad error="+err);
 			} else{
-				callback&&callback("insert success insertId="+result.insertId);
+				callback&&callback(result.insertId);
 
 			}
 		
