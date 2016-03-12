@@ -71,7 +71,7 @@ app.use("back_end/lib/ueditor/ue", ueditor(path.join(__dirname, 'static'), funct
 	}
 }));
 
-app.use("/cdn/adm", express.static(path.join(BASE_DIR, "static", "back_end")));
+app.use("/cdn/admin", express.static(path.join(BASE_DIR, "static", "back_end")));
 app.use("/cdn", express.static(path.join(BASE_DIR, "static", "front_end")));
 app.set("views", path.join(path.join(BASE_DIR, "views")));
 app.engine("html", ejs.__express);
