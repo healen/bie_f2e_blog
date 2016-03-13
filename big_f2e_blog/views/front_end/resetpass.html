@@ -63,43 +63,38 @@
 			<div class="viewbtnbox" style="display: block;padding-top:25px">
 				<form class="form-horizontal" id="register">
 					<div class="row-fluid myform">
-						<label class="control-label span6" for="username">用户名：&nbsp;&nbsp;</label>
+						<label class="control-label span6" for="username">输入用户名：&nbsp;&nbsp;</label>
 						<div class="controls">
 							<input type="text" id="username" class="input-danger" placeholder="注册之后不能修改长度5-8位">
 							<span class="log">fdsfsdfds</span>
 						</div>
 					</div>
 					<div class="row-fluid myform">
-						<label class="control-label span6" for="password">密码：&nbsp;&nbsp;</label>
+						<label class="control-label span6" for="originPass">输入原密码：&nbsp;&nbsp;</label>
 						<div class="controls">
-							<input type="password" id="password" placeholder="密码长度5-18位">
-							<span class="log"></span>
-						</div>
-					</div>
-					<div class="row-fluid myform">
-						<label class="control-label span6" for="verify">验证码：&nbsp;&nbsp;</label>
-						<div class="controls">
-							<input type="text" id="verify" placeholder="输入图片验证码" style="width:132px">
-							<img src="/member/captcha" id="piceVerify"  style="height:38px" alt="">
-							<a href="javascript:void(0)" id="rechangeVerify">看不清换一张</a>
-							<span class="log"></span>
+							<input type="text" id="originPass" class="input-danger" placeholder="注册之后不能修改长度5-8位">
+							<span class="log">fdsfsdfds</span>
 						</div>
 					</div>
 
 					<div class="row-fluid myform">
-						<label class="control-label span6" for="verify">&nbsp;&nbsp;</label>
-						<div class="controls row_fluid">
-							
-								<label class="checkbox inline">
-								 	<input type="checkbox" value="" style="margin-right: 5px"> 记住密码
-								</label>
-
-								<label class="checkbox inline" style="margin-left:33px">
-									<a href="/member/forgetpass" class="mark">忘记密码，立即找回</a>
-								</label>
-							
+						<label class="control-label span6" for="newPass1">输入新密码：&nbsp;&nbsp;</label>
+						<div class="controls">
+							<input type="text" id="newPass1" class="input-danger" placeholder="注册之后不能修改长度5-8位">
+							<span class="log">fdsfsdfds</span>
 						</div>
 					</div>
+
+					<div class="row-fluid myform">
+						<label class="control-label span6" for="new_pass2">确认密码：&nbsp;&nbsp;</label>
+						<div class="controls">
+							<input type="text" id="new_pass2" class="input-danger" placeholder="注册之后不能修改长度5-8位">
+							<span class="log">fdsfsdfds</span>
+						</div>
+					</div>
+
+
+
 			
 					<div class="row-fluid myform">
 						<label class="control-label span6" for="inputEmail">&nbsp;&nbsp;</label>
@@ -107,7 +102,7 @@
 							<span class="rowbox">
 						 		<div class="row-fluid">
 						 			<div class="span12">
-						 				<button class="btn btn-large btn-block btn-primary" id="Login" type="button">登录</button>
+						 				<button class="btn btn-large btn-block btn-primary" id="Login" type="button">提交</button>
 						 			</div>
 						 		</div>
 						 	</span>

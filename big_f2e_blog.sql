@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-03-12 18:16:14
+Date: 2016-03-13 18:15:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -195,7 +195,7 @@ CREATE TABLE `user` (
   `create_at` datetime DEFAULT NULL,
   `update_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of user
@@ -203,6 +203,12 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES ('35', 'healen', 'dce0fe7698ca225764ab4096f06d0c1d', 'love_web@sina.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
 INSERT INTO `user` VALUES ('36', 'hddda', 'dce0fe7698ca225764ab4096f06d0c1d', 'love_web@di.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
 INSERT INTO `user` VALUES ('37', 'admin', 'dce0fe7698ca225764ab4096f06d0c1d', 'love_ss@sina.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('38', 'healen1', 'dce0fe7698ca225764ab4096f06d0c1d', 'dfds@fdf.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('39', 'heals', 'dce0fe7698ca225764ab4096f06d0c1d', 'love_web@sian.cm', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('40', 'healen2', 'dce0fe7698ca225764ab4096f06d0c1d', 'lov@sina.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('41', 'hfks', 'dce0fe7698ca225764ab4096f06d0c1d', 'fdsf@fdsf.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('42', 'healen12', 'dce0fe7698ca225764ab4096f06d0c1d', 'fkfjdskfds@ff.com', '0', null, '', null, null, null, null, null, null, '1', null, null);
+INSERT INTO `user` VALUES ('43', '123123', '4297f44b13955235245b2497399d7a93', 'zhaoxiao912@126.com', '1', null, '', null, null, null, null, null, null, '1', null, null);
 
 -- ----------------------------
 -- Table structure for `user_article`

@@ -176,31 +176,56 @@ $("#Register").on("click", function() {
 		log.showErrorMsg(ele.email.parents(".myform"), "邮箱不能为空");
 		return 
 	}
-	
-	if($("#register .go").length==$("#register .myform").length-1){
-		$.ajax({
-			url:"/member/register",
-			type:"POST",
-			data:registerData,
-			success:function(result){
-				if(result.code==401){
-					layer.msg(result.msg);
-					return;
-				}else{
-					layer.msg(result.msg);
-					setTimeout(function(){
-						window.location.href="/member/email_verify"
 
-					}, 3000);
 
-				}
-			},
-			error:function(data,status,e){
-				layer.msg("服务请求错误");
+	var data = {
+		verify:ele.verify.val()
+	};
 
+
+	$.ajax({
+		url: "/member/userVerify",
+		type: "POST",
+		data: data,
+		success: function(result) {
+			if (result.code == 200) {
+				log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
+
+				$.ajax({
+					url:"/member/register",
+					type:"POST",
+					data:registerData,
+					success:function(result){
+						if(result.code==401){
+							layer.msg(result.msg);
+							return;
+						}else{
+							layer.msg(result.msg);
+							setTimeout(function(){
+								window.location.href="/member/email_verify"
+
+							}, 3000);
+
+						}
+					},
+					error:function(data,status,e){
+						layer.msg("服务请求错误");
+
+					}
+				})
+
+			} else {
+				log.showErrorMsg(ele.verify.parents(".myform"), "验证码错误");
+				return;
+			
 			}
-		})
-	}
+
+		},
+		error: function(data, status, e) {
+
+		}
+	})
+	
 })
 
 function verify(){

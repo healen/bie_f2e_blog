@@ -194,7 +194,6 @@ button,
 select,
 textarea {
   outline: none;
-  -webkit-appearance: none;
 }
 textarea {
   resize: none;
