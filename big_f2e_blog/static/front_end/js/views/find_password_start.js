@@ -1,7 +1,7 @@
 var ele = {
-	username: $("#username"),
+
 	password: $("#password"),
-	verify: $("#verify")
+	password1: $("#password1")
 }
 var log = {
 	showErrorMsg: function(ele, log) {
@@ -13,29 +13,18 @@ var log = {
 		ele.removeClass("has-error");
 		ele.find(".log").show().text(log);
 		ele.addClass("go");
+
 	}
 }
 var reg = {
-	username: /\w{4,8}/,
-	password: /\w{5,18}/,
+	password: /\w{5,18}/
+	
 }
 
 /**
  * 用户名验证 
  */
-ele.username.on("blur", function() {
-	var _this = $(this);
-	var parent = $(this).parents(".myform");
-	if ($(this).val().length == 0) {
-		log.showErrorMsg(parent, "用户名不能为空！");
-		return;
-	}
-	if (!reg.username.test($(this).val())) {
-		log.showErrorMsg(parent, "用户名格式不正确 请输入4到8位字符!");
-		return;
-	}
-	log.showSuccessMsg(parent, "通过");
-})
+
 
 /**
  * 密码验证 
@@ -53,7 +42,15 @@ ele.password.on("blur", function() {
 	}
 	log.showSuccessMsg(parent, "通过");
 })
-
+ele.password1.on("blur", function() {
+	var _this = $(this);
+	var parent = $(this).parents(".myform");
+	if ($(this).val() !== ele.password.val()) {
+		log.showErrorMsg(parent, "两次密码输入不一致");
+		return;
+	}
+	log.showSuccessMsg(parent, "通过");
+})
 
 ele.verify.on("blur", function() {
 	var _this = $(this);
@@ -80,70 +77,73 @@ ele.verify.on("blur", function() {
 		}
 	})
 })
-$("#Login").on("click", function() {
-	var loginData = {
-		username: ele.username.val(),
+$("#submitForPassword").on("click", function() {
+	
+	var registerData = {
 		password: ele.password.val()
 	}
-	if(ele.username.val().length==0){
-		log.showErrorMsg(ele.username.parents(".myform"), "用户名不能为空");
-		return 
-	}
+
 	if(ele.password.val().length==0){
 		log.showErrorMsg(ele.password.parents(".myform"), "密码不能为空");
 		return 
 	}
+	if(ele.password.val() != ele.password1.val()){
+		log.showErrorMsg(ele.password1.parents(".myform"), "两次密码不一致");
+		return 
+	}
+
+
+	var data = {
+		verify:ele.verify.val()
+	};
+
 
 	$.ajax({
 		url: "/member/userVerify",
 		type: "POST",
-		data:{verify:ele.verify.val()} ,
+		data: data,
 		success: function(result) {
 			if (result.code == 200) {
 				log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
 
-					$.ajax({
-						url:"/member/login",
-						type:"POST",
-						data:loginData,
-						success:function(result){
-							if(result.code==401){
-								layer.msg(result.msg);
-								return;
-							}else{
-								layer.msg(result.msg);
-								setTimeout(function(){
-									window.location.href="/account"
+				$.ajax({
+					url:"/member/register",
+					type:"POST",
+					data:registerData,
+					success:function(result){
+						if(result.code==401){
+							layer.msg(result.msg);
+							return;
+						}else{
+							layer.msg(result.msg);
+							// setTimeout(function(){
+							// 	window.location.href="/member/email_verify"
 
-								}, 2000);
-
-							}
-						},
-						error:function(data,status,e){
-							layer.msg("服务请求错误");
+							// }, 3000);
 
 						}
-					})
+					},
+					error:function(data,status,e){
+						layer.msg("服务请求错误");
+
+					}
+				})
 
 			} else {
 				log.showErrorMsg(ele.verify.parents(".myform"), "验证码错误");
-				return 
+				return;
 			
 			}
 
 		},
 		error: function(data, status, e) {
-			log.showErrorMsg(ele.verify.parents(".myform"), "系统异常");
-			return 
 
 		}
 	})
 	
-
-	
 })
 
-$("#rechangeVerify").on("click",function(){
+function verify(){
 	$.ajax({
 		url:"/member/captcha",
 		type:"GET",
@@ -152,4 +152,9 @@ $("#rechangeVerify").on("click",function(){
 
 		}
 	})
+}
+
+$("#rechangeVerify").on("click",function(){
+	verify();
 })
+verify();
