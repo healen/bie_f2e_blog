@@ -16,7 +16,8 @@ var Routes = {
 	/*前台*/
 	frout: {
 		routes: require("./routes/front_end"),
-		member: require("./routes/front_end/member")
+		member: require("./routes/front_end/member"),
+		account: require("./routes/front_end/account")
 	},
 
 	/*后台*/
@@ -83,6 +84,8 @@ app.set('port', process.env.PORT || 3000);
 app.use("/", Routes.frout.routes);
 
 app.use("/member", Routes.frout.member);
+
+app.use("/account", Routes.frout.account);
 
 
 

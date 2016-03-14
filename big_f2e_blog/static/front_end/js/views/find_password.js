@@ -1,6 +1,6 @@
 var ele = {
 	username: $("#username"),
-	password: $("#password"),
+	email: $("#email"),
 	verify: $("#verify")
 }
 var log = {
@@ -17,7 +17,7 @@ var log = {
 }
 var reg = {
 	username: /\w{4,8}/,
-	password: /\w{5,18}/,
+	email: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/
 }
 
 /**
@@ -37,22 +37,22 @@ ele.username.on("blur", function() {
 	log.showSuccessMsg(parent, "通过");
 })
 
-/**
- * 密码验证 
- */
-ele.password.on("blur", function() {
+ele.email.on("blur", function() {
 	var _this = $(this);
 	var parent = $(this).parents(".myform");
 	if ($(this).val().length == 0) {
-		log.showErrorMsg(parent, "密码不能为空");
+		log.showErrorMsg(parent, "邮箱不能为空");
+
 		return;
 	}
-	if (!reg.password.test($(this).val())) {
-		log.showErrorMsg(parent, "密码格式不正确，请输入5到17位");
+	if (!reg.email.test($(this).val())) {
+		log.showErrorMsg(parent, "邮箱格式错误");
 		return;
 	}
+
 	log.showSuccessMsg(parent, "通过");
 })
+
 
 
 ele.verify.on("blur", function() {
@@ -80,16 +80,16 @@ ele.verify.on("blur", function() {
 		}
 	})
 })
-$("#Login").on("click", function() {
-	var loginData = {
+$("#FindPassWord").on("click", function() {
+	var findPassData = {
 		username: ele.username.val(),
-		password: ele.password.val()
+		email: ele.email.val()
 	}
 	if(ele.username.val().length==0){
 		log.showErrorMsg(ele.username.parents(".myform"), "用户名不能为空");
 		return 
 	}
-	if(ele.password.val().length==0){
+	if(ele.email.val().length==0){
 		log.showErrorMsg(ele.password.parents(".myform"), "密码不能为空");
 		return 
 	}
@@ -103,20 +103,15 @@ $("#Login").on("click", function() {
 				log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
 
 					$.ajax({
-						url:"/member/login",
+						url:"/member/find_password/send",
 						type:"POST",
-						data:loginData,
+						data:findPassData,
 						success:function(result){
 							if(result.code==401){
-								layer.msg(result.msg);
+								layer.alert(result.data);
 								return;
 							}else{
-								layer.msg(result.msg);
-								setTimeout(function(){
-									window.location.href="/account"
-
-								}, 2000);
-
+								layer.alert(result.data);
 							}
 						},
 						error:function(data,status,e){
