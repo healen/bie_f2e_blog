@@ -67,7 +67,7 @@ router
 			res.json({code:401,msg:"密码格式错误"});
 			
 		}else{
-			var $sql="SELECT user_id,username,password,email_verify,email FROM user WHERE username='"+insertData.username+"' or email='"+insertData.username+"' AND password='"+insertData.password+"'"
+			var $sql="SELECT user_id,username,password,email_verify,email FROM user WHERE (username='"+insertData.username+"' or email='"+insertData.username+"' ) AND password='"+insertData.password+"'"
 			Db.query($sql,function(data){
 				if(data.length >= 1){
 					console.log(data[0]['user_id']);
@@ -274,21 +274,21 @@ router
 	.post("/find_password/send",function(req,res){
 
 		var Db=new mysqlUtil();
-		var $sql="SELECT username,email,email_verify FROM user WHERE username='"+req.body.username+"' AND email='"+req.body.email+"'";
+		var $sql="SELECT user_id,username,email,email_verify FROM user WHERE username='"+req.body.username+"' AND email='"+req.body.email+"'";
 
 		Db.query($sql,function(result){
 			if(result.length==0){
-			res.json({code:401,data:"输入信息不匹配"});
+			res.json({code:401,msg:"输入信息不匹配"});
 			}else if(result[0]['email_verify']==0){
-				res.json({code:402,data:"不好意思由于您，注册的时候没有验证邮箱，密码找不回来了，请联系管理员，管理员QQ：449422301"});
+				res.json({code:402,msg:"不好意思由于您，注册的时候没有验证邮箱，密码找不回来了，请联系管理员，管理员QQ：449422301"});
 			}else{
 				var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
-				var emaillink2=md5.encryption((Math.random()*9000-1000).toString(),"md5");
-				req.session.find_password_urlstr="passwordurls"+emaillink1+"sfsdkundsNFDS"+emaillink2;
+				req.session.find_password_urlstr="passwordurls"+emaillink1+"sfsdkundsNFDS"
 				req.session.userid=result[0]['user_id'];
+				console.log(result[0]);
 
 				sendEmail(req.body.email,"大前端之家。找回密码","复制下面链接在浏览器中打开进行找回密码：<br /> http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr,function(result){
-					res.json({code:200,data:"我们已经将信息发送到["+req.body.email+"]邮箱，请登录邮箱找回密码！"})
+					res.json({code:200,msg:"我们已经将信息发送到["+req.body.email+"]邮箱，请登录邮箱找回密码！"})
 			})	
 
 				
@@ -298,12 +298,43 @@ router
 	})
 
 	.get("/find_password_start/:msg",function(req,res){
-		if(req.params.id==req.session.find_password_urlstr){
+
+		if(req.params.msg==req.session.find_password_urlstr){
+
 			res.render("front_end/find_password_start.html",{
 				title:"找回密码，信息填写"
-
 			})
 		}
+	})
+	.post("/confirmPassword",function(req,res){
+		var Db=new mysqlUtil();
+		$sql="UPDATE user SET password='"+md5.encryption(req.body.password,"md5")+"', update_at=NOW()  WHERE user_id="+req.session.userid ;
+		console.log(req.body.password);
+		console.log(req.session.userid);
+		console.log($sql);
+		// res.send("fdsfdsaffds")
+		
+		Db.updateQuery($sql,function(err,result){
+			if(err){
+				res.json({code:401,msg:"密码修改失败！！"+err});
+			}else{
+				res.json({code:200,msg:"密码修改成功,请使用新密码"});
+		
+			}
+			console.log(result);
+	
+			// if(result.indexOf("查询错误")>0){
+			// 	res.json({code:401,msg:"密码修改失败！！"+err});
+			// }else{
+			// 	res.json({code:200,msg:"密码修改成功,请使用新密码"});
+			// }
+		
+		})
+
+
+
+		
+
 	})
 
 

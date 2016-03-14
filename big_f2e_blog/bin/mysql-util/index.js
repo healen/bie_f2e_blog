@@ -31,6 +31,11 @@ module.exports = function() {
 			}
 		});
 	}
+	this.updateQuery=function(sql,callback){
+		dbClient.query(sql,function(err,result){
+			callback(err,result)
+		})
+	}
 
 	/*单条查询*/
 	this.findOneById = function(tableName, idJson, callback) {

@@ -1,7 +1,8 @@
 var ele = {
 
 	password: $("#password"),
-	password1: $("#password1")
+	password1: $("#password1"),
+	verify: $("#verify")
 }
 var log = {
 	showErrorMsg: function(ele, log) {
@@ -52,6 +53,7 @@ ele.password1.on("blur", function() {
 	log.showSuccessMsg(parent, "通过");
 })
 
+
 ele.verify.on("blur", function() {
 	var _this = $(this);
 	var parent = $(this).parents(".myform");
@@ -77,6 +79,7 @@ ele.verify.on("blur", function() {
 		}
 	})
 })
+
 $("#submitForPassword").on("click", function() {
 	
 	var registerData = {
@@ -107,7 +110,8 @@ $("#submitForPassword").on("click", function() {
 				log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
 
 				$.ajax({
-					url:"/member/register",
+
+					url:"/member/confirmPassword",
 					type:"POST",
 					data:registerData,
 					success:function(result){
@@ -158,3 +162,15 @@ $("#rechangeVerify").on("click",function(){
 	verify();
 })
 verify();
+
+$("#rechangeVerify").on("click",function(){
+	$.ajax({
+		url:"/member/captcha",
+		type:"GET",
+		success:function(result){
+			$("#piceVerify").attr("src","/member/captcha")
+
+		}
+	})
+})
+

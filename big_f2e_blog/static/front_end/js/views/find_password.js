@@ -81,6 +81,7 @@ ele.verify.on("blur", function() {
 	})
 })
 $("#FindPassWord").on("click", function() {
+	var _this=$(this);
 	var findPassData = {
 		username: ele.username.val(),
 		email: ele.email.val()
@@ -108,10 +109,12 @@ $("#FindPassWord").on("click", function() {
 						data:findPassData,
 						success:function(result){
 							if(result.code==401){
-								layer.alert(result.data);
+								layer.alert(result.msg);
 								return;
 							}else{
-								layer.alert(result.data);
+								layer.alert(result.msg);
+								_this.attr("disabled","disabled");
+
 							}
 						},
 						error:function(data,status,e){
