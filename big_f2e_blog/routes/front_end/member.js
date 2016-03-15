@@ -15,7 +15,6 @@ router
 	 * 节目请求
 	 */
 	/*首页暂时未定*/
-
 	.get(/email_verify.*/,function(req,res,next){
 
 		if(req.session.usermsg){
@@ -23,17 +22,8 @@ router
 		}else{
 			res.send("没有登录呢")
 		}
-
-		
-
 	})
-	.get("/",function(req,res){
-		res.render("front_end/msg.html",{
-			title:"注册",
-			username:req.session.usermsg ? req.session.usermsg.username : undefined,
-			// email:req.session.usermsg.email
-		})
-	})
+
 	/**
 	 * 登录页面逻辑
 	 */
@@ -154,7 +144,6 @@ router
 				}else{
 					var md5pass=md5.encryption(registerData.password,"md5");
 					Db.insert("user",insertDate,function(result){
-							
 							req.session.userid=result;
 							req.session.usermsg=insertDate;
 							res.json({code:200,msg:"注册成功,正在跳转..."});
@@ -212,34 +201,18 @@ router
 			res.json({code:400})
 		}
 	})
-
 	/*验证邮箱页面*/
 	.get("/email_verify",function(req,res){
 		var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 		var emaillink2=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 		req.session.email_verify="cdvns"+emaillink1+"ANMBSSsfdsjfdsvse"+emaillink2;
-		res.render("front_end/email_verify.html",{
-			title:"验证邮箱",
-			username:req.session.usermsg ? req.session.usermsg.username : undefined,
-			email:req.session.usermsg.email,
-			webname:"大前端之家",
-			verifycode:req.session.email_verify
+		sendEmail(req.session.usermsg.email,"您好欢迎注册大前端之家","请点击： <a href='http://localhost:3000/member/email_verify/"+req.session.email_verify+"' style='background:#3fd4bb;color:#ffffff'>验证邮箱</a> 或者复制如下链接在浏览器里打开<br /> http://localhost:3000/member/email_verify/"+req.session.email_verify,function(result){
+			res.json({
+				msg:"恭喜你验证邮件已经发送成功！"
+			})
 		})
 	})
 
-
-
-	/*发送邮件返回页面*/
-	.get("/send_email_verify",function(req,res){
-		sendEmail(req.session.usermsg.email,"您好欢迎注册大前端之家","复制下面链接在浏览器中打开进行邮箱验证：<br /> http://localhost:3000/member/email_verify/"+req.session.email_verify,function(result){
-				res.render("front_end/msg.html",{
-					title:"验证结果",
-					username:req.session.usermsg ? req.session.usermsg.username : undefined,
-					status:req.session.usermsg ?  "恭喜您内邮件发送成功，请登录您的邮箱["+req.session.usermsg.email+"]去做邮箱验证" : undefined
-
-				})
-			})
-	})
 
 
 
@@ -251,9 +224,9 @@ router
 				req.session.email_verify=null;
 
 				res.render("front_end/msg.html",{
-					title:"验证邮箱",
+					title:"登录成功",
 					username:req.session.usermsg ? req.session.usermsg.username : undefined,
-					status:"验证成功"
+					status:"登录成功"
 				})
 			})
 		}else{
@@ -278,22 +251,17 @@ router
 
 		Db.query($sql,function(result){
 			if(result.length==0){
-			res.json({code:401,msg:"输入信息不匹配"});
+			res.json({code:401,msg:"用户名不存在"});
 			}else if(result[0]['email_verify']==0){
 				res.json({code:402,msg:"不好意思由于您，注册的时候没有验证邮箱，密码找不回来了，请联系管理员，管理员QQ：449422301"});
 			}else{
 				var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 				req.session.find_password_urlstr="passwordurls"+emaillink1+"sfsdkundsNFDS"
 				req.session.userid=result[0]['user_id'];
-				console.log(result[0]);
-
-				sendEmail(req.body.email,"大前端之家。找回密码","复制下面链接在浏览器中打开进行找回密码：<br /> http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr,function(result){
-					res.json({code:200,msg:"我们已经将信息发送到["+req.body.email+"]邮箱，请登录邮箱找回密码！"})
+				sendEmail(req.body.email,"大前端之家。找回密码","点击：<a href='http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr+"' style='background:#3fd4bb;color:#ffffff'>找回密码</a>或者复制下面链接在浏览器里打开<br />  http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr ,function(result){
+					res.json({code:200,msg:"邮件发送成功"})
 			})	
-
-				
 			}
-
 		})
 	})
 
@@ -306,6 +274,7 @@ router
 			})
 		}
 	})
+
 	.post("/confirmPassword",function(req,res){
 		var Db=new mysqlUtil();
 		$sql="UPDATE user SET password='"+md5.encryption(req.body.password,"md5")+"', update_at=NOW()  WHERE user_id="+req.session.userid ;
@@ -321,21 +290,37 @@ router
 				res.json({code:200,msg:"密码修改成功,请使用新密码"});
 		
 			}
-			console.log(result);
-	
-			// if(result.indexOf("查询错误")>0){
-			// 	res.json({code:401,msg:"密码修改失败！！"+err});
-			// }else{
-			// 	res.json({code:200,msg:"密码修改成功,请使用新密码"});
-			// }
-		
 		})
-
-
-
-		
-
 	})
+
+
+	/**
+	 * 修改密码
+	 */
+	.get("/reset_password",function(req,res){
+			res.render("front_end/reset_password.html",{
+				title:"修改密码",
+				username:req.session.usermsg ? req.session.usermsg.username : undefined,
+			})
+	})
+
+	.post("/reset_password",function(req,res){
+		var user_id=req.session.userid;
+		var Db=new mysqlUtil();
+		$sql="UPDATE user SET password='"+md5.encryption(req.body.password,"md5")+"', update_at=NOW() WHERE user_id="+user_id+" AND password='"+md5.encryption(req.body.originPassword,"md5")+"'";
+		console.log($sql);
+
+		Db.updateQuery($sql,function(err,result){
+			if(err){
+				res.json({code:401,msg:"密码修改失败！！"+err});
+			}else{
+				res.json({code:200,msg:"密码修改成功,请使用新密码"});
+			}
+			// console.log(result);
+		})
+	})
+
+
 
 
 	/**
