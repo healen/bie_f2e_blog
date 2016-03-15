@@ -74,6 +74,7 @@ app.use("back_end/lib/ueditor/ue", ueditor(path.join(__dirname, 'static'), funct
 
 app.use("/cdn/admin", express.static(path.join(BASE_DIR, "static", "back_end")));
 app.use("/cdn", express.static(path.join(BASE_DIR, "static", "front_end")));
+app.use("/updates", express.static(path.join(BASE_DIR, "updates")));
 app.set("views", path.join(path.join(BASE_DIR, "views")));
 app.engine("html", ejs.__express);
 app.set("view engine", "html");

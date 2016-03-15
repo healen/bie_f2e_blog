@@ -62,7 +62,6 @@ router
 			});
 			
 		}else{
-			res.redirect("/admin");
 			
 		}
 	})

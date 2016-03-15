@@ -236,7 +236,7 @@ $("#Register").on("click", function() {
 								success:function(massage){
 									layer.closeAll('loading');
 									layer.alert(massage.msg +"，点击这里<a href='http://"+emailOperator[emailArr[2]]+"' class='mark'>[登录邮箱]</a>去激活 无法登录？直接进入自己邮箱验证")
-										
+											
 								},
 								error:function(data,status,e){
 									layer.closeAll('loading');
