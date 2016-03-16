@@ -17,7 +17,8 @@ var Routes = {
 	frout: {
 		routes: require("./routes/front_end"),
 		member: require("./routes/front_end/member"),
-		account: require("./routes/front_end/account")
+		account: require("./routes/front_end/account"),
+		demo: require("./routes/front_end/demo")
 	},
 
 	/*后台*/
@@ -74,7 +75,7 @@ app.use("back_end/lib/ueditor/ue", ueditor(path.join(__dirname, 'static'), funct
 
 app.use("/cdn/admin", express.static(path.join(BASE_DIR, "static", "back_end")));
 app.use("/cdn", express.static(path.join(BASE_DIR, "static", "front_end")));
-app.use("/updates", express.static(path.join(BASE_DIR, "updates")));
+app.use("/uploads", express.static(path.join(BASE_DIR, "uploads")));
 app.set("views", path.join(path.join(BASE_DIR, "views")));
 app.engine("html", ejs.__express);
 app.set("view engine", "html");
@@ -87,6 +88,8 @@ app.use("/", Routes.frout.routes);
 app.use("/member", Routes.frout.member);
 
 app.use("/account", Routes.frout.account);
+
+app.use("/demo", Routes.frout.demo);
 
 
 

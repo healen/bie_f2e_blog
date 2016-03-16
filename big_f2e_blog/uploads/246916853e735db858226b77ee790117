@@ -1,0 +1,28 @@
+/**
+ *名称：贷鼠网组件样式
+ *日期：2015
+ *作者：张晓东
+ */
+/***********************************************************************************************************************/
+.aboutnav {
+  height: 48px;
+  background: #ebebf5;
+  text-align: center;
+}
+.aboutnav .row {
+  padding-top: 8px;
+  margin: 0px auto;
+  width: 650px;
+}
+.aboutnav a {
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  float: left;
+  border: 1px solid #ebebf5;
+  width: 85px;
+  margin-right: 20px;
+}
+.aboutnav a.active {
+  border-color: #a6a6a6;
+}
