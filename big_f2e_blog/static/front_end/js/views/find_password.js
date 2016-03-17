@@ -171,13 +171,29 @@ $("#FindPassWord").on("click", function() {
 	
 })
 
-$("#rechangeVerify").on("click",function(){
-	$.ajax({
-		url:"/member/captcha",
-		type:"GET",
-		success:function(result){
-			$("#piceVerify").attr("src","/member/captcha")
 
+
+
+function verify(){
+
+		if ((navigator.userAgent.indexOf('MSIE') >= 0) 
+		    && (navigator.userAgent.indexOf('Opera') < 0)){
+		    window.location.href=window.location.href;
+		}else{
+			$.ajax({
+				url:"/member/captcha",
+				type:"GET",
+				success:function(result){
+					$("#piceVerify").attr("src","/member/captcha")
+				}
+			})
+			
 		}
-	})
+
+	
+}
+
+$("#rechangeVerify").on("click",function(){
+	verify();
 })
+

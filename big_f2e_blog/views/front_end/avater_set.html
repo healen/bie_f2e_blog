@@ -1,0 +1,155 @@
+	<style type="text/css">
+	.has-error{
+		color:red;
+	}
+	.has-error .label{
+		color:red;
+	}
+	.has-error .controls input{
+		border-color: #ff0000;
+	}
+	.controls .log{
+		display: none;
+	}
+	.has-ok{
+		color:red;
+	}
+	.has-ok .label{
+		color:#00ff00;
+	}
+	.has-ok .controls input{
+		
+	}
+	.has-ok .controls .log{
+		color: #009900;
+	}
+
+			/* Apply these styles only when #preview-pane has
+	   been placed within the Jcrop widget */
+	.jcrop-holder #preview-pane {
+	  display: block;
+	  position: absolute;
+	  z-index: 2000;
+	  right: -120px;
+	  top: 0px;
+	  padding: 3px;
+	  border: 1px  solid #eeeeee;
+	  background-color: white;
+	}
+
+	/* The Javascript code will set the aspect ratio of the crop
+	   area based on the size of the thumbnail preview,
+	   specified here */
+	#preview-pane .preview-container {
+	  width: 100px;
+	  height: 100px;
+	  overflow: hidden;
+	}
+	.avapicebox{
+		padding: 20px;
+		position: relative;
+	}
+</style>
+
+<div>
+	<div class="avapicebox">
+		
+		<div id="preview-pane">
+			<div class="preview-container">
+			  <img src="/uploads/avater/origin/<%= src %>" class="jcrop-preview" alt="Preview" />
+			</div>
+		</div>
+
+		<img src="/uploads/avater/origin/<%= src %>" id="target" alt="[Jcrop Example]" />
+	</div>
+	<input type="hidden" id="pice" value="<%= src %>">
+	<input type="hidden" id="x">
+	<input type="hidden" id="y">
+	<input type="hidden" id="w">
+	<input type="hidden" id="h">
+
+	<button class="btn btn-large btn-primary"  id="comfirmUpload">确认上传</button>
+
+</div>
+
+
+
+<script type="text/javascript">
+	    // Create variables (in this scope) to hold the API and image size
+	    $(function(){
+	    	var jcrop_api,
+	        boundx,
+	        boundy,
+	        // Grab some information about the preview pane
+	        preview = $('#preview-pane'),
+	        pcnt = $('#preview-pane .preview-container'),
+	        pimg = $('#preview-pane .preview-container img'),
+
+	        xsize = 100,
+	        ysize = 100;
+		    $('#target').Jcrop({
+		      onChange: updatePreview,
+		      onSelect: updatePreview,
+		      aspectRatio: xsize / ysize
+		    },function(){
+		      // Use the API to get the real image size
+		      var bounds = this.getBounds();
+		      boundx = bounds[0];
+		      boundy = bounds[1];
+		      // Store the API in the jcrop_api variable
+		      jcrop_api = this;
+
+
+		      // Move the preview into the jcrop container for css positioning
+		      preview.appendTo(jcrop_api.ui.holder);
+		    });
+
+		    function updatePreview(c)
+		    {
+		      if (parseInt(c.w) > 0)
+		      {
+		        var rx = xsize / c.w;
+		        var ry = ysize / c.h;
+		        $("#x").val(c.x);
+		        $("#y").val(c.y);
+		        $("#w").val(c.w);
+		        $("#h").val(c.h);
+		        pimg.css({
+		          width: Math.round(rx * boundx) + 'px',
+		          height: Math.round(ry * boundy) + 'px',
+		          marginLeft: '-' + Math.round(rx * c.x) + 'px',
+		          marginTop: '-' + Math.round(ry * c.y) + 'px'
+		        });
+		      }
+		    };
+
+		    $("#comfirmUpload").on("click",function(){
+		    	makeMmg($("#x").val(),$("#y").val(),$("#w").val(),$("#h").val(),$("#pice").val())
+		    })
+		    makeMmg=function(x,y,w,h,pice){
+		    	data={
+		    		x:x,
+		    		y:y,
+		    		w:w,
+		    		h:w,
+		    		pice:pice
+		    	}
+		    	$.ajax({
+		    		url:"demo/makeMmg",
+		    		type:"POST",
+		    		data:data,
+		    		success:function(data){
+		    			layer.msg(data);
+		    			setTimeout(function(){layer.closeAll()},1000);
+		    		},
+		    		error:function(){
+		    			layer.alert("失败");
+		    		}
+		    	})
+		    }
+
+	    })
+	    
+</script>
+
+

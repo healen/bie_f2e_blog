@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:none;">
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=8" >
 	<title>
 		<%= title %>
 	</title>
@@ -22,63 +23,8 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/admin/css/user.css">
 	<link rel="stylesheet" type="text/css" href="/cdn/css/vendor/jquery.Jcrop.min.css">
 	<link rel="shortcut icon" href="/cdn/admin/img/ico/favicon.ico">
-	<style type="text/css">
-		.has-error{
-			color:red;
-		}
-		.has-error .label{
-			color:red;
-		}
-		.has-error .controls input{
-			border-color: #ff0000;
-		}
-		.controls .log{
-			display: none;
-		}
-		.has-ok{
-			color:red;
-		}
-		.has-ok .label{
-			color:#00ff00;
-		}
-		.has-ok .controls input{
-			
-		}
-		.has-ok .controls .log{
-			color: #009900;
-		}
 
-				/* Apply these styles only when #preview-pane has
-		   been placed within the Jcrop widget */
-		.jcrop-holder #preview-pane {
-		  display: block;
-		  position: absolute;
-		  z-index: 2000;
-		  top: 10px;
-		  right: -120px;
-		  padding: 6px;
-		  border: 1px rgba(0,0,0,.4) solid;
-		  background-color: white;
-
-		  -webkit-border-radius: 6px;
-		  -moz-border-radius: 6px;
-		  border-radius: 6px;
-
-		  -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-		  -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-		  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
-		}
-
-		/* The Javascript code will set the aspect ratio of the crop
-		   area based on the size of the thumbnail preview,
-		   specified here */
-		#preview-pane .preview-container {
-		  width: 100px;
-		  height: 100px;
-		  overflow: hidden;
-		}
-	</style>
-	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
 	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
@@ -86,7 +32,7 @@
 </head>
 
 
-<body>
+<body style="background:none;">
 
 	<!-- <div class="box">
 		 <img src="/cdn/img/demo_files/sago.jpg" id="target" alt="[Jcrop Example]" />
@@ -97,106 +43,36 @@
 		  </div>
 	</div> -->
 
-
-
-
-	<form id="uploadForm" enctype ="multipart/form-data" action = "/demo/demo" method = "post" >
-		<input type="file" name="avater" / >
-		<input type = "submit" value = "Upload Image" name = "submit" />
+	<form id="uploadForm" enctype="text/html" action = "/demo/demo" method = "post" >
+		<input type="file" id="avater" name="avater" / >
 	</form>
-
-
-	
-
-
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#uploadForm').submit(function(){
-				$(this).ajaxSubmit({
-					error:function(xhr){
-						console.log('Error: '+ xhr.status);
-					},
-					success:function (response){
-						console. log (response);
-					}
-				});
-				return false ;
+		$("#avater").on("change",function(){
+			layer.load()
+			$("#uploadForm").ajaxSubmit({
+				error:function(xhr){
+					console.log('Error: '+ xhr.status);
+				},
+				success:function(response){
+					layer.closeAll('loading');
+					layer.open({
+						title:"头像设置",
+				        type: 1,
+				        maxmin: true,
+				        area: ['90%',"90%"],
+				        shadeClose: true, //点击遮罩关闭
+				        content: response.toString()
+				    });
+				    $("#avater").val("");
+					console.log(response.toString());
+				}
 			});
-		});
+			return false ;
 
+		})
 	</script>
-
-
-
-
-
-
-
-
-
-	<script type="text/javascript">
-
-
-	  // jQuery(function($){
-
-	  //   // Create variables (in this scope) to hold the API and image size
-	  //   var jcrop_api,
-	  //       boundx,
-	  //       boundy,
-
-	  //       // Grab some information about the preview pane
-	  //       $preview = $('#preview-pane'),
-	  //       $pcnt = $('#preview-pane .preview-container'),
-	  //       $pimg = $('#preview-pane .preview-container img'),
-
-	  //       xsize = 100,
-	  //       ysize = 100;
-	    
-	  //   console.log('init',[xsize,ysize]);
-	  //   $('#target').Jcrop({
-	  //     onChange: updatePreview,
-	  //     onSelect: updatePreview,
-	  //     aspectRatio: xsize / ysize
-	  //   },function(){
-	  //     // Use the API to get the real image size
-	  //     var bounds = this.getBounds();
-	  //     boundx = bounds[0];
-	  //     boundy = bounds[1];
-	  //     // Store the API in the jcrop_api variable
-	  //     jcrop_api = this;
-
-
-	  //     // Move the preview into the jcrop container for css positioning
-	  //     $preview.appendTo(jcrop_api.ui.holder);
-	  //   });
-
-	  //   function updatePreview(c)
-	  //   {
-	  //     if (parseInt(c.w) > 0)
-	  //     {
-	  //       var rx = xsize / c.w;
-	  //       var ry = ysize / c.h;
-
-	  //       console.log("x:%s y:%s w:%s h:%s",c.x,c.y,c.w,c.h)
-
-
-	  //       $pimg.css({
-	  //         width: Math.round(rx * boundx) + 'px',
-	  //         height: Math.round(ry * boundy) + 'px',
-	  //         marginLeft: '-' + Math.round(rx * c.x) + 'px',
-	  //         marginTop: '-' + Math.round(ry * c.y) + 'px'
-	  //       });
-	  //     }
-	  //   };
-
-	  // });
-
-
-	</script>
-
-
-			
-	</script>
+	
 </body>
 
 </html>
+

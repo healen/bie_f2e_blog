@@ -223,10 +223,10 @@ router
 			Db.modify("user",{user_id:req.session.userid},{email_verify:1 },function(result){
 				req.session.email_verify=null;
 
-				res.render("front_end/msg.html",{
-					title:"登录成功",
+				res.render("front_end/email_success.html",{
+					title:"邮箱验证成功",
 					username:req.session.usermsg ? req.session.usermsg.username : undefined,
-					status:"登录成功"
+					status:"验证成功"
 				})
 			})
 		}else{
@@ -335,6 +335,7 @@ router
 		 var img = p.getBase64();
 		 var imgbase64 = new Buffer(img,'base64');
 		 res.setHeader( 'Content-Type', 'image/png');
+		 console.log(captchaNumber);
 		 res.send(imgbase64)
 	})
 
