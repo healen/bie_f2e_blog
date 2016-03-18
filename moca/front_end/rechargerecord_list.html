@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	    <title>众筹管理后台</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <!-- Le styles -->
+	    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+	    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.min.css">
+	     
+	    <!--[if lte IE 7]>
+	    <link rel="stylesheet" type="text/css" href="bootstrap/css/ie.css">
+	    <![endif]-->
+	    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="bootstrap/js/html5.js"></script>
+	    <![endif]-->
+	    <link rel="stylesheet" type="text/css" href="css/frame.css">
+	    <link rel="stylesheet" type="text/css" href="css/user.css">
+	    <link rel="shortcut icon" href="img/ico/favicon.ico">
+	</head>
+	<body>
+
+		<div class="box">
+			<div class="leftbar" id="leftbar">
+	<ul>
+		<li class="active">
+			<a href="home.html">
+				<i class="ico ico-home"></i>
+				首页
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-user"></i>
+				<i class="icoside ico-left"></i>
+				用户管理
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-cube"></i>
+				<i class="icoside ico-left"></i>
+				项目管理
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-yuan"></i>
+				<i class="icoside ico-left"></i>
+				财务管理
+			</a>
+		</li>
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-statistics"></i>
+				<i class="icoside ico-left"></i>
+				统计管理
+			</a>
+		</li>
+
+		<li class="toggle">
+			<a href="javascript:void(0)">
+				<i class="ico ico-set"></i>
+				<i class="icoside ico-left"></i>
+				系统配置
+			</a>
+		</li>
+	</ul>
+				
+</div>
+
+<div class="left2bar" id="left2bar">
+
+	<div class="slidebtn">
+		<div class="inbtnl">
+			<i class="ico-left"></i>
+		</div>
+		<div class="inbtnr">
+			<i class="ico-right"></i>
+		</div>
+		
+	</div>
+
+
+	<ul>
+
+		<li>
+			<a href="createUser.html">
+				<div class="row-fluid">
+					<div class="span10">新建用户</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="ordinaryusers_list.html">
+				<div class="row-fluid">
+					<div class="span10">自然投资人管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+		</li>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">领投人管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="certificationleaders_list.html">认证通过领投人</a>
+				</li>
+				<li> 
+					<a href="uncertificationleaders_list.html">认证拒绝领投人</a>
+				</li>
+				
+			</ul>
+		</li>
+		<li>
+			<a href="institutionusers_list.html">
+				<div class="row-fluid">
+					<div class="span10">机构投资人管理</div>
+					<div class="span2">+</div>
+				</div>
+				
+			</a>
+		</li>
+		<li>
+			<a href="projectsponsors.html">
+				<div class="row fluid">
+					<div class="span10">项目方用户管理</div>
+					<div class="span2">+</div>
+				</div>
+			
+			</a>
+		</li>
+		
+	</ul>
+
+	<ul>
+
+		<li>
+			<a href="createproject.html" >
+				<div class="row-fluid">
+					<div class="span10">新建项目</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			
+
+		</li>
+		<li  class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">众筹项目</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="allprojects_list.html">所有项目</a>
+				</li>
+				<li> 
+					<a href="warmupprojects_list.html">预热项目</a>
+				</li>
+				<li> 
+					<a href="waitingreleasedprojects_list.html">待发布项目</a>
+				</li>
+
+				<li> 
+					<a href="raisingprojects_list.html">筹款中项目</a>
+				</li>
+
+				<li> 
+					<a href="pendingprojects_list.html">待放款项目</a>
+				</li>
+				<li> 
+					<a href="repayingprojects_list.html">还款项目</a>
+				</li>
+				<li> 
+					<a href="failureprojects_list.html">流标项目</a>
+				</li>
+				<li> 
+					<a href="raisedprojectsmanagement_list.html">投后项目</a>
+				</li>
+			</ul>
+
+		</li>
+
+
+
+		<li  class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">新三板定增</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="registration_list.html">登记统计</a>
+				</li>
+				
+			</ul>
+
+		</li>
+
+	</ul>
+
+
+	<ul>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">充值管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="rechargerecord_list.html">充值记录</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">提现管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="withdrawrecord_list.html">提现记录</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+
+	<ul>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">项目统计</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="projectsquantity.html">项目数量统计</a>
+					<a href="projectsfunds.html">项目资金统计</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">投资人统计</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="usersquantity.html">投资人数统计</a>
+				</li>
+			</ul>
+		</li>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">资金报表</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="rechargestatements_list.html">充值报表</a>
+					<a href="investmentstatements_list.html">投资报表</a>
+					<a href="withdrawstatements_list.html">提现报表</a>
+					<a href="raisingprojectsstatements_list.html">筹款中报表</a>
+					<a href="pendingprojectsstatements_list.html">放款报表</a>
+					<a href="failureprojectsstatements_list.html">流标报表</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+
+
+
+
+
+
+	<ul>
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">前台系统管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="picturesmanagement_list.html">图片管理</a>
+					<a href="articlesmanagement_list.html">文章管理</a>
+					<a href="freshmansettings.html">新手指引配置</a>
+					<a href="menusettings_list.html">菜单配置</a>
+					<a href="basicalinformations.html">企业基本信息</a>
+					<a href="famoususers_list.html">明星投资人配置</a>
+					<a href="success_list.html">成功案例配置</a>
+					<a href="blacklistsettings_list.html">黑名单配置</a>
+				</li>
+			</ul>
+
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">系统参数配置</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="ratesettings.html">商户费率配置</a>
+					<a href="industrymanagement_list.html">行业配置</a>
+					<a href="companystagemanagement_list.html">发展阶段</a>
+					<a href="districtiongmanagement_list.html">地区配置</a>
+					<a href="snsmanagement_list.html">短信配置</a>
+					<a href="paymentmanagement_list.html">支付配置</a>
+
+					<a href="realnamesettings_list.html">实名认证配置</a>
+
+					<a href="transfersettings.html">装让配置</a>
+
+					<a href="clientsettings.html">商户配置</a>
+
+					<a href="tipsmanagement.html">消息管理</a>
+
+
+				</li>
+			</ul>
+
+		</li>
+
+		<li class="bar2">
+			<a href="javascript:void(0)" >
+				<div class="row-fluid">
+					<div class="span10">后台系统管理</div>
+					<div class="span2">+</div>
+				</div>
+			</a>
+			<ul>
+				<li> 
+					<a href="managers_list.html">管理员管理</a>
+					<a href="groupsofmanagers_list.html">管理员群组</a>
+					<a href="rightofmanagers.html">管理员权限</a>
+					<a href="backsystempictures_list.html">后台图片配置</a>
+					<a href="log_list.html">操作日志</a>
+					
+				</li>
+			</ul>
+
+		</li>
+	</ul>
+
+	
+	
+
+	
+
+	
+
+	
+</div>
+			<header>
+	<section>
+		<a href="home.html">
+			<img src="img/logo.png" alt="">
+
+		</a>
+		后台管理系统
+
+		<div class="pull-right">
+			欢迎您，admin，超级管理员
+			<a href="exit" class="exit">退出</a>
+		</div>
+	</section>
+</header>
+			<div class="containerme">
+
+				
+				
+				<div class="pagecontent" id="pagecontent">
+					<section class="crumbs">
+						<i class="ico-dibiao"></i><a href="home.html">首页</a> > <a href="javascript:void(0)">财务管理</a> > 充值管理 > 充值记录
+					</section>
+
+					<div class="list-page-content">
+						<form class="form-inline">
+
+
+ 
+  
+
+ 
+  
+
+
+							<div class="input-group">
+								<label class="checkbox">
+									充值用户名：
+								</label>
+								<input type="text" class="input-small" placeholder="">
+								
+							</div>
+
+							<div class="input-group">
+								<label class="checkbox">
+									充值平台：
+								</label>
+								<select name="" id="" class="input-small" >
+									<option value="">全部</option>
+									
+								</select>
+								
+							</div>
+
+
+								<div class="input-group">
+								<label class="checkbox">
+									充值状态：
+								</label>
+								<select name="" id="" class="input-small" >
+									<option value="">全部</option>
+									
+								</select>
+								
+							</div>
+
+
+						
+
+
+
+
+
+							<div class="input-group">
+								<label class="checkbox">
+									充值时间：
+								</label>
+								<input type="text" class="input-small" placeholder="" onclick="laydate()"> 至 
+								<input type="text" class="input-small" placeholder="" onclick="laydate()">
+						
+								
+								
+							</div>
+
+							
+							
+							
+							<button type="button" class="btn btn-primary">搜索</button>
+
+			
+
+						</form>
+						<table class="botbor table-hover">
+							<thead>
+								<tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									<td>充值订单号</td>
+									<td>充值用户</td>
+									<td>充值金额</td>
+									<td>手续费</td>
+									<td>实际金额</td>
+									<td>充值渠道</td>
+									<td>充值平台</td>
+									<td>充值状态</td>
+									<td>充值时间</td>
+									<td>充值成功时间</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+
+
+
+									<td>JK20112200</td>
+									<td>云飞同學</td>
+									<td>100,000.00</td>
+									<td>0.00</td>
+
+									<td>100,000.00</td>
+									<td>易宝支付</td>
+									<td>网站</td>
+									<td>充值成功</td>
+									<td>2015-12-28  14:09</td>
+									<td>2015-12-28  14:09</td>
+									
+								</tr>
+
+								<tr>
+
+
+
+									<td>JK20112200</td>
+									<td>云飞同學</td>
+									<td>100,000.00</td>
+									<td>0.00</td>
+
+									<td>100,000.00</td>
+									<td>易宝支付</td>
+									<td>网站</td>
+									<td>充值成功</td>
+									<td>2015-12-28  14:09</td>
+									<td>2015-12-28  14:09</td>
+									
+								</tr>
+							</tbody>
+						</table>
+
+
+						<div class="text-right">
+							<div class="pagination">
+							  <ul>
+							    <li><a href="#">上一页</a></li>
+							    <li><a href="#">1</a></li>
+							    <li><a href="#">2</a></li>
+							    <li><a href="#">3</a></li>
+							    <li><a href="#">4</a></li>
+							    <li><a href="#">5</a></li>
+							    <li><a href="#">下一页</a></li>
+							  </ul>
+							</div>
+							
+						</div>
+
+
+						
+					</div>
+					
+				</div>
+			</div>
+
+			
+			
+		</div>
+
+
+
+		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="myModalLabel">批量导入用户</h3>
+		  </div>
+		  <div class="modal-body">
+		  		<div class="popup">
+
+		  			<div class="row-fluid">
+		  				<div class="span6">
+		  					<p>
+				  				<span class="mark">第一步：</span>下载导入用户Excel表格模板。
+
+				  			</p>
+		  				</div>
+		  				<div class="span6">
+		  					<button class="btn btn-primary" type="button">下载</button>
+		  					<span class="asst">用户批量导入表.xlsx</span>
+		  				</div>
+		  			</div>
+
+
+		  			<div class="row-fluid">
+		  				<div class="span6">
+		  					<p>
+				  				<span class="mark">第二步：</span>填写补充表格内容。</p>
+
+				  			</p>
+		  				</div>
+		  			
+		  			</div>
+
+		  			<div class="row-fluid">
+		  				<div class="span6">
+		  					<p>
+				  				<span class="mark">第三步：</span>上传表格模板
+
+				  			</p>
+		  				</div>
+		  				<div class="span6 fileup">
+		  					<input type="file" class="file">
+		  					<button class="btn btn-primary" type="button">上传</button>
+		  					<span class="asst">用户批量导入表.xlsx</span>
+		  				</div>
+		  			</div>
+		  			
+			    	
+		  			
+		  		</div>
+		    	
+		    	
+		    	
+		  </div>
+
+		  <div class="modal-footer">
+		   
+		    <button class="btn btn-large btn-warning"  data-dismiss="modal" aria-hidden="true">确认导入</button>
+		  </div>
+		</div>
+
+		
+		<script type="text/javascript" src="js/vendor/jquery-1.7.2.min.js"></script>
+	    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	    <script type="text/javascript" src="js/vendor/laydate/laydate.js"></script>
+	    <script type="text/javascript" src="js/public.js"></script>
+
+	 
+	</body>
+</html>

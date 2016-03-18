@@ -48,6 +48,10 @@
 	.avapicebox{
 		padding: 20px;
 		position: relative;
+		overflow: hidden;
+	}
+	.jcrop-keymgr{
+		opacity: 0;
 	}
 </style>
 
@@ -61,14 +65,23 @@
 		</div>
 
 		<img src="/uploads/avater/origin/<%= src %>" id="target" alt="[Jcrop Example]" />
+
+		<div class="btnbox" style="margin-top:10px">
+			<button class="btn btn-large btn-primary"  id="comfirmUpload">确认上传</button>
+			
+		</div>
+
+		
 	</div>
 	<input type="hidden" id="pice" value="<%= src %>">
 	<input type="hidden" id="x">
+	<input type="hidden" id="picename" value="<%= picename %>">
+	
+
 	<input type="hidden" id="y">
 	<input type="hidden" id="w">
 	<input type="hidden" id="h">
-
-	<button class="btn btn-large btn-primary"  id="comfirmUpload">确认上传</button>
+	
 
 </div>
 
@@ -87,17 +100,22 @@
 
 	        xsize = 100,
 	        ysize = 100;
+
 		    $('#target').Jcrop({
 		      onChange: updatePreview,
 		      onSelect: updatePreview,
+		      setSelect: [ 10, 10, 10 , 10 ],
 		      aspectRatio: xsize / ysize
 		    },function(){
 		      // Use the API to get the real image size
 		      var bounds = this.getBounds();
 		      boundx = bounds[0];
 		      boundy = bounds[1];
-		      // Store the API in the jcrop_api variable
+		 
+
 		      jcrop_api = this;
+		      jcrop_api.animateTo([20,20,$("#target").width()-40,$("#target").width()-40]);
+		      // Store the API in the jcrop_api variable
 
 
 		      // Move the preview into the jcrop container for css positioning
@@ -124,18 +142,19 @@
 		    };
 
 		    $("#comfirmUpload").on("click",function(){
-		    	makeMmg($("#x").val(),$("#y").val(),$("#w").val(),$("#h").val(),$("#pice").val())
+		    	makeMmg($("#x").val(),$("#y").val(),$("#w").val(),$("#h").val(),$("#pice").val(),$("#picename").val())
 		    })
-		    makeMmg=function(x,y,w,h,pice){
+		    makeMmg=function(x,y,w,h,pice,picename){
 		    	data={
 		    		x:x,
 		    		y:y,
 		    		w:w,
 		    		h:w,
-		    		pice:pice
+		    		pice:pice,
+		    		picename:picename
 		    	}
 		    	$.ajax({
-		    		url:"demo/makeMmg",
+		    		url:"account/makeMmg",
 		    		type:"POST",
 		    		data:data,
 		    		success:function(data){

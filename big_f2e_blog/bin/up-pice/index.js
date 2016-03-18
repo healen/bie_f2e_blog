@@ -14,7 +14,8 @@ exports.upAvater=function(req,res,directory,tpl,tplvar){
 				return;
 			}
 			if(req.file.mimetype == "image/png" || req.file.mimetype == "image/gif" || req.file.mimetype == "image/jpeg" || req.file.mimetype == "image/pjpeg" || req.file.mimetype == "image/x-png"){
-				var extname=path.extname(req.file['originalname'])
+				var extname=path.extname(req.file['originalname']);
+				var picenames="upice"+req.session.userid;
 				var timstrap=Date.parse(new Date());
 
 				fs.readFile(req.file['path'],function(err,data){
@@ -23,25 +24,26 @@ exports.upAvater=function(req,res,directory,tpl,tplvar){
 						fs.unlinkSync(req.file['path']);	
 
 					}else{
-						fs.writeFile(path.join(static_dir,directory,timstrap+extname), data, function(err,data){
+						fs.writeFile(path.join(static_dir,directory,picenames+extname), data, function(err,data){
 							if(err){
 								res.json({code:400,"err":"服务器写入失败"});
 								fs.unlinkSync(req.file['path']);
 							}else{
-								var widths=images(path.join(static_dir,directory,timstrap+extname)).width();
+								var widths=images(path.join(static_dir,directory,picenames+extname)).width();
 								var maketo
-								if(widths>=800){
-									maketo=images(path.join(static_dir,directory,timstrap+extname)).resize(800).save(path.join(static_dir,directory,timstrap+extname));
+								if(widths>=500){
+									maketo=images(path.join(static_dir,directory,picenames+extname)).resize(500).save(path.join(static_dir,directory,picenames+extname));
 								}else if(widths<=100){
-									maketo=images(path.join(static_dir,directory,timstrap+extname)).resize(200).save(path.join(static_dir,directory,timstrap+extname));
+									maketo=images(path.join(static_dir,directory,picenames+extname)).resize(200).save(path.join(static_dir,directory,picenames+extname));
 
 								}else{
-									maketo=images(path.join(static_dir,directory,timstrap+extname)).save(path.join(static_dir,directory,timstrap+extname));
+									maketo=images(path.join(static_dir,directory,picenames+extname)).save(path.join(static_dir,directory,picenames+extname));
 								}
 								if(maketo){
 								
 									res.render(tpl,{
-										src:timstrap+extname,
+										src:picenames+extname,
+										picename:picenames+extname,
 										data:tplvar
 									})
 									fs.unlinkSync(req.file['path']);	
@@ -52,7 +54,6 @@ exports.upAvater=function(req,res,directory,tpl,tplvar){
 				});
 				// var imagedawp=images(req.file['path']).size().save();
 				// if(imagedawp){
-					
 				// }
 			}else{
 				res.json({code:400,err:"文件格式错误，请传 jpg / png / gif 图"});
@@ -66,12 +67,16 @@ exports.cuttingAvater=function(req,res,callback){
 		var y=parseInt(req.body.y);
 		var w=parseInt(req.body.w);
 		var h=parseInt(req.body.h);
+
+
 		var makeInit=images(images(path.join(static_dir,"avater","origin",req.body.pice)),x,y,w,h).resize(w,h).save(path.join(static_dir,"avater","init",req.body.pice));
-		var make150=images(images(path.join(static_dir,"avater","origin",req.body.pice)),x,y,w,h).resize(150,150).save(path.join(static_dir,"avater","150x150",req.body.pice));
+		var make128=images(images(path.join(static_dir,"avater","origin",req.body.pice)),x,y,w,h).resize(128,128).save(path.join(static_dir,"avater","128x128",req.body.pice));
+		var make96=images(images(path.join(static_dir,"avater","origin",req.body.pice)),x,y,w,h).resize(96,96).save(path.join(static_dir,"avater","96x96",req.body.pice));
 		var make64=images(images(path.join(static_dir,"avater","origin",req.body.pice)),x,y,w,h).resize(64,64).save(path.join(static_dir,"avater","64x64",req.body.pice));
 		var make32=images(images(path.join(static_dir,"avater","origin",req.body.pice)),x,y,w,h).resize(32,32).save(path.join(static_dir,"avater","32x32",req.body.pice));
 		if(make32){
 			res.send("上传成功")
+			callback(req.body.pice)
 		}else{
 			res.send("大图上传失败")
 		}

@@ -43,10 +43,10 @@ app.use(cookieParser());
 app.use(session({
 	secret: 'secret',
 	resave: true,
-	saveUninitialized: false,
-	cookie: {
-		maxAge: 1000 * 60 * 10
-	}
+	saveUninitialized: false
+	// cookie: {
+	// 	maxAge: 1000 * 60 * 10
+	// }
 }));
 
 /*编辑器*/

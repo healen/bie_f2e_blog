@@ -60,7 +60,7 @@ router
 			var $sql="SELECT user_id,username,password,email_verify,email FROM user WHERE (username='"+insertData.username+"' or email='"+insertData.username+"' ) AND password='"+insertData.password+"'"
 			Db.query($sql,function(data){
 				if(data.length >= 1){
-					console.log(data[0]['user_id']);
+					// console.log(data[0]['user_id']);
 					req.session.userid=data[0]['user_id'];
 					req.session.usermsg={
 						username:data[0]['username'],
@@ -74,10 +74,10 @@ router
 					}else{
 						req.session.email_verify=null;
 					}
-					console.log(req.session.usermsg);
+					// console.log(req.session.usermsg);
 					res.json({code:200,msg:"登录成功正在跳转个人中心"});
 				}else{
-					console.log("用户名不存在");
+					// console.log("用户名不存在");
 					res.json({code:401,msg:"用户名不存在"});
 				}
 
@@ -175,7 +175,7 @@ router
 	})
 	/*验证邮箱是否被注册过*/
 	.post("/emailtesting",function(req,res){
-		console.log(req.host);
+		// console.log(req.host);
 		var Db=new mysqlUtil();
 		var data = {
 			email:req.body.email
@@ -278,9 +278,9 @@ router
 	.post("/confirmPassword",function(req,res){
 		var Db=new mysqlUtil();
 		$sql="UPDATE user SET password='"+md5.encryption(req.body.password,"md5")+"', update_at=NOW()  WHERE user_id="+req.session.userid ;
-		console.log(req.body.password);
-		console.log(req.session.userid);
-		console.log($sql);
+		// console.log(req.body.password);
+		// console.log(req.session.userid);
+		// console.log($sql);
 		// res.send("fdsfdsaffds")
 		
 		Db.updateQuery($sql,function(err,result){
@@ -308,7 +308,7 @@ router
 		var user_id=req.session.userid;
 		var Db=new mysqlUtil();
 		$sql="UPDATE user SET password='"+md5.encryption(req.body.password,"md5")+"', update_at=NOW() WHERE user_id="+user_id+" AND password='"+md5.encryption(req.body.originPassword,"md5")+"'";
-		console.log($sql);
+		// console.log($sql);
 
 		Db.updateQuery($sql,function(err,result){
 			if(err){
@@ -335,7 +335,7 @@ router
 		 var img = p.getBase64();
 		 var imgbase64 = new Buffer(img,'base64');
 		 res.setHeader( 'Content-Type', 'image/png');
-		 console.log(captchaNumber);
+		 // console.log(captchaNumber);
 		 res.send(imgbase64)
 	})
 

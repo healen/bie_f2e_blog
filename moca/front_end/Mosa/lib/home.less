@@ -1,0 +1,172 @@
+.showdata{
+	._clearfix();
+	line-height: 48px;
+	background: #ffffff;
+	border-bottom: 3px solid @borderColor1;
+	padding: 0px 20px;
+	margin-bottom: 20px;
+	color: @titleTextColor;
+	.data{
+		margin-right: 33px;
+		display: inline-block;
+	}
+	span{
+		color: @markColor;
+	}
+	i{
+		font-size: 14px;
+	}
+	a{
+		color: @titleTextColor;
+		&:hover{
+			color: @markColor;
+		}
+	}
+}
+.contentbox{
+	margin-bottom: 5px;
+	a{
+		color: @titleTextColor;
+		&:hover{
+			color: @markColor;
+		}
+	}
+
+	h2{
+		font-size: @navSize;
+		color: @titleTextColor;
+		font-weight:bold;
+	}
+	.msgbox{
+		background: #ffffff;
+		padding: 20px;
+		border-bottom: 3px solid @borderColor1;
+		color: @baseTextColor;
+		.headpto{
+			width: 105px;
+		}
+		.usermsg{
+			p{
+				padding-bottom: 10px;
+
+				&:last-child{
+					padding-bottom: 0px;
+				}
+			}
+		}
+		.head{
+			padding-bottom: 20px;
+		}
+		.operation_log{
+			li{
+				line-height: 44px;
+				height: 44px;
+				border-bottom: 1px solid @borderColor1;
+				.-text ._ellipsis();
+				&:last-child{
+					border-bottom: none;
+				}
+			}
+		}
+
+	}
+	.operationbox{
+		.msgbox();
+		padding-top: 9px;
+		height: 218px;
+	}
+
+	.smallbox{
+		._clearfix();
+		text-align: center;
+		background: #ffffff;
+		padding: 20px;
+		border-bottom: 3px solid @borderColor1;
+		color: @baseTextColor;
+		height: auto;
+		color: @markColor;
+		.ico{
+			margin-bottom: 10px;
+		}
+		i{
+			font-size: 26px;
+		}
+
+	}
+	.toolbtn{
+		display: block;
+		width: 100%;
+
+	}
+}
+
+.zjinlist{
+	._clearfix();
+	.zijin{
+		color: #ff8665;
+		float: left;
+		width: 19%;
+		background: #ffffff;
+		border-bottom: 3px solid @borderColor1;
+		margin-right: 1.2%;
+		&:last-child{
+			margin-right: 0px;
+		}
+		.inzijin{
+			padding: 20px 10px;
+			i{
+				font-size: 28px;
+				width: 28px;
+				height: 28px;
+				padding: 10px;
+				border-radius: 50%;
+				background: #ff8665;
+				color: #ffffff;
+
+			}
+			.span3{
+				text-align: center;
+				margin-top: 7px;
+
+
+			}
+		}
+		span{
+			color: @baseTextColor;
+		}
+
+		&.c1{
+			color: #ff8665;
+			i{
+				background:  #ff8665;
+			}
+		}
+		&.c2{
+			color: #61b8ee;
+			i{
+				background:  #61b8ee;
+			}
+		}
+		&.c3{
+			color: #a38bd9;
+			i{
+				background:  #a38bd9;
+			}
+		}
+		&.c4{
+			color: #3fd4bb;
+			i{
+				background:  #3fd4bb;
+			}
+		}
+		&.c5{
+			color: #ffbc4b;
+			i{
+				background:  #ffbc4b;
+			}
+		}
+
+	}
+
+}
+

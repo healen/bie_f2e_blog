@@ -1,0 +1,52 @@
+/*常用变量*/
+@import "../lib/variables";
+@import "../lib/basic";
+
+
+html,body{
+	min-height: 100%;
+	background-image: url("@{img}/bodybg.png");
+	background-repeat: repeat-y;
+	background-color: #ffffff;
+}
+
+.pagecontent{
+	padding:0px 0px;
+}
+
+.crumbs{
+	padding: 0px 24px;
+}
+
+.avaterlist{
+	vertical-align: bottom;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	img{
+
+		// display: block;
+		display: inline-block;
+		float: left;
+		margin-right: 10px;
+		&:nth-child(2){
+			margin-top: 32px;
+		}
+		&:nth-child(3){
+			margin-top: 64px;
+		}
+
+	}
+
+}
+input[type="file"].fileava{
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	.-text ._opacity(0);
+}
+
+
+

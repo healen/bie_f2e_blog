@@ -205,7 +205,7 @@ $("#Register").on("click", function() {
 		verify:ele.verify.val()
 	};
 
-	layer.load(2)
+	
 
 	/*获取邮件运营商*/
 
@@ -218,7 +218,9 @@ $("#Register").on("click", function() {
 		type: "POST",
 		data: data,
 		success: function(result) {
+
 			if (result.code == 200) {
+				layer.load(2)
 				log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
 				$.ajax({
 					url:"/member/register",
