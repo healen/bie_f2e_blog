@@ -26,6 +26,7 @@
 	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/laydate/laydate.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/jquery.form.min.js"></script>
 </head>
@@ -37,74 +38,157 @@
 		<% include left.html %>
 		<% include head.html %>
 		<div class="viewbtnbox" style="display: block;padding-top:25px">
-			<legend><%= tabtitle %></legend>
-			<form id="uploadForm" enctype="text/html" action = "/account/set_avater" method = "post" >
-				<div class="upAvater">
-					<div class="row-fluid avaterlist">
-						<% if(userInfo.avater===undefined){ %>
-						<img src="/cdn/img/avater/96x96/defalut.png" alt="" class="pull-left">
-						<img src="/cdn/img/avater/64x64/defalut.png" alt="" class="pull-left">
-						<img src="/cdn/img/avater/32x32/defalut.png" alt="" class="pull-left">
-						<%}else{%>
-						<img src="/uploads/avater/96x96/<%= userInfo.avater %>" alt="" class="pull-left">
-						<img src="/uploads/avater/64x64/<%= userInfo.avater %>" alt="" class="pull-left">
-						<img src="/uploads/avater/32x32/<%= userInfo.avater %>" alt="" class="pull-left">
-
-						<%}%>
-					</div>
-					<div class="btn-group">
-						<input type="file" id="avater" class="fileava" name="avater" / >
-
-						<button type="button" class="btn-large btn-primary">设置头像</button>
-					</div>
-					
-				</div>
-			</form>
-			<form action="" method="POST" role="form">
-				
-				<div class="form-group">
-					<label for="">label</label>
-					<input type="text" class="form-control" id="" placeholder="Input field">
-				</div>
-			
-				
-			
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-
+			<legend>设置头像</legend>
+			<br>
+			<div class="form-horizontal">
 	
-			
+				  <div class="row-fluid myform">
+				    <label class="control-label span3" style="height:100px">头像：&nbsp;&nbsp;</label>
+				    <div class="controls">
+				     <form id="uploadForm" enctype="text/html" action = "/account/set_avater" method = "post" >
+						<div class="upAvater">
+							<div class="btngroup" style="margin-top:7px">
+								<input type="file" id="avater" class="fileava" name="avater" / >
+								<button type="button" class="btn btn-primary">
+								<% if(!userInfo.avater){ %>
+									上传头像
+								<%}else{%>
+									修改头像
+								<%}%>
+								</button>
+							</div>
+							
+							<div class="row-fluid avaterlist">
+								<% if(!userInfo.avater){ %>
+								<img src="/cdn/img/avater/96x96/defalut.png" alt="" id="pice_big" class="pull-left">
+								<img src="/cdn/img/avater/64x64/defalut.png" alt="" id="pice_small" class="pull-left">
+								<img src="/cdn/img/avater/32x32/defalut.png" alt="" id="pice_ico" class="pull-left">
+								<%}else{%>
+								<img src="/uploads/avater/96x96/<%= userInfo.avater %>" alt="" id="pice_big" class="pull-left">
+								<img src="/uploads/avater/64x64/<%= userInfo.avater %>" alt="" id="pice_small" class="pull-left">
+								<img src="/uploads/avater/32x32/<%= userInfo.avater %>" alt="" id="pice_ico" class="pull-left">
+								<%}%>
+							</div>
+							
+						</div>
+					</form>
+				    </div>
+				  </div>
+			</div>
+				<legend>编辑个人信息</legend>
+			<br>
+			<form class="form-horizontal" id="account_submit" enctype="text/html" action = "/account/mysave" method = "post" >
+							 <div class="row-fluid myform">
+							    <label class="control-label span3">用户名：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <span style="line-height: 40px"><%= userInfo.username %></span>
+							    </div>
+							  </div>
+							   <div class="row-fluid myform">
+							    <label class="control-label span3">邮箱：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<span style="line-height: 40px"> <%= userInfo.email %> </span>
+							     
+							    </div>
+							  </div>
+					
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="real_name">姓名：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text"  id="real_name" name="real_name" placeholder="真实姓名" value="<%= userInfo.real_name %>">
+							    </div>
+							  </div>
 
-			
-			
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="gender">性别：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<div class="row radusbox">
+							    		<% if(userInfo.gender==0){ %>
+							    		<label class="radio pull-left">
+							            	<input type="radio" name="gender" id="optionsRadios1" value="0" checked="">男
+							            </label>
+							            <label class="radio pull-left">
+							            	<input type="radio" name="gender" id="optionsRadios1" value="1">女
+							            </label>
+							    		<% }else{ %>
+							    		<label class="radio pull-left">
+							            	<input type="radio" name="gender" id="optionsRadios1" value="0" >男
+							            </label>
+							            <label class="radio pull-left">
+							            	<input type="radio" name="gender" id="optionsRadios1" value="1" checked="">女
+							            </label>
+							    		<% } %>
+							    	</div>
+							    </div>
+							  </div>
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="brithday">生日：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" id="brithday" name="brithday" placeholder="选择生日" value="<%= userInfo.brithday %>" >  
+							    </div>
+							  </div>
+
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="website">网址：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" id="website" name="website" placeholder="网址如:http://www.red.com" value="<%= userInfo.website %>"> 
+							    </div>
+							  </div>
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="location">所在地区：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" id="location" name="location" placeholder="所在的区域如：北京" value="<%= userInfo.location %>"> 
+							    </div>
+							  </div>
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="weixin">微信：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text"  id="weixin" name="weixin" placeholder="真实微信号"  value="<%= userInfo.weixin %>"> 
+							    </div>
+							  </div>
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="qq">QQ：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" id="qq" name="qq" placeholder="常用QQ号" value="<%= userInfo.qq %>"> 
+							    </div>
+							  </div>
+
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="tel">电话：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							      <input type="text" id="tel" name="tel" placeholder="常用手机号"  value="<%= userInfo.tel %>">
+							    </div>
+							  </div>
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="aignature">个性签名：&nbsp;&nbsp;</label>
+							    <div class="controls">
+							    	<textarea name="aignature" id="" cols="30" id="aignature" rows="10" class="input-xxlarge"  placeholder="请输入签名" value="<%= userInfo.aignature %>"><%= userInfo.aignature %></textarea>
+							    </div>
+							  </div>
+							  <input type="hidden" name="account_id" value="<%= userInfo.account_id %>">
+							  <div class="row-fluid myform">
+							    <label class="control-label span3" for="inputEmail">&nbsp;&nbsp;</label>
+							    <div class="controls">
+							     	<span class="rowbox">
+							     		<div class="row-fluid">
+							     			<div class="input-xxlarge">
+							     				<button class="btn btn-large btn-block btn-primary" id="setSelfMsg" type="button">保存个人信息</button>
+							     			</div>
+							     		</div>
+							     	</span>
+							    </div>
+							  </div>
+						</form>
 		</div>
 		<% include foot.html %>
 	</div>
 
-	<script type="text/javascript">
-		$("#avater").on("change",function(){
-			layer.load()
-			$("#uploadForm").ajaxSubmit({
-				error:function(xhr){
-					console.log('Error: '+ xhr.status);
-				},
-				success:function(response){
-					layer.closeAll('loading');
-					layer.open({
-						title:"头像设置",
-				        type: 1,
-				        maxmin: true,
-				        area: ['660px',"660px"],
-				        shadeClose: true, //点击遮罩关闭
-				        content: response.toString()
-				    });
-				    $("#avater").val("");
-					
-				}
-			});
-			return false ;
-
-		})
+	<script type="text/javascript" src="/cdn/js/views/account.js">
 		
 	</script>
 </body>

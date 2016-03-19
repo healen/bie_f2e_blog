@@ -37,6 +37,14 @@
 	  background-color: white;
 	}
 
+	.btnbox{
+		  display: block;
+		  position: absolute;
+		  z-index: 2000;
+		  left: 13px;
+		  margin-top:13px;
+	}
+
 	/* The Javascript code will set the aspect ratio of the crop
 	   area based on the size of the thumbnail preview,
 	   specified here */
@@ -62,15 +70,12 @@
 			<div class="preview-container">
 			  <img src="/uploads/avater/origin/<%= src %>" class="jcrop-preview" alt="Preview" />
 			</div>
+			<div class="btnbox">
+				<button class="btn btn-primary"  id="comfirmUpload">确认上传</button>
+			</div>
 		</div>
 
-		<img src="/uploads/avater/origin/<%= src %>" id="target" alt="[Jcrop Example]" />
-
-		<div class="btnbox" style="margin-top:10px">
-			<button class="btn btn-large btn-primary"  id="comfirmUpload">确认上传</button>
-			
-		</div>
-
+		<img src="/uploads/avater/origin/<%= src %>" id="target" />
 		
 	</div>
 	<input type="hidden" id="pice" value="<%= src %>">
@@ -154,12 +159,20 @@
 		    		picename:picename
 		    	}
 		    	$.ajax({
-		    		url:"account/makeMmg",
+		    		url:"/account/makeMmg",
 		    		type:"POST",
 		    		data:data,
 		    		success:function(data){
 		    			layer.msg(data);
-		    			setTimeout(function(){layer.closeAll()},1000);
+		    			
+		    			
+		    			setTimeout(function(){
+		    				 window.location.reload();
+	    					layer.closeAll()
+		    				
+		    				
+
+		    			},1000);
 		    		},
 		    		error:function(){
 		    			layer.alert("失败");

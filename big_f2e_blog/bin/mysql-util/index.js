@@ -33,7 +33,7 @@ module.exports = function() {
 	}
 	this.updateQuery=function(sql,callback){
 		dbClient.query(sql,function(err,result){
-			callback(err,result)
+			callback && callback(err,result)
 		})
 	}
 
