@@ -54,7 +54,7 @@ CREATE TABLE `account` (
 
 /*Data for the table `account` */
 
-insert  into `account`(`account_id`,`real_name`,`gender`,`brithday`,`website`,`location`,`aignature`,`weixin`,`tel`,`qq`,`avater`,`is_look`,`create_at`,`update_at`) values (6,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'upice55.jpg',1,NULL,NULL);
+insert  into `account`(`account_id`,`real_name`,`gender`,`brithday`,`website`,`location`,`aignature`,`weixin`,`tel`,`qq`,`avater`,`is_look`,`create_at`,`update_at`) values (6,'张晓东',0,'1988-03-09','qianduango.com','北京','没有什么能够阻挡，你对自由的向往，天马行空的生涯，你的心了无牵挂。。！！','zxd19880209','15600074926','449422301','upice55.png',1,NULL,'2016-03-21 17:53:56');
 
 /*Table structure for table `admin` */
 
