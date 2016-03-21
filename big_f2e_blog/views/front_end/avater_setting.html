@@ -162,12 +162,9 @@
 		    		data:data,
 		    		success:function(data){
 		    			layer.msg(data);
-		    			
-		    			
 		    			setTimeout(function(){
-		    				 window.location.reload();
+		    				 window.location.href="/account"
 	    					layer.closeAll()
-		    				
 		    			},1000);
 		    		},
 		    		error:function(){

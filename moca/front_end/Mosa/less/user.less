@@ -35,6 +35,9 @@ html,body{
 		&:nth-child(3){
 			margin-top: 64px;
 		}
+		&:nth-child(4){
+			margin-top: 96px;
+		}
 
 	}
 
@@ -48,6 +51,33 @@ input[type="file"].fileava{
 	top: 0px;
 	left: 0px;
 	.-text ._opacity(0);
+}
+
+.avaterbox{
+	position: relative;
+	border: 1px solid @borderColor;
+	float: left;
+	width: 96px;
+	height: 96px;
+	margin-right: 10px;
+	.edit{
+		width: 96px;
+		height: 24px;
+		position: absolute;
+		line-height: 24px;
+		background: #000000;
+		color: #ffffff;
+		bottom: 0px;
+		left: 0px;
+		cursor: pointer;
+		text-align: center;
+		.-text ._opacity(50);
+	}
+}
+
+.aignature{
+	margin-top: 20px;
+	font-size: 14px;
 }
 
 

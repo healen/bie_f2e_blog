@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>
+		<%= title %>
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Le styles -->
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap-responsive.min.css">
+	<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/ie.css">
+		<![endif]-->
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		  <script src="/cdn/bootstrap/js/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/css/vendor/jquery.Jcrop.min.css">
+	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+
+	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/laydate/laydate.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/jquery.form.min.js"></script>
+</head>
+
+
+<body>
+
+	<div class="box">
+		<% include left.html %>
+		<% include head.html %>
+		<div class="viewbtnbox" style="display: block;padding-top:25px">
+			<legend>您好欢迎 <%= username %> 登录 </legend>
+			<br />
+
+			<div class="container-fluid">
+			  <div class="row-fluid">
+			    	<div class="avaterbox">
+			    		<% if(!userInfo.avater){ %>
+						<img src="/cdn/img/avater/96x96/defalut.png" alt="" id="pice_big" >
+						<a href="/account/setting/avater" class="edit">上传头像</a>
+						<%}else{%>
+						<img src="/uploads/avater/96x96/<%= userInfo.avater %>" alt="" id="pice_big">
+						<a href="/account/setting/avater" class="edit">修改头像</a>
+						<%}%>
+			    	</div>
+			    	<div class="aignature"><%= userInfo.aignature %></div>
+			  </div>
+
+			  <div class="row-fluid">
+
+			  <hr>
+
+			  <a href="/account/setting/info">修改</a>
+			 
+			  <div class="">
+				  	<div>
+				  		用户名：
+				  		<%= userInfo.username %>
+				  	</div>
+
+				  	<div>
+				  		邮箱：
+				  		<%= userInfo.email %>
+				  	</div>
+				  	<%if(userInfo.gender){%>
+					<div>
+				  		性别：
+				  		<% if(userInfo.gender==0){ %>
+					    男
+			    		<% }else{ %>
+			    		女
+			    		<% } %>
+				  		
+				  	</div>
+
+					<%}%>
+			
+
+					<%if(userInfo.brithday){%>
+					<div>
+				  		生日：
+				  		<%= userInfo.brithday %>
+				  		
+				  	</div>
+
+					<%}%>
+				  	
+
+					<%if(userInfo.website){%>
+				  	<div>
+				  		网址：
+				  		<%= userInfo.website %>
+				  		
+				  	</div>
+				  	<%}%>
+
+
+				  	<%if(userInfo.location){%>
+				  	<div>
+				  		所在地区：
+				  		<%= userInfo.location %>
+				  		
+				  	</div>
+				  	<%}%>
+
+
+
+				  	<%if(userInfo.weixin){%>
+				  	<div>
+				  		微信：
+				  		<%= userInfo.weixin %>
+				  		
+				  	</div>
+				  	<%}%>
+
+
+				  	<%if(userInfo.qq){%>
+				  	<div>
+				  		QQ：
+				  		<%= userInfo.qq %>
+				  		
+				  	</div>
+				  	<%}%>
+
+
+				  	<%if(userInfo.tel){%>
+				  	<div>
+				  		电话：
+				  		<%= userInfo.tel %>
+				  		
+				  	</div>
+				  	<%}%>
+			  </div>
+			</div>
+			</div>
+
+
+			
+			
+			
+
+		</div>
+		<% include foot.html %>
+	</div>
+
+	<script type="text/javascript" src="/cdn/js/views/account.js">
+		
+	</script>
+</body>
+
+</html>

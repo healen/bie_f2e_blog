@@ -13,31 +13,9 @@ var static_dir="uploads/";
 
 
 
-router
-	/**
-	 * 节目请求
-	 */
-	/*首页暂时未定*/
+function render_my(req,res,tpl,title){
 
-	.get(/.*/,function(req,res,next){
-
-		if(req.session.usermsg){
-			next();
-
-		}else{
-			res.render("front_end/msg.html",{
-				title:"没有登录",
-				status:"没用登录"
-
-			})
-		
-		}
-	})
-
-
-	.get("/setting",function(req,res){
-		// console.log(req.session.userid);
-		var Db=new mysqlUtil();
+	var Db=new mysqlUtil();
 		$userSql="SELECT * FROM user WHERE user_id='"+req.session.userid+"'";
 
 		Db.query($userSql,function(data){
@@ -46,9 +24,9 @@ router
 					Db.modify("user",{user_id:req.session.userid},{account_id:status},function(result){
 						console.log(result);
 						account.showUserMsg("user","account",req.session.userid,function(msg){
-							msg.brithday=(msg.brithday).Format("yyyy-MM-dd");
-							res.render("front_end/account.html",{
-								title:"个人中心",
+							msg.brithday=msg.brithday!=null ? (msg.brithday).Format("yyyy-MM-dd") : ""
+							res.render(tpl,{
+								title:title,
 								tabtitle:"完善个人资料",
 								username:req.session.usermsg ? req.session.usermsg.username : undefined,
 								userInfo:msg
@@ -60,9 +38,9 @@ router
 				})
 			}else{
 				account.showUserMsg("user","account",req.session.userid,function(msg){
-					msg.brithday=(msg.brithday).Format("yyyy-MM-dd");
-					res.render("front_end/account.html",{
-						title:"个人中心首页",
+					msg.brithday=msg.brithday!=null ? (msg.brithday).Format("yyyy-MM-dd") : ""
+					res.render(tpl,{
+						title:title,
 						tabtitle:"完善个人资料",
 						username:req.session.usermsg ? req.session.usermsg.username : undefined,
 						userInfo:msg
@@ -70,13 +48,58 @@ router
 				});
 			}
 		})
+
+}
+
+
+router
+	/**
+	 * 节目请求
+	 */
+	/*首页暂时未定*/
+	.get(/.*/,function(req,res,next){
+
+		if(req.session.usermsg){
+			next();
+		}else{
+			console.log(req.session.usermsg);
+			res.render("front_end/msg.html",{
+				title:"没有登录",
+				status:"没用登录"
+
+			})
+		
+		}
+	})
+
+	.get("/",function(req,res){
+		render_my(req,res,"front_end/my.html","个人中心")
+	})
+
+	
+	.get("/setting",function(req,res){
+	
+		render_my(req,res,"front_end/account.html","基本设置")
+		
+	})
+
+	.get("/setting/avater",function(req,res){
+	
+		render_my(req,res,"front_end/account_setting_avater.html","头像设置")
+		
+	})
+
+
+	.get("/setting/info",function(req,res){
+	
+		render_my(req,res,"front_end/account_setting_info.html","基本信息设置")
+		
 	})
 
 	.post("/mysave",function(req,res){
 		// var data=req.body;
 		var id=req.body.account_id;
 		var Db=new mysqlUtil();
-
 		var $sql = "UPDATE account SET ";
 			$sql += "real_name="+Db.escape(req.body.real_name)+",";
 			$sql += "gender="+req.body.gender+",";
@@ -85,12 +108,11 @@ router
 			$sql += "location="+Db.escape(req.body.location)+",";
 			$sql += "aignature="+Db.escape(req.body.aignature)+",";
 			$sql += "weixin="+Db.escape(req.body.weixin)+",";
+			$sql += "tel="+Db.escape(req.body.tel)+",";
 			$sql += "qq="+Db.escape(req.body.qq)+",";
 			$sql += "update_at=NOW() ";
 			$sql += " WHERE account_id="+id;
-
 				console.log($sql);
-
 		Db.updateQuery($sql,function(err,result){
 			if(err){
 				console.log(err);
@@ -99,17 +121,13 @@ router
 				res.send("操作成功");
 			}
 		})
-
-	
-
-
-
-		
 		// res.json(data)
 	})
-
 	.post("/set_avater",upload.single("avater"),function(req,res){
 		upPice.upAvater(req,res,"avater/origin","front_end/avater_set.html")
+	})
+	.post("/setting_avater",upload.single("avater"),function(req,res){
+		upPice.upAvater(req,res,"avater/origin","front_end/avater_setting.html")
 	})
 	.post("/makeMmg",function(req,res){
 		upPice.cuttingAvater(req,res,function(reslut){

@@ -1,17 +1,31 @@
 <div class="leftbar" id="leftbar">
 	<ul>
-		<li>
-			<a href="/member">
-				<i class="ico ico-home"></i>
-				首页
-			</a>
-		</li>
-		<li>
-			<a href="/member/reset_password">
-				<i class="ico ico-user"></i>
-				<i class="icoside ico-left"></i>
-				修改密码
-			</a>
-		</li>
+
+		<% if(typeof username === 'undefined'){ %>
+			
+		<%  }else{ %>
+			<li>
+				<a href="/account">
+					<i class="ico ico-home"></i>
+					个人中心
+				</a>
+			</li>
+
+			<li>
+				<a href="/account/setting">
+					<i class="ico ico-home"></i>
+					基本信息管理
+				</a>
+			</li>
+			<li>
+				<a href="/member/reset_password">
+					<i class="ico ico-user"></i>
+					<i class="icoside ico-left"></i>
+					修改密码
+				</a>
+			</li>
+			
+		<% } %>
+		
 	</ul>			
 </div>

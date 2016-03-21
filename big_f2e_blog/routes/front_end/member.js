@@ -15,21 +15,15 @@ router
 	 * 节目请求
 	 */
 	/*首页暂时未定*/
-	.get(/email_verify.*/,function(req,res,next){
-
-		if(req.session.usermsg){
-			next();
-		}else{
-			res.send("没有登录呢")
-		}
-	})
 
 	/**
 	 * 登录页面逻辑
 	 */
 	.get("/login",function(req,res){
 
-		req.session.usermsg=undefined;
+
+
+		// req.session.usermsg=undefined;
 		res.render("front_end/login.html",{
 			title:"登录",
 			username:req.session.usermsg ? req.session.usermsg.username : undefined
@@ -206,7 +200,7 @@ router
 		var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 		var emaillink2=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 		req.session.email_verify="cdvns"+emaillink1+"ANMBSSsfdsjfdsvse"+emaillink2;
-		sendEmail(req.session.usermsg.email,"您好欢迎注册大前端之家","请点击： <a href='http://localhost:3000/member/email_verify/"+req.session.email_verify+"' style='background:#3fd4bb;color:#ffffff'>验证邮箱</a> 或者复制如下链接在浏览器里打开<br /> http://localhost:3000/member/email_verify/"+req.session.email_verify,function(result){
+		sendEmail(req.session.usermsg.email,"您好欢迎注册大前端之家","请点击： <a href='http://"+req.host+":3000/member/email_verify/"+req.session.email_verify+"' style='background:#3fd4bb;color:#ffffff'>验证邮箱</a> 或者复制如下链接在浏览器里打开<br /> http://"+req.host+":3000/member/email_verify/"+req.session.email_verify,function(result){
 			res.json({
 				msg:"恭喜你验证邮件已经发送成功！"
 			})
@@ -258,7 +252,7 @@ router
 				var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 				req.session.find_password_urlstr="passwordurls"+emaillink1+"sfsdkundsNFDS"
 				req.session.userid=result[0]['user_id'];
-				sendEmail(req.body.email,"大前端之家。找回密码","点击：<a href='http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr+"' style='background:#3fd4bb;color:#ffffff'>找回密码</a>或者复制下面链接在浏览器里打开<br />  http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr ,function(result){
+				sendEmail(req.body.email,"大前端之家。找回密码","点击：<a href='http://"+req.host+":3000/member/find_password_start/"+req.session.find_password_urlstr+"' style='background:#3fd4bb;color:#ffffff'>找回密码</a>或者复制下面链接在浏览器里打开<br />  http://"+req.host+":3000/member/find_password_start/"+req.session.find_password_urlstr ,function(result){
 					res.json({code:200,msg:"邮件发送成功"})
 			})	
 			}

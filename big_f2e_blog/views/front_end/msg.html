@@ -22,24 +22,17 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
 </head>
-
-
 <body>
-
 	<div class="box">
 		<% include left.html %>
 		<% include head.html %>
 		<div class="viewbtnbox" style="display: block;padding-top:25px">
 			<h1><%= title %></h1>
-		
-
 			<% if(typeof status !=='undefined'){ %>
 				<p>
 					<%= status %>
 				</p>
 			<% } %>
-			
-			
 		</div>
 		<% include foot.html %>
 	</div>

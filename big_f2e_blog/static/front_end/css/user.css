@@ -29,6 +29,9 @@ body {
 .avaterlist img:nth-child(3) {
   margin-top: 64px;
 }
+.avaterlist img:nth-child(4) {
+  margin-top: 96px;
+}
 input[type="file"].fileava {
   cursor: pointer;
   width: 100%;
@@ -39,4 +42,30 @@ input[type="file"].fileava {
   left: 0px;
   filter: alpha(opacity=0);
   opacity: 0;
+}
+.avaterbox {
+  position: relative;
+  border: 1px solid #ebebf5;
+  float: left;
+  width: 96px;
+  height: 96px;
+  margin-right: 10px;
+}
+.avaterbox .edit {
+  width: 96px;
+  height: 24px;
+  position: absolute;
+  line-height: 24px;
+  background: #000000;
+  color: #ffffff;
+  bottom: 0px;
+  left: 0px;
+  cursor: pointer;
+  text-align: center;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+.aignature {
+  margin-top: 20px;
+  font-size: 14px;
 }
