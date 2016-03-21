@@ -218,7 +218,6 @@ $("#Register").on("click", function() {
 		type: "POST",
 		data: data,
 		success: function(result) {
-
 			if (result.code == 200) {
 				layer.load(2)
 				log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
@@ -232,19 +231,8 @@ $("#Register").on("click", function() {
 							layer.msg(result.msg);
 							return;
 						}else{
-							$.ajax({
-								url:"/member/email_verify",
-								type:"GET",
-								success:function(massage){
-									layer.closeAll('loading');
-									layer.alert(massage.msg +"，点击这里<a href='http://"+emailOperator[emailArr[2]]+"' class='mark'>[登录邮箱]</a>去激活 无法登录？直接进入自己邮箱验证")
-											
-								},
-								error:function(data,status,e){
-									layer.closeAll('loading');
-									layer.msg("错误");
-								}
-							})
+							window.location.href="/account"
+							
 						}
 					},
 					error:function(data,status,e){

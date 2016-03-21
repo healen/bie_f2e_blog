@@ -41,6 +41,26 @@
 			<legend>个人信息设置</legend>
 			<br>
 			<form class="form-horizontal" id="account_submit" enctype="text/html" action = "/account/mysave" method = "post" >
+				<div class="row-fluid myform">
+				    <label class="control-label span3">用户名：&nbsp;&nbsp;</label>
+				    <div class="controls">
+				      <span style="line-height: 40px"><%= userInfo.username %></span>
+				    </div>
+				  </div>
+				  <div class="row-fluid myform">
+				    <label class="control-label span3">邮箱：&nbsp;&nbsp;</label>
+				    <div class="controls">
+				    	<span style="line-height: 40px">
+				    		<%= userInfo.email %>
+				    		<% if(userInfo.email_verify==0){ %>
+							&nbsp;&nbsp;&nbsp;&nbsp;该邮箱没有验证<a href="javascript:email_verify()">[去验证]</a>
+					  		<%}else{%>
+					  		&nbsp;&nbsp;&nbsp;&nbsp;[验证通过]
+					  		<%}%>
+				    	</span>
+
+				    </div>
+				  </div>
 				  <div class="row-fluid myform">
 				    <label class="control-label span3" for="real_name">姓名：&nbsp;&nbsp;</label>
 				    <div class="controls">
@@ -137,6 +157,57 @@
 
 	<script type="text/javascript" src="/cdn/js/views/account_setting_info.js">
 		
+	</script>
+
+	<script type="text/javascript">
+
+	var reg = {
+		username: /\w{4,8}/,
+		password: /\w{5,18}/,
+		email: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-]+)(.[a-zA-Z0-9_-])+/
+	}
+	var emailOperator={
+		"qq":"mail.qq.com",
+		"sina":"mail.sina.com.cn",
+		"sohu":"mail.sohu.com",
+		"163":"mail.163.com",
+		"126":"www.126.com",
+		"yeah":"www.yeah.net",
+		"188":"www.188.com",
+		"sogou":"mail.sogou.com",
+		"outlook":"www.outlook.com",
+		"live":"www.live.com",
+		"hotmail":"www.hotmail.com",
+		"aliyun":"mail.aliyun.com",
+		"21cn":"mail.21cn.com",
+		"baidu":"mail.baidu.com",
+		"gmail":"gmail.google.com",
+		"tom":"mail.tom.com",
+		"263":"www.263.net",
+		"wo":"mail.wo.com.cn",
+		"189":"mail.189.cn",
+		"2980":"www.2980.com"
+	}
+	var emailArr=reg.email.exec("<%= userInfo.email %>");
+	var moperator="'"+emailArr[2]+"'";
+
+	function email_verify(){
+		$.ajax({
+			url:"/member/email_verify",
+			type:"GET",
+			success:function(massage){
+				layer.closeAll('loading');
+				
+				layer.alert(massage.msg +"，点击这里<a href='http://"+emailOperator[emailArr[2]]+"' class='mark'>[登录邮箱]</a>去激活")
+						
+			},
+			error:function(data,status,e){
+				layer.closeAll('loading');
+				layer.msg("错误");
+			}
+		})
+
+	}
 	</script>
 </body>
 

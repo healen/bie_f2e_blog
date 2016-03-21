@@ -94,13 +94,9 @@ $("#submitForPassword").on("click", function() {
 		log.showErrorMsg(ele.password1.parents(".myform"), "两次密码不一致");
 		return 
 	}
-
-
 	var data = {
 		verify:ele.verify.val()
 	};
-
-
 	$.ajax({
 		url: "/member/userVerify",
 		type: "POST",
@@ -108,9 +104,7 @@ $("#submitForPassword").on("click", function() {
 		success: function(result) {
 			if (result.code == 200) {
 				log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
-
 				$.ajax({
-
 					url:"/member/confirmPassword",
 					type:"POST",
 					data:registerData,
@@ -120,10 +114,10 @@ $("#submitForPassword").on("click", function() {
 							return;
 						}else{
 							layer.msg(result.msg);
-							// setTimeout(function(){
-							// 	window.location.href="/member/email_verify"
+							setTimeout(function(){
+								window.location.href="/member/login"
 
-							// }, 3000);
+							}, 3000);
 
 						}
 					},

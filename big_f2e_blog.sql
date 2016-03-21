@@ -50,11 +50,11 @@ CREATE TABLE `account` (
   `create_at` datetime default NULL,
   `update_at` datetime default NULL,
   PRIMARY KEY  (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `account` */
 
-insert  into `account`(`account_id`,`real_name`,`gender`,`brithday`,`website`,`location`,`aignature`,`weixin`,`tel`,`qq`,`avater`,`is_look`,`create_at`,`update_at`) values (2,'张晓东',0,'2016-03-08','com.com','北京','签名','449422301',NULL,'449422301','upice49.png',1,NULL,'2016-03-21 12:14:05'),(3,'张晓东',0,'1988-02-09','qianduango.com','北京','偶也！这个网站是我做的哈哈哈哈。','zxd19880209','15600074926','449422301','upice50.png',1,NULL,'2016-03-21 14:52:46'),(4,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'upice51.png',1,NULL,NULL);
+insert  into `account`(`account_id`,`real_name`,`gender`,`brithday`,`website`,`location`,`aignature`,`weixin`,`tel`,`qq`,`avater`,`is_look`,`create_at`,`update_at`) values (6,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'upice55.jpg',1,NULL,NULL);
 
 /*Table structure for table `admin` */
 
@@ -94,10 +94,9 @@ CREATE TABLE `admin_info` (
 DROP TABLE IF EXISTS `article`;
 
 CREATE TABLE `article` (
-  `art_id` int(11) NOT NULL auto_increment,
-  `review_id` int(11) default '0',
+  `article_id` int(11) NOT NULL auto_increment,
+  `admin_id` int(11) default NULL,
   `pv` int(11) default '0',
-  `priase_id` int(11) default NULL,
   `top` int(11) NOT NULL default '0',
   `good` int(11) NOT NULL default '0',
   `title` varchar(50) collate utf8_bin default NULL,
@@ -107,9 +106,7 @@ CREATE TABLE `article` (
   `tag` varchar(50) collate utf8_bin default NULL,
   `create_at` datetime NOT NULL,
   `update_at` datetime default NULL,
-  PRIMARY KEY  (`art_id`),
-  KEY `r` (`review_id`),
-  CONSTRAINT `r` FOREIGN KEY (`review_id`) REFERENCES `user_review` (`review_id`)
+  PRIMARY KEY  (`article_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `article` */
@@ -200,21 +197,19 @@ CREATE TABLE `user` (
   PRIMARY KEY  (`user_id`),
   KEY `FK_user` (`account_id`),
   CONSTRAINT `FK_user` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user` */
 
-insert  into `user`(`user_id`,`username`,`password`,`email`,`email_verify`,`praise_id`,`account_id`,`create_at`,`update_at`) values (49,'healen','dce0fe7698ca225764ab4096f06d0c1d','love_web@sina.com',1,NULL,2,'2016-03-21 11:05:31',NULL),(50,'xiaodong','e10adc3949ba59abbe56e057f20f883e','449422301@qq.com',1,NULL,3,'2016-03-21 11:55:56','2016-03-21 13:43:38'),(51,'xiaoxiao','dce0fe7698ca225764ab4096f06d0c1d','live_web@126.com',1,NULL,4,'2016-03-21 15:04:53',NULL);
+insert  into `user`(`user_id`,`username`,`password`,`email`,`email_verify`,`praise_id`,`account_id`,`create_at`,`update_at`) values (55,'healen','dce0fe7698ca225764ab4096f06d0c1d','love_web@sina.com',1,NULL,6,'2016-03-21 16:33:00','2016-03-21 16:45:59');
 
 /*Table structure for table `user_article` */
 
 DROP TABLE IF EXISTS `user_article`;
 
 CREATE TABLE `user_article` (
-  `art_id` int(11) NOT NULL auto_increment,
+  `article_id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
-  `review_id` int(11) default NULL,
-  `praise_id` int(11) default NULL,
   `good` int(11) NOT NULL default '0',
   `top` int(11) NOT NULL default '0',
   `pv` int(11) default '0',
@@ -225,16 +220,26 @@ CREATE TABLE `user_article` (
   `tag` varchar(50) collate utf8_bin default NULL,
   `create_at` datetime NOT NULL,
   `update_at` datetime NOT NULL,
-  PRIMARY KEY  (`art_id`),
-  KEY `user_id` (`user_id`),
-  KEY `review_id` (`review_id`),
-  KEY `FK_user_article` (`praise_id`),
-  CONSTRAINT `FK_user_article` FOREIGN KEY (`praise_id`) REFERENCES `user_praise` (`praise_id`),
-  CONSTRAINT `review_id` FOREIGN KEY (`review_id`) REFERENCES `user_review` (`review_id`),
-  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  PRIMARY KEY  (`article_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_article` */
+
+/*Table structure for table `user_article_praise` */
+
+DROP TABLE IF EXISTS `user_article_praise`;
+
+CREATE TABLE `user_article_praise` (
+  `praise_id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) default NULL,
+  `article_id` int(11) default NULL,
+  `con` int(1) NOT NULL default '0',
+  PRIMARY KEY  (`praise_id`),
+  KEY `FK_user_praise` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+/*Data for the table `user_article_praise` */
 
 /*Table structure for table `user_praise` */
 
@@ -243,10 +248,10 @@ DROP TABLE IF EXISTS `user_praise`;
 CREATE TABLE `user_praise` (
   `praise_id` int(11) NOT NULL auto_increment,
   `user_id` int(11) default NULL,
+  `click_user_id` int(11) default NULL,
   `con` int(1) NOT NULL default '0',
   PRIMARY KEY  (`praise_id`),
-  KEY `FK_user_praise` (`user_id`),
-  CONSTRAINT `FK_user_praise` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  KEY `FK_user_praise` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_praise` */
@@ -259,14 +264,13 @@ CREATE TABLE `user_reply` (
   `reply_id` int(11) NOT NULL auto_increment,
   `user_id` int(11) NOT NULL,
   `art_id` int(11) NOT NULL,
+  `review_id` int(11) default NULL,
   `content` varchar(255) collate utf8_bin default NULL,
   `create_at` datetime NOT NULL,
   `update_at` datetime NOT NULL,
   PRIMARY KEY  (`reply_id`),
   KEY `user_idh` (`user_id`),
-  KEY `art_id` (`art_id`),
-  CONSTRAINT `art_id` FOREIGN KEY (`art_id`) REFERENCES `user_article` (`art_id`),
-  CONSTRAINT `user_idh` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  KEY `art_id` (`art_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_reply` */
@@ -277,13 +281,13 @@ DROP TABLE IF EXISTS `user_review`;
 
 CREATE TABLE `user_review` (
   `review_id` int(11) NOT NULL auto_increment,
-  `reply_id` int(11) default NULL,
+  `user_id` int(11) default NULL,
+  `art_id` int(11) default NULL,
   `content` varchar(255) collate utf8_bin NOT NULL,
   `create_at` datetime NOT NULL,
   `update_at` datetime NOT NULL,
   PRIMARY KEY  (`review_id`),
-  KEY `reply_id` (`reply_id`),
-  CONSTRAINT `reply_id` FOREIGN KEY (`reply_id`) REFERENCES `user_reply` (`reply_id`)
+  KEY `reply_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_review` */
