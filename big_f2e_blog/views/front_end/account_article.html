@@ -53,33 +53,32 @@
 			<legend></legend>
 			<br>
 
-			<div  class="form-horizontal">
+			<div  class="form-horizontal" style="overflow: hidden;height: 0px;">
 				<div class="row-fluid myform">
-				<label class="control-label" for="describe">上传封面图：&nbsp;&nbsp;</label>
-				<div class="controls">
-					<form id="uploadFormCover" enctype="text/html" action = "/account/set_cover" method = "post" >
-						<div class="upAvater">
-							<div class="btngroup" style="margin-top:7px">
-								<div class="btnwarp">
-									<input type="file" id="cover" class="fileava" name="cover" / >
-									<button type="button" class="btn btn-primary">
-									上传封面
-									</button>
+					<label class="control-label" for="describe">上传封面图：&nbsp;&nbsp;</label>
+					<div class="controls">
+						<form id="uploadFormCover" enctype="text/html" action = "/account/set_cover" method = "post" >
+							<div class="upAvater">
+								<div class="btngroup" style="margin-top:7px">
+									<div class="btnwarp">
+										<input type="file" id="cover" class="fileava" name="cover" / >
+										<button type="button" class="btn btn-primary">
+										上传封面
+										</button>
+										
+									</div>
+								</div>
+								<div class="row-fluid avaterlist">
+									
+									
+									
 									
 								</div>
-							</div>
-							<div class="row-fluid avaterlist">
-								
-								<img alt=""  class="pull-left" id="showCover" style="display:none">
-								
 								
 							</div>
-							
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
-				
 			</div>
 
 			
@@ -106,6 +105,25 @@
 								<label class="control-label" for="describe">文章描述：&nbsp;&nbsp;</label>
 								<div class="controls">
 									<textarea id="describe" name="describe" cols="30" rows="10" class="input-xxlarge"  placeholder="输入描述"></textarea>
+								</div>
+							</div>
+
+							<div class="row-fluid myform">
+								<label class="control-label" for="art_pice">封面图片：&nbsp;&nbsp;</label>
+								<div class="controls">
+
+								<div class="btngroup" style="margin-top:7px">
+									<div class="btnwarp">
+										
+										<button type="button" id="upCoverbtn" class="btn btn-primary">
+										上传封面
+										</button>
+										<img alt="" id="showCover" style="display:none">
+										
+									</div>
+									<input type="hidden" id="art_pice" name="art_pice" value="">
+								</div>
+									
 								</div>
 							</div>
 
@@ -139,6 +157,11 @@
 	<script type="text/javascript" src="/cdn/js/views/account.js"></script>
 
 	<script type="text/javascript">
+
+		$("#upCoverbtn").on("click",function(){
+			$("#cover").trigger("click")
+		})
+
 		$("#cover").on("change",function(){
 		    layer.load()
 		    $("#uploadFormCover").ajaxSubmit({

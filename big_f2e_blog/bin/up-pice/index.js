@@ -149,12 +149,13 @@ exports.cuttingCover=function(req,res,callback){
 		var y=parseInt(req.body.y);
 		var w=parseInt(req.body.w);
 		var h=parseInt(req.body.h);
+		console.log("%s %s %s %s",x,y,w,h);
 
 
 		var makeInit=images(images(path.join(static_dir,"cover","origin",req.body.pice)),x,y,w,h).resize(w,h).save(path.join(static_dir,"cover","init",req.body.pice));
-		var make700=images(images(path.join(static_dir,"cover","origin",req.body.pice)),x,y,w,h).resize(700,431).save(path.join(static_dir,"cover","700x431",req.body.pice));
-		var make260=images(images(path.join(static_dir,"cover","origin",req.body.pice)),x,y,w,h).resize(260,160).save(path.join(static_dir,"cover","260x160",req.body.pice));
-		var make80=images(images(path.join(static_dir,"cover","origin",req.body.pice)),x,y,w,h).resize(80,49).save(path.join(static_dir,"cover","80x49",req.body.pice));
+		var make700=images(images(path.join(static_dir,"cover","origin",req.body.pice)),x,y,w,h).resize(700,438).save(path.join(static_dir,"cover","700x438",req.body.pice));
+		var make260=images(images(path.join(static_dir,"cover","origin",req.body.pice)),x,y,w,h).resize(260,163).save(path.join(static_dir,"cover","260x163",req.body.pice));
+		var make80=images(images(path.join(static_dir,"cover","origin",req.body.pice)),x,y,w,h).resize(45,28).save(path.join(static_dir,"cover","45x28",req.body.pice));
 		if(make80){
 			res.send("上传成功")
 			callback(req.body.pice)

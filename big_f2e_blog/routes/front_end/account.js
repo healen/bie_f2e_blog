@@ -151,11 +151,9 @@ router
 
 	.post("/makeCover",function(req,res){
 		upPice.cuttingCover(req,res,function(reslut){
-			var Db=new mysqlUtil();
-
-
-
-			Db.updateQuery("INSERT INTO user_article SET ?",{user_id:req.session.userid,art_pice:reslut})
+			console.log(reslut);
+			// var Db=new mysqlUtil();
+			// Db.updateQuery("INSERT INTO user_article SET ?",{user_id:req.session.userid,art_pice:reslut})
 
 		})
 	})

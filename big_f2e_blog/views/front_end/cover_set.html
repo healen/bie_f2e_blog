@@ -72,7 +72,6 @@
 	<input type="hidden" id="x">
 	<input type="hidden" id="picename" value="<%= picename %>">
 	
-
 	<input type="hidden" id="y">
 	<input type="hidden" id="w">
 	<input type="hidden" id="h">
@@ -93,8 +92,8 @@
 	        pcnt = $('#preview-pane .preview-container'),
 	        pimg = $('#preview-pane .preview-container img'),
 
-	        xsize = 260,
-	        ysize = 160;
+	        xsize = 40,
+	        ysize = 25;
 
 		    $('#target').Jcrop({
 		      onChange: updatePreview,
@@ -137,16 +136,13 @@
 		    };
 
 		    $("#comfirmUpload").on("click",function(){
-		    	makeMmg($("#x").val(),$("#y").val(),$("#w").val(),$("#h").val(),$("#pice").val(),$("#picename").val())
-		    })
-		    makeMmg=function(x,y,w,h,pice,picename){
 		    	data={
-		    		x:x,
-		    		y:y,
-		    		w:w,
-		    		h:w,
-		    		pice:pice,
-		    		picename:picename
+		    		x:$("#x").val(),
+		    		y:$("#y").val(),
+		    		w:$("#w").val(),
+		    		h:$("#h").val(),
+		    		pice:$("#pice").val(),
+		    		picename:$("#picename").val()
 		    	}
 		    	$.ajax({
 		    		url:"/account/makeCover",
@@ -155,7 +151,9 @@
 		    		success:function(data){
 		    			layer.msg(data);
 
-		    			$("#showCover").show().attr("src","/uploads/cover/80x49/"+pice);
+		    			$("#showCover").show().attr("src","/uploads/cover/45x28/"+$("#pice").val());
+
+		    			$("#art_pice").val($("#pice").val())
 		    			
 		    			
 		    			setTimeout(function(){
@@ -168,8 +166,9 @@
 		    			layer.alert("失败");
 		    		}
 		    	})
-		    }
+		    })
 
+		 
 	    })
 	    
 </script>
