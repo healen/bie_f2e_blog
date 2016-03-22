@@ -1,14 +1,15 @@
 var mysqlUtil=require("../../bin/mysql-util");
-
 var md5=require("../../bin/encryption");
 var sendEmail=require("../../bin/send-email");
-
+var config=require("../../bin/config")
+var mysql = require("mysql");
+var captchapng = require('captchapng');
 var express = require("express");
 var router=express.Router();
 
-var captchapng = require('captchapng');
 
-var mysql = require("mysql");
+
+
 
 router
 	/**
@@ -200,7 +201,7 @@ router
 		var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 		var emaillink2=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 		req.session.email_verify="cdvns"+emaillink1+"ANMBSSsfdsjfdsvse"+emaillink2;
-		sendEmail(req.session.usermsg.email,"您好欢迎注册大前端之家","请点击： <a href='http://localhost:3000/member/email_verify/"+req.session.email_verify+"' style='background:#3fd4bb;color:#ffffff'>验证邮箱</a> 或者复制如下链接在浏览器里打开<br /> http://localhost:3000/member/email_verify/"+req.session.email_verify,function(result){
+		sendEmail(req.session.usermsg.email,"您好欢迎注册大前端之家","请点击： <a href='"+config.website+"/member/email_verify/"+req.session.email_verify+"' style='background:#3fd4bb;color:#ffffff'>验证邮箱</a> 或者复制如下链接在浏览器里打开<br />"+config.website+"/member/email_verify/"+req.session.email_verify,function(result){
 			res.json({
 				msg:"恭喜你验证邮件已经发送成功！"
 			})
@@ -252,7 +253,7 @@ router
 				var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 				req.session.find_password_urlstr="passwordurls"+emaillink1+"sfsdkundsNFDS"
 				req.session.userid=result[0]['user_id'];
-				sendEmail(req.body.email,"大前端之家。找回密码","点击：<a href='http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr+"' style='background:#3fd4bb;color:#ffffff'>找回密码</a>或者复制下面链接在浏览器里打开<br />  http://localhost:3000/member/find_password_start/"+req.session.find_password_urlstr ,function(result){
+				sendEmail(req.body.email,"大前端之家。找回密码","点击：<a href='"+config.website+"/member/find_password_start/"+req.session.find_password_urlstr+"' style='background:#3fd4bb;color:#ffffff'>找回密码</a>或者复制下面链接在浏览器里打开<br />"+config.website+"/member/find_password_start/"+req.session.find_password_urlstr ,function(result){
 					res.json({code:200,msg:"邮件发送成功"})
 			})	
 			}

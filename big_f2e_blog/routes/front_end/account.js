@@ -48,7 +48,6 @@ function render_my(req,res,tpl,title){
 				});
 			}
 		})
-
 }
 
 
@@ -126,6 +125,10 @@ router
 	.post("/set_avater",upload.single("avater"),function(req,res){
 		upPice.upAvater(req,res,"avater/origin","front_end/avater_set.html")
 	})
+
+	.post("/set_cover",upload.single("cover"),function(req,res){
+		upPice.upCover(req,res,"cover/origin","front_end/cover_set.html")
+	})
 	.post("/setting_avater",upload.single("avater"),function(req,res){
 		upPice.upAvater(req,res,"avater/origin","front_end/avater_setting.html")
 	})
@@ -143,6 +146,32 @@ router
 
 		})
 
+	})
+
+
+	.post("/makeCover",function(req,res){
+		upPice.cuttingCover(req,res,function(reslut){
+			var Db=new mysqlUtil();
+
+
+
+			Db.updateQuery("INSERT INTO user_article SET ?",{user_id:req.session.userid,art_pice:reslut})
+
+		})
+	})
+
+
+
+	.get("/article/:fun",function(req,res){
+		if(req.params.fun==="add"){
+			res.render("front_end/account_article.html",{
+				title:"添加文章"
+			})
+		}else if(req.params.fun==="edit"){
+			res.render("front_end/account_article.html",{
+				title:"修改文章"
+			})
+		}
 	})
 module.exports=router;
 

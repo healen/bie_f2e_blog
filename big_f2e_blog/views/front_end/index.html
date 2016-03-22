@@ -21,6 +21,19 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
 	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+
+    <script charset="utf-8" src="/kindeditor/kindeditor.js"></script>
+    <script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
+     <script>
+          var options = {
+              uploadJson: '/uploadImg'
+          };
+          KindEditor.ready(function(K) {
+              window.editor = K.create('#editor', options);
+          });
+      </script>
+
+	
 </head>
 
 
@@ -29,14 +42,41 @@
 	<div class="box">
 		<% include left.html %>
 		<% include head.html %>
+        <h1><%= title %></h1>
+        <textarea id="editor" name="content" style="width:700px;height:100px;">
+        </textarea>
+
+        <button class="submint">确定</button>
+
+         <div id="content">
+        
+    </div>
+
 		<% include foot.html %>
 	</div>
+
+    
 	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
-	<script type="text/javascript">
-		
-	</script>
+
+    <script type="text/javascript">
+    $(".submint").on("click",function(){
+        html = editor.html();
+
+        // 同步数据后可以直接取得textarea的value
+        editor.sync();
+     
+        $("#content").html($("#editor").val())
+    })
+        
+    </script>
+
+
+   
+
+
+	
 </body>
 
 </html>

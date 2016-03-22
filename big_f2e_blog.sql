@@ -201,7 +201,7 @@ CREATE TABLE `user` (
 
 /*Data for the table `user` */
 
-insert  into `user`(`user_id`,`username`,`password`,`email`,`email_verify`,`praise_id`,`account_id`,`create_at`,`update_at`) values (55,'healen','dce0fe7698ca225764ab4096f06d0c1d','love_web@sina.com',1,NULL,6,'2016-03-21 16:33:00','2016-03-21 16:45:59');
+insert  into `user`(`user_id`,`username`,`password`,`email`,`email_verify`,`praise_id`,`account_id`,`create_at`,`update_at`) values (55,'healen','72371e47cba0b359cacb676b813c4d72','love_web@sina.com',1,NULL,6,'2016-03-21 16:33:00','2016-03-22 09:52:44');
 
 /*Table structure for table `user_article` */
 
@@ -214,6 +214,7 @@ CREATE TABLE `user_article` (
   `top` int(11) NOT NULL default '0',
   `pv` int(11) default '0',
   `title` varchar(50) collate utf8_bin NOT NULL,
+  `from` varchar(50) collate utf8_bin default NULL,
   `art_pice` varchar(50) collate utf8_bin default NULL,
   `describe` varchar(150) collate utf8_bin default NULL,
   `content` text collate utf8_bin,

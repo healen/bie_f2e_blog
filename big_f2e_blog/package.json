@@ -22,11 +22,11 @@
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "formidable": "^1.0.17",
     "images": "^2.1.11",
     "morgan": "^1.7.0",
     "multer": "^1.1.0",
     "mysql": "^2.10.2",
-    "nodemailer": "0.7.1",
-    "ueditor": "^1.1.1"
+    "nodemailer": "0.7.1"
   }
 }
