@@ -691,6 +691,9 @@ a:visited {
   position: relative;
   display: inline-block;
 }
+pre {
+  padding: 10px;
+}
 /*font-ico*/
 @font-face {
   font-family: 'zc';

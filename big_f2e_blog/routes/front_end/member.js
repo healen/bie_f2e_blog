@@ -1,3 +1,8 @@
+/**
+ @Name : big_f2e_blog v1.1 会员管理
+ @Author: 张晓东
+ @Date: 2016-3-23
+ */
 var mysqlUtil=require("../../bin/mysql-util");
 var md5=require("../../bin/encryption");
 var sendEmail=require("../../bin/send-email");
@@ -6,30 +11,20 @@ var mysql = require("mysql");
 var captchapng = require('captchapng');
 var express = require("express");
 var router=express.Router();
-
-
-
-
-
 router
-	/**
-	 * 节目请求
-	 */
-	/*首页暂时未定*/
 
 	/**
-	 * 登录页面逻辑
+	 * 登录视图
 	 */
 	.get("/login",function(req,res){
-
-
-
-		// req.session.usermsg=undefined;
 		res.render("front_end/login.html",{
 			title:"登录",
 			username:req.session.usermsg ? req.session.usermsg.username : undefined
 		})
 	})
+	/**
+	 * 登录方法
+	 */
 	.post("/login",function(req,res){
 		var Db=new mysqlUtil();
 		loginData={
@@ -82,7 +77,7 @@ router
 	})
 
 	/**
-	 * 退出登录逻辑
+	 * 退出登录方法
 	 */
 	.get("/logout",function(req,res){
 		req.session.usermsg=undefined;
@@ -93,7 +88,7 @@ router
 
 
 	/**
-	 * 注册页面逻辑
+	 * 注册视图
 	 */
 	.get("/register",function(req,res){
 	
@@ -102,6 +97,9 @@ router
 			username:req.session.usermsg ? req.session.usermsg.username : undefined
 		})
 	})
+	/**
+	 * 注册方法
+	 */
 	.post("/register",function(req,res){
 
 		var Db=new mysqlUtil();
@@ -149,7 +147,11 @@ router
 			})
 		}	
 	})
-	/* 检测用户名是否存在 */
+	
+	/**
+	 * 检测用户名是否存在方法
+	 */
+	
 	.post("/usertesting",function(req,res){
 		var data={
 			username:req.body.username
@@ -168,7 +170,10 @@ router
 			}
 		})
 	})
-	/*验证邮箱是否被注册过*/
+
+	/**
+	 * 验证邮箱是否被注册过方法
+	 */
 	.post("/emailtesting",function(req,res){
 		// console.log(req.host);
 		var Db=new mysqlUtil();
@@ -185,7 +190,11 @@ router
 			}
 		})
 	})
-	/* 图片验证码接口*/
+
+	/**
+	 * 图片验证码方法
+	 */
+	
 	.post("/userVerify",function(req,res){
 		var data={
 			verify:req.body.verify
@@ -196,7 +205,10 @@ router
 			res.json({code:400})
 		}
 	})
-	/*验证邮箱页面*/
+
+	/**
+	 * 邮箱验证发送邮件
+	 */
 	.get("/email_verify",function(req,res){
 		var emaillink1=md5.encryption((Math.random()*9000-1000).toString(),"md5");
 		var emaillink2=md5.encryption((Math.random()*9000-1000).toString(),"md5");
@@ -210,8 +222,11 @@ router
 
 
 
+	/**
+	 * 邮箱验证结果视图
+	 */
 
-	/*验证成功页面*/
+
 	.get("/email_verify/:id",function(req,res,next){
 		if(req.params.id==req.session.email_verify){
 			Db=new mysqlUtil();
@@ -230,7 +245,7 @@ router
 	})
 
 	/**
-	 *忘记密码
+	 *忘记密码视图
 	 */
 	.get("/find_password",function(req,res){
 		res.render("front_end/find_password.html",{
@@ -238,7 +253,10 @@ router
 		})
 
 	})
-		/*通过邮箱找回密码urlstr*/
+	/**
+	 * 找回密码方法
+	 */
+		
 	.post("/find_password/send",function(req,res){
 
 		var Db=new mysqlUtil();
@@ -259,6 +277,10 @@ router
 			}
 		})
 	})
+	
+	/**
+	 * 填写找回密码信息视图
+	 */
 
 	.get("/find_password_start/:msg",function(req,res){
 
@@ -270,14 +292,13 @@ router
 		}
 	})
 
+	/**
+	 * 通过邮件重置密码方法
+	 */
+
 	.post("/confirmPassword",function(req,res){
 		var Db=new mysqlUtil();
 		$sql="UPDATE user SET password='"+md5.encryption(req.body.password,"md5")+"', update_at=NOW()  WHERE user_id="+req.session.userid ;
-		// console.log(req.body.password);
-		// console.log(req.session.userid);
-		// console.log($sql);
-		// res.send("fdsfdsaffds")
-		
 		Db.updateQuery($sql,function(err,result){
 			if(err){
 				res.json({code:401,msg:"密码修改失败！！"+err});
@@ -290,7 +311,7 @@ router
 
 
 	/**
-	 * 修改密码
+	 * 修改密码视图
 	 */
 	.get("/reset_password",function(req,res){
 			res.render("front_end/reset_password.html",{
@@ -298,6 +319,10 @@ router
 				username:req.session.usermsg ? req.session.usermsg.username : undefined,
 			})
 	})
+
+	/**
+	 * 会员修改密码方法
+	 */
 
 	.post("/reset_password",function(req,res){
 		var user_id=req.session.userid;
@@ -314,15 +339,11 @@ router
 			// console.log(result);
 		})
 	})
-
-
-
-
 	/**
 	 * 图片验证码制作
 	 */
 	.get("/captcha",function(req,res){
-		var captchaNumber=parseInt(Math.random()*9000+1000);
+		var captchaNumber=parseInt(Math.random()*9+1);
 		req.session.userVerify=captchaNumber;
 		 var p = new captchapng(144,50,req.session.userVerify);
 		 p.color(100, 100, 100, 30);

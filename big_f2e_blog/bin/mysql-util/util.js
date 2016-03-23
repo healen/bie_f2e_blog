@@ -1,3 +1,8 @@
+/**
+ @Name : big_f2e_blog v1.1 数据库操作类公用函数
+ @Author: 张晓东
+ @Date: 2016-3-23
+ */
 var fs=require("fs");
 var sys=require("util");
 var path=require("path");

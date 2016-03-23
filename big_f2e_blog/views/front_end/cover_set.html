@@ -37,10 +37,10 @@
 
 	.btnbox{
 		  display: block;
-		  position: absolute;
-		  z-index: 2000;
+		  /*position: absolute;*/
+		/*  z-index: 2000;
 		  left: 13px;
-		  margin-top:13px;
+		  margin-top:13px;*/
 	}
 
 	/* The Javascript code will set the aspect ratio of the crop
@@ -65,8 +65,9 @@
 	<div class="avapicebox">
 		<img src="/uploads/cover/origin/<%= src %>" id="target" />
 	</div>
-	<div class="btnbox">
-		<button class="btn btn-primary"  id="comfirmUpload">确认上传</button>
+	<div class="btnbox text-center" style="text-align:center">
+
+		<button class="btn btn-large btn-primary"  id="comfirmUpload">确认上传</button>
 	</div>
 	<input type="hidden" id="pice" value="<%= src %>">
 	<input type="hidden" id="x">

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>
+		<%= title %>
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Le styles -->
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap-responsive.min.css">
+	<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/ie.css">
+		<![endif]-->
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		  <script src="/cdn/bootstrap/js/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/css/vendor/jquery.Jcrop.min.css">
+	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+
+	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/laydate/laydate.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
+	<script type="text/javascript" src="/cdn/js/vendor/jquery.form.min.js"></script>
+</head>
+
+
+<body>
+
+	<div class="box">
+		<% include left.html %>
+		<% include head.html %>
+		<div class="viewbtnbox" style="display: block;padding-top:25px">
+
+			<legend><%= title %></legend>
+			<br>
+			<table class="botbor table-hover">
+				<thead>
+					<tr>
+						<td>文章ID</td>
+						<td>文章标题</td>
+						<td>来源</td>
+						<td>封面图片</td>
+						<td>描述</td>
+						<td>标签</td>
+						<td>访问量</td>
+						<td>发布时间</td>
+						<td>修改时间</td>
+						<td>操作</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% articleList.forEach(function(data){ %>
+					<tr>
+						<td><%= data.article_id %></td>
+						<td><%= data.title %></td>
+						<td><%= data.from %></td>
+						<td><%= data.art_pice %></td>
+						<td><%= data.describe %></td>
+						<td><%= data.tag %></td>
+						<td><%= data.pv %></td>
+						<td><%= data.create_at %></td>
+						<td><%= data.update_at %></td>
+						<td>
+							<a href="" class="btns">删除</a>
+							<a href="" class="btns">编辑</a>
+							<a href="" class="btns">浏览</a>
+						</td>
+					</tr>
+					<% }) %>		
+				</tbody>
+			</table>
+		</div>
+		<% include foot.html %>
+	</div>
+
+	<script type="text/javascript" src=""></script>
+
+
+
+
+
+</body>
+
+</html>

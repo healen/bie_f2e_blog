@@ -1,3 +1,8 @@
+/**
+ @Name : big_f2e_blog v1.1 上传图片demo
+ @Author: 张晓东
+ @Date: 2016-3-23
+ */
 var express=require("express");
 var path=require("path");
 var multer = require("multer");

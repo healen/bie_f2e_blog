@@ -50,7 +50,8 @@
 		<% include left.html %>
 		<% include head.html %>
 		<div class="viewbtnbox" style="display: block;padding-top:25px">
-			<legend></legend>
+
+			<legend><%= title %></legend>
 			<br>
 
 			<div  class="form-horizontal" style="overflow: hidden;height: 0px;">
@@ -69,12 +70,7 @@
 									</div>
 								</div>
 								<div class="row-fluid avaterlist">
-									
-									
-									
-									
 								</div>
-								
 							</div>
 						</form>
 					</div>
@@ -82,29 +78,29 @@
 			</div>
 
 			
-			<form class="form-horizontal" id="account_article_submit" enctype="text/html" action = "/account/article/add" method = "post" >
+			<form class="form-horizontal" id="account_article_add" enctype="text/html" action = "/account/article/add" method = "post" >
 							<div class="row-fluid myform">
 								<label class="control-label" for="title">标题：&nbsp;&nbsp;</label>
 								<div class="controls">
-									<input type="text" class="input-xxlarge" id="title" name="title" placeholder="输入文章标题">
+									<input type="text" maxlength="48" class="input-xxlarge" id="title" name="title" placeholder="输入文章标题">
 								</div>
 							</div>
 							<div class="row-fluid myform">
 								<label class="control-label" for="tag">标签：&nbsp;&nbsp;</label>
 								<div class="controls">
-									<input type="text"  class="input-xxlarge" id="tag" name="tag" placeholder="请输入标签如：javascript,html">
+									<input type="text"  maxlength="48" class="input-xxlarge" id="tag" name="tag" placeholder="请输入标签如：javascript,html">
 								</div>
 							</div>
 							<div class="row-fluid myform">
 								<label class="control-label" for="from">文章来源：&nbsp;&nbsp;</label>
 								<div class="controls">
-									<input type="text" class="input-xxlarge"  id="from" name="from" placeholder="请输入来源如：W3Cfun官网">
+									<input type="text" maxlength="48" class="input-xxlarge"  id="from" name="from" placeholder="请输入来源如：W3Cfun官网">
 								</div>
 							</div>
 							<div class="row-fluid myform">
 								<label class="control-label" for="describe">文章描述：&nbsp;&nbsp;</label>
 								<div class="controls">
-									<textarea id="describe" name="describe" cols="30" rows="10" class="input-xxlarge"  placeholder="输入描述"></textarea>
+									<textarea id="describe" maxlength="148" name="describe" cols="30" rows="10" class="input-xxlarge"  placeholder="输入描述"></textarea>
 								</div>
 							</div>
 
@@ -135,57 +131,24 @@
 								<div class="controls">
 									<textarea id="editor" class="input-xxlarge" name="content" style="width:80%;height:300px;">
 									</textarea>
+					
 								</div>
 							</div>
+
 							<div class="row-fluid myform">
-								<label class="control-label span3" for="inputEmail">&nbsp;&nbsp;</label>
+								<label class="control-label" for="describe">&nbsp;&nbsp;</label>
 								<div class="controls">
-								 	<span class="rowbox">
-								 		<div class="row-fluid">
-								 			<div class="input-xxlarge">
-								 				<button class="btn btn-large btn-primary" id="SendArticle" type="button">提交</button>
-								 			</div>
-								 		</div>
-								 	</span>
+									<button class="btn btn-large btn-primary" id="SendArticle" type="button">提交</button>
 								</div>
 							</div>
+							
 						</form>
 		</div>
 		<% include foot.html %>
 	</div>
 
-	<script type="text/javascript" src="/cdn/js/views/account.js"></script>
+	<script type="text/javascript" src="/cdn/js/views/account_article_add.js"></script>
 
-	<script type="text/javascript">
-
-		$("#upCoverbtn").on("click",function(){
-			$("#cover").trigger("click")
-		})
-
-		$("#cover").on("change",function(){
-		    layer.load()
-		    $("#uploadFormCover").ajaxSubmit({
-		        error:function(xhr){
-		            console.log('Error: '+ xhr.status);
-		        },
-		        success:function(response){
-		            layer.closeAll('loading');
-		            layer.open({
-		                title:"头像设置",
-		                type: 1,
-		                maxmin: true,
-		                area: ['100%',"100%"],
-		                shadeClose: true, //点击遮罩关闭
-		                content: response.toString()
-		            });
-		            $("#avater").val("");
-		            
-		        }
-		    });
-		    return false ;
-
-		})
-	</script>
 
 
 </body>

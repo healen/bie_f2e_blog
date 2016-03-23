@@ -1,6 +1,7 @@
 /**
- * 数据库操作类
- * @return {[type]} [description]
+ @Name : big_f2e_blog v1.1 数据库操作类
+ @Author: 张晓东
+ @Date: 2016-3-23
  */
 var Util = require("./util");
 
