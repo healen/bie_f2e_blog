@@ -15,6 +15,8 @@ var images=require("images");
 var upload = multer({ dest:"/temp"});
 var router=express.Router();
 var static_dir="uploads/";
+var qs=require("querystring");
+var url=require("url");
 
 
 /*个人信息函数封装*/
@@ -203,17 +205,15 @@ router
 	 * 个人中心文章管理视图
 	 */
 
-	.get("/article/:fun",function(req,res){
+	.get("/article/:fun",function(req,res,next){
 
 		if(req.params.fun=="add"){
 			res.render("front_end/account_article_add.html",{
 				title:"添加文章",
 				username:req.session.usermsg ? req.session.usermsg.username : undefined,
 			});
-			return 
-		}
-
-		if(req.params.fun=="success"){
+	
+		}else if(req.params.fun=="success"){
 			var Db=new mysqlUtil();
 			var $sql="SELECT * FROM user_article WHERE article_id="+req.session.articleid;
 			Db.query($sql,function(data){
@@ -235,10 +235,8 @@ router
 					});
 				}
 			})
-			return 
-		}
-
-		if(req.params.fun=="show"){
+		
+		}else if(req.params.fun==req.session.articleid){
 			var Db=new mysqlUtil();
 			var $sql="SELECT * FROM user_article WHERE article_id="+req.session.articleid;
 			Db.query($sql,function(data){
@@ -260,11 +258,30 @@ router
 					});
 				}
 			})
-			return 
-		}
-
-
-		if(req.params.fun=="manager"){
+	
+		}else if(/\d/.test(req.params.fun)){
+			var Db=new mysqlUtil();
+			var $sql="SELECT * FROM user_article WHERE article_id="+req.params.fun;
+			Db.query($sql,function(data){
+				if(data.indexOf("查询错误")>0){
+					Db.close();
+					res.render("front_end/account_article_info.html",{
+						title:"查询失败",
+						username:req.session.usermsg ? req.session.usermsg.username : undefined,
+						articleid:req.session.articleid
+					});
+				}else{
+					Db.close();
+					res.render("front_end/account_article_info.html",{
+						title:data[0].title,
+						username:req.session.usermsg ? req.session.usermsg.username : undefined,
+						articleid:req.session.articleid,
+						articleInfo:data[0]
+					});
+				}
+			})
+	
+		}else if(req.params.fun=="manager"){
 			var Db=new mysqlUtil();
 			var $sql="SELECT * FROM user_article WHERE user_id="+req.session.userid;
 			Db.query($sql,function(data){
@@ -276,20 +293,66 @@ router
 							articleid:req.session.articleid
 						});
 					}else{
+
+						for(var i=0;i<data.length;i++){
+						data[i].create_at=data[i].create_at!=null ? (data[i].create_at).Format("yyyy-MM-dd hh:mm:ss") : "";
+						data[i].update_at=data[i].update_at!=null ? (data[i].update_at).Format("yyyy-MM-dd hh:mm:ss") : "";
+
+						}
+						
 						res.render("front_end/account_article_manager.html",{
 							title:"我发布的文章",
 							username:req.session.usermsg ? req.session.usermsg.username : undefined,
 							articleid:req.session.articleid,
-							articleList:data
+							articleList:data,
+							returnurl:"/account"+req.url
 						});
 					}
 			})
-			return 
+			
+		}else{
+			next()
 		}
+	})
+
+	.get("/article/delete/:id",function(req,res){
+		var Db=new mysqlUtil();
+		Db.remove("user_article",{article_id:req.params.id},function(result){
+			res.send(result);
+		})
+	})
 
 
 
+	.get("/article/edit/:id",function(req,res){
+		var urls=url.parse(req.url).query;
 
+
+	
+		var Db=new mysqlUtil();
+		var $sql="SELECT * FROM user_article WHERE user_id="+req.session.userid+" AND article_id="+req.params.id;
+		Db.query($sql,function(data){
+			if(data.indexOf("查询错误")>0){
+				res.render("front_end/account_article_edit.html",{
+					title:"编辑文章",
+					username:req.session.usermsg ? req.session.usermsg.username : undefined
+
+				});
+			}else{
+				// console.log(req.session.usermsg);
+				
+				res.render("front_end/account_article_edit.html",{
+					title:"编辑文章",
+					username:req.session.usermsg ? req.session.usermsg.username : undefined,
+					articleInfo:data[0],
+					returnurl:qs.parse(urls).returns
+
+				});
+
+			}
+		})
+		
+		
 	})
 	
 
@@ -310,6 +373,25 @@ router
 				console.log(result);
 				req.session.articleid=result;
 				res.send("请求成功")
+			})
+		}else if(req.params.fun=="edit"){
+			var Db=new mysqlUtil();
+			Db.modify("user_article",{
+				article_id:req.body.acticleid,
+
+			},{
+				title:req.body.title,
+				tag:req.body.tag,
+				from:req.body.from,
+				describe:req.body.describe,
+				art_pice:req.body.art_pice,
+				content:req.body.content,
+				update_at:new Date()
+
+
+			},function(result){
+				res.send(result)
+
 			})
 		}
 		

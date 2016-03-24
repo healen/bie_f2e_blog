@@ -41,15 +41,17 @@
 
 			<legend><%= title %></legend>
 			<br>
+			<% if(articleList.length==0){ %>
+				您还没有发布文 <a class="btn btn-primary" href="/account/article/add">发布文章</a>
+			<% }else{ %>
 			<table class="botbor table-hover">
 				<thead>
 					<tr>
 						<td>文章ID</td>
-						<td>文章标题</td>
-						<td>来源</td>
+						<td style="width:260px;">文章标题</td>
+				
 						<td>封面图片</td>
-						<td>描述</td>
-						<td>标签</td>
+				
 						<td>访问量</td>
 						<td>发布时间</td>
 						<td>修改时间</td>
@@ -58,30 +60,38 @@
 				</thead>
 				<tbody>
 					<% articleList.forEach(function(data){ %>
-					<tr>
+					<tr data-id="<%= data.article_id %>">
 						<td><%= data.article_id %></td>
-						<td><%= data.title %></td>
-						<td><%= data.from %></td>
-						<td><%= data.art_pice %></td>
-						<td><%= data.describe %></td>
-						<td><%= data.tag %></td>
+						<td class="text-left"><%= data.title %></td>
+					
+						
+						<td>
+							<% if(data.art_pice){%>
+								<img src="/uploads/cover/260x163/<%= data.art_pice %>" width="150" class="scover">
+							<%}%>
+							
+						</td>
+						
 						<td><%= data.pv %></td>
 						<td><%= data.create_at %></td>
 						<td><%= data.update_at %></td>
-						<td>
-							<a href="" class="btns">删除</a>
-							<a href="" class="btns">编辑</a>
-							<a href="" class="btns">浏览</a>
+						<td style="width:120">
+							<a href="javascript:deleteArticle('/account/article/delete/<%= data.article_id %>',<%= data.article_id %>)" class="btns">删除</a>
+							<a href='/account/article/edit/<%= data.article_id %>/?returns=<%= returnurl %>' class="btns">编辑</a>
+							<a href="javascript:showArticle('/account/article/<%= data.article_id %>')"  class="btns">浏览</a>
 						</td>
 					</tr>
 					<% }) %>		
 				</tbody>
 			</table>
+			<%}%>
 		</div>
 		<% include foot.html %>
 	</div>
 
-	<script type="text/javascript" src=""></script>
+	<script type="text/javascript" src="/cdn/js/views/account_article_manager.js"></script>
+
+
 
 
 

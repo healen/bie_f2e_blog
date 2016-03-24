@@ -215,7 +215,7 @@
 
         thead{
             td{
-                background-color: @borderColor;
+                background-color:lighten(@borderColor, 5%);
                 color: @titleTextColor;
                 // line-height: 35px;
                 &.frist{
@@ -226,16 +226,20 @@
         }
         td{
             background: #ffffff;
-            border-bottom: 1px solid @borderColor;
-            line-height: 40px;
+            border: 1px solid @borderColor;
+            // line-height: 40px;
+            padding: 5px;
             color: @baseTextColor;
             img{
                 display: inline-block;
-                margin: 10px;
+                cursor: pointer;
+                // margin: 10px;
             }
             a{
+                color: @markColor;
+                display: inline-block;
                 &.btns{
-                    padding: 0px 10px;
+                    padding: 0px 5px;
                     
                 }
             }
@@ -244,9 +248,7 @@
         tr{
         	&:last-child{
         		 td{
-		            // background: #ffffff;
-		            // border-bottom: none;
-		            line-height: 40px;
+		           padding: 5px;
 
 		        }
         	}

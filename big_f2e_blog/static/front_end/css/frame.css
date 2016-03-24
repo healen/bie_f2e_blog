@@ -448,7 +448,7 @@ table.botbor {
   margin-bottom: 10px;
 }
 table.botbor thead td {
-  background-color: #ebebf5;
+  background-color: #fcfcfe;
   color: #595959;
 }
 table.botbor thead td.frist {
@@ -456,19 +456,23 @@ table.botbor thead td.frist {
 }
 table.botbor td {
   background: #ffffff;
-  border-bottom: 1px solid #ebebf5;
-  line-height: 40px;
+  border: 1px solid #ebebf5;
+  padding: 5px;
   color: #a6a6a6;
 }
 table.botbor td img {
   display: inline-block;
-  margin: 10px;
+  cursor: pointer;
+}
+table.botbor td a {
+  color: #3fd4bb;
+  display: inline-block;
 }
 table.botbor td a.btns {
-  padding: 0px 10px;
+  padding: 0px 5px;
 }
 table.botbor tr:last-child td {
-  line-height: 40px;
+  padding: 5px;
 }
 .toobox {
   margin-bottom: 20px;
@@ -693,6 +697,15 @@ a:visited {
 }
 pre {
   padding: 10px;
+  margin: 10px 0px;
+}
+.content_edit h1,
+.content_edit h2,
+.content_edit h3,
+.content_edit h4,
+.content_edit h5,
+.content_edit h6 {
+  line-height: 2.5;
 }
 /*font-ico*/
 @font-face {
@@ -1155,7 +1168,7 @@ body {
   margin-bottom: 10px;
 }
 .list-page-content table.botbor thead td {
-  background-color: #ebebf5;
+  background-color: #fcfcfe;
   color: #595959;
 }
 .list-page-content table.botbor thead td.frist {
@@ -1163,19 +1176,23 @@ body {
 }
 .list-page-content table.botbor td {
   background: #ffffff;
-  border-bottom: 1px solid #ebebf5;
-  line-height: 40px;
+  border: 1px solid #ebebf5;
+  padding: 5px;
   color: #a6a6a6;
 }
 .list-page-content table.botbor td img {
   display: inline-block;
-  margin: 10px;
+  cursor: pointer;
+}
+.list-page-content table.botbor td a {
+  color: #3fd4bb;
+  display: inline-block;
 }
 .list-page-content table.botbor td a.btns {
-  padding: 0px 10px;
+  padding: 0px 5px;
 }
 .list-page-content table.botbor tr:last-child td {
-  line-height: 40px;
+  padding: 5px;
 }
 .list-page-content .form-inline {
   margin-bottom: 24px;
