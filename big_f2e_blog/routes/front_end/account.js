@@ -205,7 +205,7 @@ router
 	 * 个人中心文章管理视图
 	 */
 
-	.get("/article/:fun",function(req,res,next){
+	.get("/article/:fun",function(req,res){
 
 		if(req.params.fun=="add"){
 			res.render("front_end/account_article_add.html",{
@@ -283,7 +283,17 @@ router
 	
 		}else if(req.params.fun=="manager"){
 			var Db=new mysqlUtil();
-			var $sql="SELECT * FROM user_article WHERE user_id="+req.session.userid;
+			console.log(url.parse(req.url).query);
+			// console.log(qs.parse(path.parse(req.url).query).page);
+			var pagesize=2;
+			var page=qs.parse(url.parse(req.url).query).page;
+				page = page==null ? 1 : page;
+			var $sql="SELECT * FROM user_article WHERE user_id="+req.session.userid+" LIMIT "+(page-1)*pagesize+","+pagesize;
+			var $total="SELECT * FROM user_article WHERE user_id="+req.session.userid;
+			var total=0;
+			Db.query($total,function(data){
+				total=data.length;
+			})
 			Db.query($sql,function(data){
 				if(data.indexOf("查询错误")>0){
 					
@@ -295,23 +305,25 @@ router
 					}else{
 
 						for(var i=0;i<data.length;i++){
-						data[i].create_at=data[i].create_at!=null ? (data[i].create_at).Format("yyyy-MM-dd hh:mm:ss") : "";
-						data[i].update_at=data[i].update_at!=null ? (data[i].update_at).Format("yyyy-MM-dd hh:mm:ss") : "";
+						data[i].create_at=data[i].create_at!=null ? (data[i].create_at).Format("yyyy-MM-dd") : "";
+						data[i].update_at=data[i].update_at!=null ? (data[i].update_at).Format("yyyy-MM-dd") : "";
 
 						}
-						
 						res.render("front_end/account_article_manager.html",{
 							title:"我发布的文章",
 							username:req.session.usermsg ? req.session.usermsg.username : undefined,
 							articleid:req.session.articleid,
 							articleList:data,
-							returnurl:"/account"+req.url
+							returnurl:"/account"+req.url,
+							pageSize:pagesize,
+							total:total,
+							currentPage:page,
+							pathname:"/account"+url.parse(req.url).pathname,
+							totalPage:Math.ceil(total/pagesize)
 						});
 					}
 			})
 			
-		}else{
-			next()
 		}
 	})
 
@@ -326,9 +338,6 @@ router
 
 	.get("/article/edit/:id",function(req,res){
 		var urls=url.parse(req.url).query;
-
-
-	
 		var Db=new mysqlUtil();
 		var $sql="SELECT * FROM user_article WHERE user_id="+req.session.userid+" AND article_id="+req.params.id;
 		Db.query($sql,function(data){
@@ -351,8 +360,6 @@ router
 
 			}
 		})
-		
-		
 	})
 	
 

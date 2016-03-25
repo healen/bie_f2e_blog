@@ -38,52 +38,62 @@
 		<% include left.html %>
 		<% include head.html %>
 		<div class="viewbtnbox" style="display: block;padding-top:25px">
-
 			<legend><%= title %></legend>
 			<br>
 			<% if(articleList.length==0){ %>
 				您还没有发布文 <a class="btn btn-primary" href="/account/article/add">发布文章</a>
 			<% }else{ %>
-			<table class="botbor table-hover">
-				<thead>
-					<tr>
-						<td>文章ID</td>
-						<td style="width:260px;">文章标题</td>
-				
-						<td>封面图片</td>
-				
-						<td>访问量</td>
-						<td>发布时间</td>
-						<td>修改时间</td>
-						<td>操作</td>
-					</tr>
-				</thead>
-				<tbody>
-					<% articleList.forEach(function(data){ %>
-					<tr data-id="<%= data.article_id %>">
-						<td><%= data.article_id %></td>
-						<td class="text-left"><%= data.title %></td>
-					
+			<div class="tablebix" style="min-height:590px">
+					<table class="botbor table-hover">
+						<thead>
+							<tr>
+								<td>文章ID</td>
+								<td style="width:180px;">文章标题</td>
 						
-						<td>
-							<% if(data.art_pice){%>
-								<img src="/uploads/cover/260x163/<%= data.art_pice %>" width="150" class="scover">
-							<%}%>
-							
-						</td>
+								<td>封面图片</td>
 						
-						<td><%= data.pv %></td>
-						<td><%= data.create_at %></td>
-						<td><%= data.update_at %></td>
-						<td style="width:120">
-							<a href="javascript:deleteArticle('/account/article/delete/<%= data.article_id %>',<%= data.article_id %>)" class="btns">删除</a>
-							<a href='/account/article/edit/<%= data.article_id %>/?returns=<%= returnurl %>' class="btns">编辑</a>
-							<a href="javascript:showArticle('/account/article/<%= data.article_id %>')"  class="btns">浏览</a>
-						</td>
-					</tr>
-					<% }) %>		
-				</tbody>
-			</table>
+								<td>访问量</td>
+								<td>发布时间</td>
+								<td>修改时间</td>
+								<td>操作</td>
+							</tr>
+						</thead>
+						<tbody>
+							<% articleList.forEach(function(data){ %>
+							<tr data-id="<%= data.article_id %>">
+								<td><%= data.article_id %></td>
+								<td class="text-left"><%= data.title %></td>
+								<td>
+									<% if(data.art_pice){%>
+										<img src="/uploads/cover/260x163/<%= data.art_pice %>" width="150" class="scover">
+									<% } %>
+									
+								</td>
+								<td><%= data.pv %></td>
+								<td><%= data.create_at %></td>
+								<td><%= data.update_at %></td>
+								<td style="width:120">
+									<a href="javascript:deleteArticle('/account/article/delete/<%= data.article_id %>',<%= data.article_id %>)" class="btns">删除</a>
+									<a href='/account/article/edit/<%= data.article_id %>/?returns=<%= returnurl %>' class="btns">编辑</a>
+									<a href="javascript:showArticle('/account/article/<%= data.article_id %>')"  class="btns">浏览</a>
+								</td>
+							</tr>
+							<% }) %>		
+						</tbody>
+					</table>
+				
+
+			</div>
+
+			<% include pagelimit.html %>
+		
+
+			
+
+			
+				
+		
+
 			<%}%>
 		</div>
 		<% include foot.html %>

@@ -1,0 +1,57 @@
+<div class="text-center">
+	<% 
+    	var nextpage=parseInt(currentPage) + 1;
+    	var prevpage=parseInt(currentPage) - 1;
+    %>
+	<div class="pagination">
+		<% if(totalPage>1) {%>
+		    <ul>
+			  	<% if(currentPage>1){ %>
+			    <li><a href="<%= pathname %>?page=<%= prevpage %>">上一页</a></li>
+			    <% } %>
+			    <% if(totalPage<=10){ %>
+				    <% for(var i=1;i<=totalPage;i++){ %>
+						<% if(i==currentPage){ %>
+							<li class="active"><span><%= i %></span></li>
+						<% }else{ %>
+							<li><a href="<%= pathname %>?page=<%= i %>"><%= i %></a></li>
+						<% } %>
+					<% } %>
+				<% } %>
+				 <% if(totalPage>10){%>
+					<% var start=1 %>
+						<% if(currentPage>5 && currentPage<totalPage-4){ %>
+							<% start=currentPage-5 %>
+							<% for(i=start;i<start+10;i++){ %>
+								<% if(i==currentPage){ %>
+									<li class="active"><span><%= i %></span></li>
+								<% }else{ %>
+									<li><a href="<%= pathname %>?page=<%= i %>"><%= i %></a></li>
+								<% } %>
+							<% } %>
+						<% }else{ %>
+							<%
+								st=1
+								if(totalPage-currentPage<=4){
+									 st=4
+								}
+							%>
+							<% for(i=st;i<10+st;i++){ %>
+								<% if(i==currentPage){ %>
+									<li class="active"><span><%= i %></span></li>
+								<% }else{ %>
+									<li><a href="<%= pathname %>?page=<%= i %>"><%= i %></a></li>
+								<% } %>
+							<% } %>
+						<% } %>
+				<% } %> 
+				<% if(currentPage<totalPage){ %>
+			    <li><a href="<%= pathname %>?page=<%= nextpage %>">下一页</a></li>
+			    <%}%>
+		    </ul>
+			<br />
+		<% } %>
+			共 <%= totalPage %> 页 每页 <%= pageSize %> 条 共 <%= total %>条记录
+
+	</div>
+</div>

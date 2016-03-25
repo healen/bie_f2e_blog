@@ -25,6 +25,11 @@ function deleteArticle(url,id){
 					time:1000
 				})
 
+				setTimeout(function(){
+					window.location.reload();
+
+				},1200);
+
 			}
 		})
 

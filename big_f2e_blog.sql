@@ -50,11 +50,11 @@ CREATE TABLE `account` (
   `create_at` datetime default NULL,
   `update_at` datetime default NULL,
   PRIMARY KEY  (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `account` */
 
-insert  into `account`(`account_id`,`real_name`,`gender`,`brithday`,`website`,`location`,`aignature`,`weixin`,`tel`,`qq`,`avater`,`is_look`,`create_at`,`update_at`) values (6,'张晓东',0,'1988-03-09','qianduango.com','北京','没有什么能够阻挡，你对自由的向往，天马行空的生涯，你的心了无牵挂。。！！','zxd19880209','15600074926','449422301','upice55.png',1,NULL,'2016-03-21 17:53:56');
+insert  into `account`(`account_id`,`real_name`,`gender`,`brithday`,`website`,`location`,`aignature`,`weixin`,`tel`,`qq`,`avater`,`is_look`,`create_at`,`update_at`) values (6,'张晓东',0,'1988-03-09','qianduango.com','北京','没有什么能够阻挡，你对自由的向往，天马行空的生涯，你的心了无牵挂。。！！','zxd19880209','15600074926','449422301','upice55.png',1,NULL,'2016-03-21 17:53:56'),(7,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL);
 
 /*Table structure for table `admin` */
 
@@ -197,11 +197,11 @@ CREATE TABLE `user` (
   PRIMARY KEY  (`user_id`),
   KEY `FK_user` (`account_id`),
   CONSTRAINT `FK_user` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user` */
 
-insert  into `user`(`user_id`,`username`,`password`,`email`,`email_verify`,`praise_id`,`account_id`,`create_at`,`update_at`) values (55,'healen','72371e47cba0b359cacb676b813c4d72','love_web@sina.com',1,NULL,6,'2016-03-21 16:33:00','2016-03-22 09:52:44');
+insert  into `user`(`user_id`,`username`,`password`,`email`,`email_verify`,`praise_id`,`account_id`,`create_at`,`update_at`) values (55,'healen','72371e47cba0b359cacb676b813c4d72','love_web@sina.com',1,NULL,6,'2016-03-21 16:33:00','2016-03-22 09:52:44'),(56,'xiaodong','dce0fe7698ca225764ab4096f06d0c1d','live_web@126.com',1,NULL,7,'2016-03-25 17:33:31',NULL);
 
 /*Table structure for table `user_article` */
 
@@ -223,11 +223,11 @@ CREATE TABLE `user_article` (
   `update_at` datetime default NULL,
   PRIMARY KEY  (`article_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 /*Data for the table `user_article` */
 
-insert  into `user_article`(`article_id`,`user_id`,`good`,`top`,`pv`,`title`,`from`,`art_pice`,`describe`,`content`,`tag`,`create_at`,`update_at`) values (32,55,0,0,0,'Bo00','Boo00','1458814872000.png','Bootstrap 简洁、直','<p>\n	<p style=\"font-size:14px;font-family:tahoma, arial, 宋体;background-color:#FFFFFF;\">\n		<strong>一些 WHERE 例子</strong>\n	</p>\n	<p style=\"font-size:14px;font-family:tahoma, arial, 宋体;background-color:#FFFFFF;\">\n		根据用户名查询指定用户：\n	</p>\n	<div class=\"codetitle\" style=\"margin:3px auto 0px;padding:0px 3px;font-size:14px;font-family:tahoma, arial, 宋体;background:#F2F6FB;\">\n		<span style=\"line-height:21.6000003814697px;font-size:12px;\"><a class=\"copybut\" id=\"copybut30882\"><u>复制代码</u></a></span>代码如下:\n	</div>\n	<div class=\"codebody\" id=\"code30882\" style=\"margin:0px auto 3px;padding:0px 3px 0px 5px;font-size:14px;border:1px solid #0099CC;font-family:tahoma, arial, 宋体;background:#DDEDFB;\">\n		<br />\nSELECT * FROM user WHERE username = \'Jack\'<br />\n	</div>\n<br />\n<span style=\"font-family:tahoma, arial, 宋体;font-size:14px;line-height:25.2000007629395px;background-color:#FFFFFF;\">查询2009年1月1日凌晨0点以后注册的用户名称及 id 号：</span><br />\n	<div class=\"codetitle\" style=\"margin:3px auto 0px;padding:0px 3px;font-size:14px;font-family:tahoma, arial, 宋体;background:#F2F6FB;\">\n		<span style=\"line-height:21.6000003814697px;font-size:12px;\"><a class=\"copybut\" id=\"copybut48377\"><u>复制代码</u></a></span>代码如下:\n	</div>\n	<div class=\"codebody\" id=\"code48377\" style=\"margin:0px auto 3px;padding:0px 3px 0px 5px;font-size:14px;border:1px solid #0099CC;font-family:tahoma, arial, 宋体;background:#DDEDFB;\">\n		<br />\n$regdate = mktime(00, 00, 01, 01, 01, 2009);<br />\nSELECT uid,username FROM user WHERE regdate &gt;= $regdate<br />\n	</div>\n<br />\n<span style=\"font-family:tahoma, arial, 宋体;font-size:14px;line-height:25.2000007629395px;background-color:#FFFFFF;\">搜索用户名中含有 user 字样的所有用户：</span><br />\n	<div class=\"codetitle\" style=\"margin:3px auto 0px;padding:0px 3px;font-size:14px;font-family:tahoma, arial, 宋体;background:#F2F6FB;\">\n		<span style=\"line-height:21.6000003814697px;font-size:12px;\"><a class=\"copybut\" id=\"copybut29814\"><u>复制代码</u></a></span>代码如下:\n	</div>\n	<div class=\"codebody\" id=\"code29814\" style=\"margin:0px auto 3px;padding:0px 3px 0px 5px;font-size:14px;border:1px solid #0099CC;font-family:tahoma, arial, 宋体;background:#DDEDFB;\">\n		<br />\nSELECT * FROM user WHERE username LIKE \'%user%\'<br />\n	</div>\n<br />\n<span style=\"font-family:tahoma, arial, 宋体;font-size:14px;line-height:25.2000007629395px;background-color:#FFFFFF;\">搜索用户名中含有 user 或者 admin 的所有用户：</span><br />\n	<div class=\"codetitle\" style=\"margin:3px auto 0px;padding:0px 3px;font-size:14px;font-family:tahoma, arial, 宋体;background:#F2F6FB;\">\n		<span style=\"line-height:21.6000003814697px;font-size:12px;\"><a class=\"copybut\" id=\"copybut12061\"><u>复制代码</u></a></span>代码如下:\n	</div>\n	<div class=\"codebody\" id=\"code12061\" style=\"margin:0px auto 3px;padding:0px 3px 0px 5px;font-size:14px;border:1px solid #0099CC;font-family:tahoma, arial, 宋体;background:#DDEDFB;\">\n		<br />\nSELECT * FROM user WHERE username LIKE \'%user%\' OR username LIKE \'%admin%\'<br />\n	</div>\n	<div>\n		<br />\n	</div>\n</p>\n<h1>\n	<em></em> \n</h1>','Bo00','2016-03-24 11:55:11','2016-03-24 18:23:07');
+insert  into `user_article`(`article_id`,`user_id`,`good`,`top`,`pv`,`title`,`from`,`art_pice`,`describe`,`content`,`tag`,`create_at`,`update_at`) values (52,56,0,0,0,'asf','','','','fasf','','2016-03-25 17:34:26',NULL);
 
 /*Table structure for table `user_article_praise` */
 

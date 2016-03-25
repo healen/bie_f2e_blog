@@ -4,5 +4,5 @@
  @Date: 2016-3-23
  */
 module.exports={
-	website:"http://localhost:3000"
+	website:"http://192.168.1.13:3000"
 }
