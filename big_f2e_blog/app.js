@@ -84,11 +84,8 @@ app.set("view engine", "html");
 app.set('port', process.env.PORT || 3000);
 
 app.use("/", Routes.frout.routes);
-
 app.use("/member", Routes.frout.member);
-
 app.use("/account", Routes.frout.account);
-
 app.use("/demo", Routes.frout.demo);
 
 

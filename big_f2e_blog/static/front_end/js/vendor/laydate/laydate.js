@@ -19,7 +19,7 @@ var config =  {
 };
 
 var Dates = {}, doc = document, creat = 'createElement', byid = 'getElementById', tags = 'getElementsByTagName';
-var as = ['laydate_box', 'laydate_void', 'laydate_click', 'LayDateSkin', 'skins/', '/laydate.css'];
+var as = ['laydate_box', 'laydate_void', 'laydate_click', 'LayDateSkin', '/cdn/js/vendor/laydate/skins/', '/laydate.css'];
 
 
 //主接口
@@ -839,7 +839,7 @@ Dates.events = function(){
 };
 
 Dates.init = (function(){
-    Dates.use('need');
+    Dates.use('/cdn/js/vendor/laydate/need');
     Dates.use(as[4] + config.defSkin, as[3]);
     Dates.skinLink = Dates.query('#'+as[3]);
 }());

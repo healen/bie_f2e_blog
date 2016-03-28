@@ -124,6 +124,7 @@ router
 		var Db=new mysqlUtil();
 		var $sql = "UPDATE account SET ";
 			$sql += "real_name="+Db.escape(req.body.real_name)+",";
+			$sql += "job="+Db.escape(req.body.job)+",";
 			$sql += "gender="+req.body.gender+",";
 			$sql += "brithday="+Db.escape(req.body.brithday)+",";
 			$sql += "website="+Db.escape(req.body.website)+",";
@@ -285,7 +286,7 @@ router
 			var Db=new mysqlUtil();
 			console.log(url.parse(req.url).query);
 			// console.log(qs.parse(path.parse(req.url).query).page);
-			var pagesize=2;
+			var pagesize=20;
 			var page=qs.parse(url.parse(req.url).query).page;
 				page = page==null ? 1 : page;
 			var $sql="SELECT * FROM user_article WHERE user_id="+req.session.userid+" LIMIT "+(page-1)*pagesize+","+pagesize;

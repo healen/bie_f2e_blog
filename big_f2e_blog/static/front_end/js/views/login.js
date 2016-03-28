@@ -111,11 +111,11 @@ $("#Login").on("click", function() {
 								layer.msg(result.msg);
 								return;
 							}else{
-								layer.msg(result.msg);
-								setTimeout(function(){
+								// layer.msg(result.msg);
+						
 									window.location.href="/account"
 
-								}, 2000);
+							
 
 							}
 						},

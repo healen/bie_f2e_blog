@@ -62,6 +62,12 @@
 				    </div>
 				  </div>
 				  <div class="row-fluid myform">
+				    <label class="control-label span3" for="job">职业：&nbsp;&nbsp;</label>
+				    <div class="controls">
+				      <input type="text"  id="job" name="job" placeholder="职业" value="<%= userInfo.job %>">
+				    </div>
+				  </div>
+				  <div class="row-fluid myform">
 				    <label class="control-label span3" for="real_name">姓名：&nbsp;&nbsp;</label>
 				    <div class="controls">
 				      <input type="text"  id="real_name" name="real_name" placeholder="真实姓名" value="<%= userInfo.real_name %>">
@@ -134,7 +140,7 @@
 				  <div class="row-fluid myform">
 				    <label class="control-label span3" for="aignature">个性签名：&nbsp;&nbsp;</label>
 				    <div class="controls">
-				    	<textarea name="aignature" id="" cols="30" id="aignature" rows="10" class="input-xxlarge"  placeholder="请输入签名" value="<%= userInfo.aignature %>"><%= userInfo.aignature %></textarea>
+				    	<textarea name="aignature" id="" maxlength=254 cols="30" id="aignature" rows="10" class="input-xxlarge"  placeholder="请输入签名" value="<%= userInfo.aignature %>"><%= userInfo.aignature %></textarea>
 				    </div>
 				  </div>
 				  <input type="hidden" name="account_id" value="<%= userInfo.account_id %>">

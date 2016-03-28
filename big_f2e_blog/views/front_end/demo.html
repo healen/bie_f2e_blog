@@ -22,13 +22,16 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
 	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
 	<link rel="stylesheet" type="text/css" href="/cdn/css/vendor/jquery.Jcrop.min.css">
+	<link rel="stylesheet" href="/cdn/js/vendor/layer/skin/layer.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
 
-	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
-	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/jquery.form.min.js"></script>
+	
+
+	 <!-- <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js"></script>
+	 <script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
+	 <script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
+	 <script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
+	 <script type="text/javascript" src="/cdn/js/vendor/jquery.form.min.js"></script> -->
 </head>
 
 
@@ -46,30 +49,45 @@
 	<form id="uploadForm" enctype="text/html" action = "/demo/demo" method = "post" >
 		<input type="file" id="avater" name="avater" / >
 	</form>
-	<script type="text/javascript">
-		$("#avater").on("change",function(){
-			layer.load()
-			$("#uploadForm").ajaxSubmit({
-				error:function(xhr){
-					console.log('Error: '+ xhr.status);
-				},
-				success:function(response){
-					layer.closeAll('loading');
-					layer.open({
-						title:"头像设置",
-				        type: 1,
-				        maxmin: true,
-				        area: ['660px',"660px"],
-				        shadeClose: true, //点击遮罩关闭
-				        content: response.toString()
-				    });
-				    $("#avater").val("");
-					console.log(response.toString());
-				}
-			});
-			return false ;
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
+	<script>
 
-		})
+	require(["modules/register"],function(fun){
+		fun.fun();
+	})
+
+
+
+
+
+
+
+
+		// $("#avater").on("change",function(){
+		// 	layer.load()
+		// 	$("#uploadForm").ajaxSubmit({
+		// 		error:function(xhr){
+		// 			console.log('Error: '+ xhr.status);
+		// 		},
+		// 		success:function(response){
+		// 			layer.closeAll('loading');
+		// 			layer.open({
+		// 				title:"头像设置",
+		// 		        type: 1,
+		// 		        maxmin: true,
+		// 		        area: ['660px',"660px"],
+		// 		        shadeClose: true, //点击遮罩关闭
+		// 		        content: response.toString()
+		// 		    });
+		// 		    $("#avater").val("");
+		// 			console.log(response.toString());
+		// 		}
+		// 	});
+		// 	return false ;
+
+		// })
+
+
 	</script>
 	
 </body>

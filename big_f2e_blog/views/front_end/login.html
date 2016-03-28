@@ -20,6 +20,7 @@
 		<![endif]-->
 	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
 	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
+	<link rel="stylesheet" href="/cdn/js/vendor/layer/skin/layer.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
 	<style type="text/css">
 		.has-error{
@@ -49,9 +50,6 @@
 		
 	</style>
 
-	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.8.2.min.js"></script>
-	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
 </head>
 
 
@@ -130,19 +128,13 @@
 
 		<% include foot.html %>
 	</div>
-
-	<script type="text/javascript" src="/cdn/js/views/login.js"></script>
-
-	<script type="text/javascript">
-			
-
-
-
-
-
-
-
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
+	<script>
+		require(["modules/login"],function(F){
+			F.login();
+		})
 	</script>
+
 </body>
 
 </html>
