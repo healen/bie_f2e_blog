@@ -1,52 +1,6 @@
-define(['jquery', 'layer', 'laydate', 'jqueryForm', 'jqueryJcrop'], function(W, layer) {
+define(['jquery', 'layer'], function(W, layer) {
     var foo = {
         set: function(email) {
-            W("#avater").on("change", function() {
-                layer.load()
-                W("#uploadForm").ajaxSubmit({
-                    error: function(xhr) {
-                        console.log('Error: ' + xhr.status);
-                    },
-                    success: function(response) {
-                        layer.closeAll('loading');
-                        layer.open({
-                            title: "头像设置",
-                            type: 1,
-                            maxmin: true,
-                            area: ['660px', "90%"],
-                            shadeClose: true, //点击遮罩关闭
-                            content: response.toString()
-                        });
-                        W("#avater").val("");
-
-                    }
-                });
-                return false;
-
-            })
-            W("#brithday").on("click", function() {
-
-                laydate({
-                    min: "1950-0-0"
-                })
-
-            });
-            W("#setSelfMsg").on("click", function() {
-                layer.load();
-                W("#account_submit").ajaxSubmit({
-                    error: function(xhr) {
-                        console.log('Error: ' + xhr.status);
-                    },
-                    success: function(response) {
-                        layer.closeAll('loading');
-                        alert(response)
-                    }
-
-                })
-
-
-            });
-
             var reg = {
                 username: /\w{4,8}/,
                 password: /\w{5,18}/,
@@ -95,7 +49,7 @@ define(['jquery', 'layer', 'laydate', 'jqueryForm', 'jqueryJcrop'], function(W, 
 
             }
 
-            W("#verifyEmail").on("click",function(){
+            W("#verifyEmail").on("click", function() {
                 email_verify();
             })
 

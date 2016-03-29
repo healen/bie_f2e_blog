@@ -91,7 +91,7 @@
 							    	<span style="line-height: 40px">
 							    		<%= userInfo.email %>
 							    		<% if(userInfo.email_verify==0){ %>
-										&nbsp;&nbsp;&nbsp;&nbsp;该邮箱没有验证<a href="javascript:email_verify()">[去验证]</a>
+										&nbsp;&nbsp;&nbsp;&nbsp;该邮箱没有验证<a href="javascript:void(0)" id="verifyEmail">[去验证]</a>
 								  		<%}else{%>
 								  		&nbsp;&nbsp;&nbsp;&nbsp;[验证通过]
 								  		<%}%>

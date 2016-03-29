@@ -42,24 +42,12 @@
 		</div>
 		<% include foot.html %>
 	</div>
-	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			var time=parseInt($("#time").html());
-			setInterval(function(){
-				if(time>1){
-					time--
-					$("#time").html(time);
-				}else{
-					window.location.href="/account"
-				}
-			},1000)
-			
 
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
+	<script>
+		require(["modules/email_success"],function(F){
+			F.uptime();
 		})
-		
 	</script>
 </body>
 
