@@ -37,7 +37,7 @@ var Routes = {
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-	extended: false
+	extended: true
 }));
 app.use(cookieParser());
 app.use(session({
@@ -49,10 +49,7 @@ app.use(session({
 	// }
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
+
 
 app.post('/uploadImg', function(req, res, next) {
     var form = new formidable.IncomingForm();

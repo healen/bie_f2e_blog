@@ -13,9 +13,7 @@
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-clean": "*",
-    "gulp-contrib-copy": "^0.1.2",
-    "gulp-file-copy": "0.0.1",
-    "gulp-less": "*",
-    "gulp-zip": "*"
+   
+    "gulp-less": "*"
   }
 }

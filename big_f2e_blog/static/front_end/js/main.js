@@ -21,6 +21,3 @@ require.config({
 	urlArgs: "t=" + (new Date()).getTime()
 });
 
-// require(['jquery'], function($) {
-// 	alert($().jquery);
-// });
