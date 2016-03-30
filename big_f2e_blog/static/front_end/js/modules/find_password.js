@@ -131,6 +131,7 @@ define(['jquery', 'layer'], function(W, layer) {
 					success:function(result){
 						if(result.code==401){
 							layer.alert(result.msg);
+							layer.closeAll('loading');
 							return;
 						}else{
 							layer.alert(result.msg+"，点击这里<a href='http://"+emailOperator[emailArr[2]]+"' class='mark'>[登录邮箱]</a>找回密码 无法登录？直接进入自己邮箱验证");

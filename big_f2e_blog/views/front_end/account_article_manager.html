@@ -20,15 +20,10 @@
 		<![endif]-->
 	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
 	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
-	<link rel="stylesheet" type="text/css" href="/cdn/css/vendor/jquery.Jcrop.min.css">
+	<link rel="stylesheet" href="/cdn/js/vendor/layer/skin/layer.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
 
-	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/laydate/laydate.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/jquery.form.min.js"></script>
+	
 </head>
 
 
@@ -73,11 +68,12 @@
 								<td><%= data.create_at %></td>
 								<td><%= data.update_at %></td>
 								<td style="width:120">
-									<a href="javascript:deleteArticle('/account/article/delete/<%= data.article_id %>',<%= data.article_id %>)" class="btns">删除</a>
+									<a id="deleteArt<%= data.article_id %>" href="javascript:void(0)" class="btns">删除</a>
 									<a href='/account/article/edit/<%= data.article_id %>/?returns=<%= returnurl %>' class="btns">编辑</a>
-									<a href="javascript:showArticle('/account/article/<%= data.article_id %>')"  class="btns">浏览</a>
+									<a id="showArt<%= data.article_id %>" href="javascript:void(0)"  class="btns">浏览</a>
 								</td>
 							</tr>
+							
 							<% }) %>		
 						</tbody>
 					</table>
@@ -86,25 +82,21 @@
 			</div>
 
 			<% include pagelimit.html %>
-		
-
-			
-
-			
-				
-		
 
 			<%}%>
 		</div>
 		<% include foot.html %>
 	</div>
 
-	<script type="text/javascript" src="/cdn/js/views/account_article_manager.js"></script>
-
-
-
-
-
+	<script src="/cdn/js/vendor/require.js"  data-main="/cdn/js/main"></script>
+	<script type="text/javascript">
+			require(["modules/account_article_manager"],function(F){
+				<% articleList.forEach(function(data){ %>
+					F.showArt("#showArt<%= data.article_id %>","/account/article/<%= data.article_id %>");
+					F.deleteArt("#deleteArt<%= data.article_id %>",'/account/article/delete/<%= data.article_id %>',<%= data.article_id %>)
+				<% }) %>	
+			})
+	</script>
 
 
 </body>

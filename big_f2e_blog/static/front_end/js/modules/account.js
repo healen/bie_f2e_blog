@@ -39,7 +39,8 @@ define(['jquery', 'layer', 'laydate', 'jqueryForm', 'jqueryJcrop'], function(W, 
                     },
                     success: function(response) {
                         layer.closeAll('loading');
-                        alert(response)
+                        window.location.href="/account"
+                        // alert(response)
                     }
 
                 })

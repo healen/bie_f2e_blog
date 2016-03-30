@@ -140,7 +140,14 @@
 							  <div class="row-fluid myform">
 							    <label class="control-label span3" for="brithday">生日：&nbsp;&nbsp;</label>
 							    <div class="controls">
-							      <input type="text" id="brithday" name="brithday" placeholder="选择生日" value="<%= userInfo.brithday %>" >  
+							       <% if(userInfo.brithday != undefined){ %>
+							       		<input type="text" id="brithday" name="brithday" placeholder="选择生日" value="<%= userInfo.brithday%>" >  
+
+							   	   <% }else{ %>
+							   	   		<input type="text" id="brithday" name="brithday" placeholder="选择生日" value="1980-01-01" > 
+
+							   	   <% } %>
+							      
 							    </div>
 							  </div>
 
@@ -204,7 +211,7 @@
 	</div>
 
 
-	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main" ></script>
 	<script>
 		require(["modules/account"],function(F){
 			F.set("<%= userInfo.email %>");

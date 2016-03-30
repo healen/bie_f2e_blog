@@ -122,11 +122,12 @@ router
 		// var data=req.body;
 		var id=req.body.account_id;
 		var Db=new mysqlUtil();
+
 		var $sql = "UPDATE account SET ";
 			$sql += "real_name="+Db.escape(req.body.real_name)+",";
 			$sql += "job="+Db.escape(req.body.job)+",";
 			$sql += "gender="+req.body.gender+",";
-			$sql += "brithday="+Db.escape(req.body.brithday)+",";
+			$sql += req.body.brithday=req.body.brithday.length==0 ? "brithday='1990-01-01'," : "brithday='"+req.body.brithday+"',";
 			$sql += "website="+Db.escape(req.body.website)+",";
 			$sql += "location="+Db.escape(req.body.location)+",";
 			$sql += "aignature="+Db.escape(req.body.aignature)+",";

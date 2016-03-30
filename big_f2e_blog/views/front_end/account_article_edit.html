@@ -24,9 +24,7 @@
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
 
 	<script type="text/javascript" src="/cdn/js/vendor/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/cdn/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/layer/layer.js"></script>
-	<script type="text/javascript" src="/cdn/js/vendor/laydate/laydate.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/jquery.Jcrop.min.js"></script>
 	<script type="text/javascript" src="/cdn/js/vendor/jquery.form.min.js"></script>
 
@@ -114,21 +112,23 @@
 							<button type="button" id="upCoverbtn" class="btn btn-primary">
 							上传封面
 							</button>
-							<% if(articleInfo.art_pice!==undefined) {%>
+							<% if(articleInfo.art_pice.length==0) {%>
 
-							<img src="/uploads/cover/45x28/<%= articleInfo.art_pice %>" id="showCover">
+								
+
+								<input type="hidden" id="art_pice" name="art_pice">
+								<img alt="" id="showCover" style="display:none">
+
+							<% }else{ %>
+
+								<input type="hidden" id="art_pice" name="art_pice" value="<%= articleInfo.art_pice %>">
+								<img src="/uploads/cover/45x28/<%= articleInfo.art_pice %>" id="showCover">
+								
 
 							<%}%>
 							
 						</div>
-						<% if(articleInfo.art_pice!==undefined) {%>
 
-							<input type="hidden" id="art_pice" name="art_pice" value="<%= articleInfo.art_pice %>">
-
-						<% }else{ %>
-							<input type="hidden" id="art_pice" name="art_pice">
-
-						<%}%>
 						
 					</div>
 						
