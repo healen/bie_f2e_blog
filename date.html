@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.today{
+			background: #ff0000;
+			color: #ffffff!important;
+		}
+		
+		.dd{
+			color: #aaaaaa;
+		}
+		.canselect{
+			color: #000000;
+			cursor: pointer;
+		}
+		table{
+			margin-bottom: 10px;
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 16px;
+		}
+		tr,td{
+			border-collapse: collapse;
+		}
+		td{
+			height: 40px;
+		}
+		.hui{
+			background: #eeeeee;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="datawarp">
+		
+	</div>
+
+
+
+	<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+	<script language="javascript">
+
+		/**
+		 @Name : 简单日历
+		 @Author: 张晓东
+		 @Date: 2016-03-23
+		 */
+	
+		function renderDate(years,months,dates,ele){
+			/**
+			 * 判断平年闰年
+			 */
+			function is_leap(year) { 
+			   return (year%100==0?res=(year%400==0?1:0):res=(year%4==0?1:0));
+			}
+
+			var ynow=years; //年份
+			var mnow=months; //月份
+			var dnow=dates; //今日日期
+			var n1str=new Date(ynow,mnow,1); //当月第一天Date资讯
+			var firstday=n1str.getDay(); //当月第一天星期几
+			var m_days=new Array(31,28+is_leap(ynow),31,30,31,30,31,31,30,31,30,31); //各月份的总天数
+			var tr_str=Math.ceil((m_days[mnow] + firstday)/7); //表格所需要行数
+
+			/**
+			 * 渲染日历
+			 * @type {String}
+			 */
+			var dateString="<table border='1' align='center' width='220' cellspacing='0' data-data="+ynow+"-"+(mnow+1)+" ><tr><td colspan='7' class='hui' align='center'>"+ynow+"年"+(mnow+1)+"月</td></tr><tr><td align='center'>日</td><td align='center'>一</td><td align='center'>二</td><td align='center'>三</td><td align='center'>四</td><td align='center'>五</td><td align='center'>六</td></tr>"
+			for(i=0;i<tr_str;i++) { //表格的行
+			   dateString+="<tr>";
+			   for(k=0;k<7;k++) { //表格每行的单元格
+			      idx=i*7+k; //单元格自然序列号
+			      date_str=idx-firstday+1; //计算日期
+			      (date_str<=0 || date_str>m_days[mnow]) ? date_str="&nbsp;" : date_str=idx-firstday+1; //过滤无效日期（小于等于零的、大于月总天数的）
+			      /*今天底色为红*/
+			      if(date_str==dnow){
+			      	dateString+="<td align='center' class='dd canselect today'>" + date_str + "</td>";
+			      }else{
+			   
+			      	if(date_str>dnow){
+			      		dateString+="<td align='center' class='dd canselect' >" + date_str + "</td>";
+			      	}else{
+			      		dateString+="<td align='center' class='dd' >" + date_str + "</td>";
+			      	}
+
+
+			      }
+
+			     
+
+			   }
+			   dateString+="</tr>"; //表格的行结束
+			}
+			 dateString+="</table>";
+			 $(ele).append(dateString)
+		}
+
+		/**
+		 * 显示几个月的日历从今天开始
+		 * @param  m 几个月
+		 * @return 无
+		 */
+		function showDate(ele,m){
+			var nstr=new Date(); //当前Date资讯
+			var ynow=nstr.getFullYear(); //年份
+			var mnow=nstr.getMonth(); //月份
+			var dnow=nstr.getDate(); //今日日期
+
+			renderDate(ynow,mnow,dnow,$(ele));
+			for(var i=1;i<m;i++){
+				var mm=mnow+i;
+				var mom=mnow+i
+				var yy=ynow
+				if(mm<12){
+					renderDate(yy,mm,0,$(ele));
+				}else{
+					mm=mm%12
+					// console.log(Math.ceil(mm/12))
+					
+					renderDate(yy+Math.ceil(mom/12),mm,0,$(ele));
+				}
+
+				
+
+			}
+
+		}
+
+
+
+
+		/**
+		 * 显示日历 显示从今天开始往后数 多少个月的日子 ，如果我想显示从今天起100个月的 那么我就 showDate(100)
+		 */
+
+		showDate(".datawarp",2)//显示今天以后135个月的日历
+
+
+
+
+
+		
+
+
+
+		
+
+		
+		
+
+</script>
+	
+</body>
+</html>
