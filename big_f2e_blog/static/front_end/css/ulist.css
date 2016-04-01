@@ -1,0 +1,77 @@
+/*常用变量*/
+.ulistbox ul {
+  padding: 20px;
+  *zoom: 1;
+}
+.ulistbox ul:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.ulistbox ul li {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.ulistbox ul li a {
+  width: 320px;
+  padding: 10px;
+  display: block;
+  *zoom: 1;
+  background: #ffffff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 5px #cccccc;
+  box-shadow: 1px 1px 5px #cccccc;
+  -webkit-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
+}
+.ulistbox ul li a:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.ulistbox ul li a .picebox {
+  float: left;
+  border: 1px solid #ebebf5;
+  margin-right: 20px;
+  width: 128px;
+  height: 128px;
+  overflow: hidden;
+}
+.ulistbox ul li a img {
+  -webkit-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
+}
+.ulistbox ul li a:hover {
+  -webkit-box-shadow: 1px 1px 5px #aaaaaa;
+  box-shadow: 1px 1px 5px #aaaaaa;
+}
+.ulistbox ul li a:hover img {
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+}
+.ulistbox ul li p {
+  color: #a6a6a6;
+  margin-bottom: 5px;
+}
+.ulistbox ul li p.aignature {
+  color: #3fd4bb;
+}
+.ulistbox ul li p span {
+  opacity: 0.5;
+}
+.ulistbox ul li .hei {
+  color: #595959;
+}

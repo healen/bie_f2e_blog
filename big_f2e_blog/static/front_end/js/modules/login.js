@@ -156,7 +156,7 @@ define(["jquery", 'layer'], function(W, layer) {
                         url: "/member/captcha",
                         type: "GET",
                         success: function(result) {
-                            W("#piceVerify").attr("src", "/member/captcha")
+                            W("#piceVerify").attr("src", "/member/captcha?v="+Date.parse(new Date()))
                         }
                     })
 

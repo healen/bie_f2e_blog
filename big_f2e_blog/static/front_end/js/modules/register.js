@@ -256,20 +256,14 @@ define(["jquery", 'layer'], function(W, layer) {
 
             function verify() {
 
-                if ((navigator.userAgent.indexOf('MSIE') >= 0) && (navigator.userAgent.indexOf('Opera') < 0)) {
-                    window.location.href = window.location.href;
-                } else {
-                    W.ajax({
-                        url: "/member/captcha",
-                        type: "GET",
-                        success: function(result) {
-                            W("#piceVerify").attr("src", "/member/captcha")
-                        }
-                    })
 
-                }
-
-
+                W.ajax({
+                    url: "/member/captcha",
+                    type: "GET",
+                    success: function(result) {
+                        W("#piceVerify").attr("src", "/member/captcha?v="+Date.parse(new Date()));
+                    }
+                })
             }
 
             W("#rechangeVerify").on("click", function() {

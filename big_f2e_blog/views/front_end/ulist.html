@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>
+		<%= title %>
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Le styles -->
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap-responsive.min.css">
+	<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/ie.css">
+		<![endif]-->
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		  <script src="/cdn/bootstrap/js/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/css/ulist.css">
+	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+
+
+	
+</head>
+
+
+<body>
+
+	<div class="box">
+		<% include left.html %>
+		<% include head.html %>
+
+
+		<div class="ulistbox">
+
+			<ul>
+				
+			
+			<% userlist.forEach(function(data){ %>
+				<li>
+					<a href="/u/<%= data.username %>" target="_blank">
+						<%if(!data.avater){%>
+							<div class="picebox">
+								<img src="/cdn/img/avater/128x128/defalut.png" alt="">
+							</div>
+						<%}else{%>
+							<div class="picebox">
+								<img src="/uploads/avater/128x128/<%= data.avater %>" alt="">
+							</div>
+						<%}%>
+						<p class="hei"><%= data.username %></p>
+						<p><%= data.email %></p>
+						<%if(data.job){%>
+						<p><%= data.job %></p>
+						<% } %>
+
+						<p class="aignature">
+							<%if(data.aignature){%>
+								<%if(data.aignature.length>22){%>
+									<% strs=data.aignature.substring(0,21) %>
+									<%= strs %>...
+								<%} else {%>
+										<%= data.aignature %>
+								<% } %>
+
+							<%}else{%>
+								<span>这家伙很懒，没有任何签名</span>
+
+							<%}%>
+							
+						</p>
+						
+					</a>
+					
+				</li>
+
+					
+			<%})%>
+			</ul>
+
+
+			
+		</div>
+
+		<% include pagelimit.html %>
+
+
+
+			
+
+		<% include foot.html %>
+	</div>
+
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
+	<script>
+		require(["modules/ulist"],function(F){
+			// F.register();
+		})
+	</script>
+</body>
+
+</html>

@@ -8,7 +8,6 @@ var upPice=require("../../bin/up-pice");
 var account=require("../../bin/account");
 var date=require("../../bin/date")();
 var express = require("express");
-var mysql = require("mysql");
 var path=require("path");
 var multer = require("multer");
 var images=require("images");
