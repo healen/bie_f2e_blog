@@ -21,69 +21,89 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
 	<link rel="stylesheet" type="text/css" href="/cdn/css/ulist.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
-
-
-	
 </head>
-
-
 <body>
 
 	<div class="box">
 		<% include left.html %>
 		<% include head.html %>
 
-
-		<div class="ulistbox">
-
-			<ul>
+		<div class="content">
+			<h1><%= title %></h1>
+			<p>用户名：<%= usermsg.username %></p>
+			<p>邮箱：<%= usermsg.email || 无邮箱 %></p>
+			<p>头像：
+				<%if(!usermsg.avater){%>
+					
+						<img src="/cdn/img/avater/128x128/defalut.png" alt="">
 				
-			
-			<% userlist.forEach(function(data){ %>
+				<%}else{%>
+						<img src="/uploads/avater/128x128/<%= usermsg.avater %>" alt="">
+				
+				<%}%>
+				
+			</p>
+			<p>性别：<% if(usermsg.gender==0){ %>男<% }else{ %>女<% } %></p>
+
+
+			<p>签名：
+				<%if(usermsg.aignature){%>
+					<%if(usermsg.aignature.length>22){%>
+						<% strs=usermsg.aignature.substring(0,21) %>
+						<%= strs %>...
+					<%} else {%>
+							<%= usermsg.aignature %>
+					<% } %>
+
+				<%}else{%>
+					<span>这家伙很懒，没有任何签名</span>
+				<%}%>
+			</p>
+
+			<p>
+				职业：
+				<%if(usermsg.job){%>
+					<%= usermsg.job %>
+				<% }else{ %>
+					无业
+				<%}%>
+
+			</p>
+			<p>文章总数：<%= total %></p>
+			<p>访问量：<%= totalPv %></p>
+
+		</div>
+
+
+
+
+		<hr>
+
+		文章list
+
+
+		<ul>
+
+			<% artmsg.forEach(function(data){ %>
 				<li>
-					<a href="/u/<%= data.username %>" target="_blank">
-						<%if(!data.avater){%>
-							<div class="picebox">
-								<img src="/cdn/img/avater/128x128/defalut.png" alt="">
-							</div>
-						<%}else{%>
-							<div class="picebox">
-								<img src="/uploads/avater/128x128/<%= data.avater %>" alt="">
-							</div>
-						<%}%>
-						<p class="hei"><%= data.username %></p>
-						<p><%= data.email %></p>
-						<%if(data.job){%>
-						<p><%= data.job %></p>
-						<% } %>
+					<a href="/article/<%= data.article_id %>">
+						标题：<%= data.title %>
 
-						<p class="aignature">
-							<%if(data.aignature){%>
-								<%if(data.aignature.length>22){%>
-									<% strs=data.aignature.substring(0,21) %>
-									<%= strs %>...
-								<%} else {%>
-										<%= data.aignature %>
-								<% } %>
+						|
 
-							<%}else{%>
-								<span>这家伙很懒，没有任何签名</span>
+						发布时间：<%= data.create_at %>
 
-							<%}%>
-							
-						</p>
-						
+						|
+
+						访问量：<%= data.pv %>
 					</a>
 					
 				</li>
-
-					
-			<%})%>
-			</ul>
+			<% }) %>
+		</ul>
 
 
-			
-		</div>
+
 
 		<% include pagelimit.html %>
 
