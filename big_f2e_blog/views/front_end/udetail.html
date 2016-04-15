@@ -86,7 +86,7 @@
 
 			<% artmsg.forEach(function(data){ %>
 				<li>
-					<a href="/article/<%= data.article_id %>">
+					<a href="/article/<%= usermsg.username %>/<%= data.article_id %>">
 						标题：<%= data.title %>
 
 						|

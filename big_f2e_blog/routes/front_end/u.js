@@ -11,7 +11,7 @@ var date=require("../../bin/date")();
 var router=express.Router();
 router
 	.get("/",function(req,res){
-		var pagesize=2;
+		var pagesize=30;
 		var page=qs.parse(url.parse(req.url).query).page;
 			page = page==null ? 1 : page;
 		var Db=new mysqlUtil();
@@ -37,15 +37,15 @@ router
 		})
 	})
 	.get("/:username",function(req,res){
-		var pagesize=2;
+		var pagesize=40;
 		var page=qs.parse(url.parse(req.url).query).page;
 			page = page==null ? 1 : page;
 		var Db=new mysqlUtil();
 		$sql="SELECT user.username,user.email,user.account_id,account.* FROM user,account WHERE user.account_id=account.account_id AND user.username='"+req.params.username+"'";
 		$sqlArt="SELECT user.username,user.user_id,user_article.* FROM user,user_article WHERE user.username='"+req.params.username+"' AND user.user_id=user_article.user_id LIMIT "+(page-1)*pagesize+","+pagesize;
+		$sqltotalArt="SELECT user.username,user.user_id,user_article.* FROM user,user_article WHERE user.username='"+req.params.username+"' AND user.user_id=user_article.user_id"
 		var total=0;
-		console.log($sqlArt);
-		Db.query($sqlArt,function(data){
+		Db.query($sqltotalArt,function(data){
 			total=data.length;
 		})
 		Db.query($sql,function(data){
@@ -59,18 +59,18 @@ router
 						art[i].update_at=art[i].update_at!=null ? (art[i].update_at).Format("yyyy-MM-dd") : "";
 					}
 					res.render("front_end/udetail.html",{
-		            title:data[0].username+"的博客",
-		            username:req.session.usermsg ? req.session.usermsg.username : undefined,
-		            usermsg:data[0],
-		            artmsg:art,
-		            returnurl:"/account"+req.url,
-					pageSize:pagesize,
-					total:total,
-					totalPv:totalPv,
-					currentPage:page,
-					pathname:"/u"+url.parse(req.url).pathname,
-					totalPage:Math.ceil(total/pagesize)
-		        })
+			            title:data[0].username+"的博客",
+			            username:req.session.usermsg ? req.session.usermsg.username : undefined,
+			            usermsg:data[0],
+			            artmsg:art,
+			            returnurl:"/account"+req.url,
+						pageSize:pagesize,
+						total:total,
+						totalPv:totalPv,
+						currentPage:page,
+						pathname:"/u"+url.parse(req.url).pathname,
+						totalPage:Math.ceil(total/pagesize)
+			        })
 			})
 		})
 

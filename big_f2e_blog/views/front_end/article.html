@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>
+		<%= title %>
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Le styles -->
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/bootstrap-responsive.min.css">
+	<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" href="/cdn/bootstrap/css/ie.css">
+		<![endif]-->
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		  <script src="/cdn/bootstrap/js/html5.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/cdn/css/frame.css">
+	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
+	<link rel="stylesheet" href="/cdn/js/vendor/layer/skin/layer.css">
+	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+	<style type="text/css">
+		.has-error{
+			color:red;
+		}
+		.has-error .label{
+			color:red;
+		}
+		.has-error .controls input{
+			border-color: #ff0000;
+		}
+		.controls .log{
+			display: none;
+		}
+		.has-ok{
+			color:red;
+		}
+		.has-ok .label{
+			color:#00ff00;
+		}
+		.has-ok .controls input{
+			
+		}
+		.has-ok .controls .log{
+			color: #009900;
+		}
+		
+	</style>
+
+
+</head>
+
+
+<body>
+
+	<div class="box">
+		<% include left.html %>
+		<% include head.html %>
+			<h1>用户信息</h1>
+			<hr>
+			<p>用户名：<%= artinfo.username %></p>
+			<p>邮箱：<%= artinfo.email %></p>
+			<p>
+				职业：
+				<% if(!artinfo.job){%>
+					无业
+				<%}else{%>
+					<%= artinfo.job %>
+
+				<%}%>
+			</p> 
+			<p>头像：<%= artinfo.avater %></p> 
+			<p>签名：<%= artinfo.aignature %></p>
+
+
+
+			<h1>文章</h1>
+			<hr>
+
+			<p>文章标题：<%= artinfo.title %> </p>
+			<p>访问量：<%= artinfo.pv %> </p>
+			<p>标签：<%= artinfo.tag %> </p>
+			<p>来源：<%= artinfo.from %> </p>
+			<p>内容：<%- artinfo.content %> </p>
+			<p>发布时间：<%= artinfo.create_at %> </p>
+			<p>修改时间：<%= artinfo.update_at %> </p>
+			
+				
+				<%if(paramasusername != null){%>
+					<p>
+						上一篇
+						<%if(previnfo.article_id){%>
+							
+							<a href="/article/<%= previnfo.username %>/<%= previnfo.article_id %>"><%= previnfo.title %> </a>
+						<%}else{%>
+							没有了
+						<%}%>
+					</p>
+					<p>
+						下一篇
+						<%if(nextinfo.article_id){%>
+							<a href="/article/<%= nextinfo.username %>/<%= nextinfo.article_id %>"><%= nextinfo.title %> </a>
+							
+						<%}else{%>
+							没有了
+						<%}%>
+					</p>
+					
+				<%}else{%>
+					<p>
+						上一篇
+						<%if(previnfo.article_id){%>
+							
+							<a href="/article/<%= previnfo.article_id %>"><%= previnfo.title %> </a>
+						<%}else{%>
+							没有了
+						<%}%>
+					</p>
+					<p>
+						下一篇
+						<%if(nextinfo.article_id){%>
+							<a href="/article/<%= nextinfo.article_id %>"><%= nextinfo.title %> </a>
+							
+						<%}else{%>
+							没有了
+						<%}%>
+					</p>
+
+				<%}%>
+				
+		
+
+			
+			
+		
+
+
+
+
+
+
+
+
+
+
+		<% include foot.html %>
+	</div>
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
+	<script>
+		// require(["modules/article"],function(F){
+		// 	// F.login();
+		// })
+	</script>
+
+</body>
+
+</html>

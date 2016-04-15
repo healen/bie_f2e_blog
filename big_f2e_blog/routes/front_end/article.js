@@ -9,6 +9,45 @@ var url=require("url");
 var mysqlUtil=require("../../bin/mysql-util");
 var date=require("../../bin/date")();
 var router=express.Router();
+
+function getUserMsg(parUName,parArt,Db,oper,callback){
+	var showclome="user.username,user.email,account.job,account.avater,account.aignature,user_article.*";
+	var from="user,account,user_article";
+	var where="user.username='"+parUName+"' AND user.account_id=account.account_id AND user.user_id=user_article.user_id AND  user_article.article_id"+oper+parArt+"";
+	var tool="";
+
+	var $sql="SELECT "+showclome+" FROM "+from+" WHERE "+where+tool;
+	Db.updateQuery($sql,function(err,data){
+		if(err){
+			console.log(err);
+			return ;
+		}else{
+			callback && callback(data)
+			// console.log(data);
+		}
+	})
+}
+
+
+function getArticle(parArt,Db,oper,callback){
+	var showclome="user.username,user.email,account.job,account.avater,account.aignature,user_article.*";
+	var from="user,account,user_article";
+	var where="user.account_id=account.account_id AND user.user_id=user_article.user_id AND  user_article.article_id"+oper+parArt+"";
+	var tool="";
+
+	var $sql="SELECT "+showclome+" FROM "+from+" WHERE "+where+tool;
+	Db.updateQuery($sql,function(err,data){
+		if(err){
+			console.log(err);
+			return ;
+		}else{
+			callback && callback(data)
+		}
+	})
+}
+
+
+
 router
 	/**
 	 * 1.访问量+1
@@ -20,16 +59,64 @@ router
 	 * 
 	 * 
 	 */
-	.get("/:username/:id",function(req,res,next){
+	.get("/:username/:articleId",function(req,res,next){
 		if(req.params.username==null){
 			next()
 		}else{
-			res.send("artilce "+ req.params.username)
+			var Db = new mysqlUtil();
+			getUserMsg(req.params.username,req.params.articleId,Db,"=",function(datainfo){
+
+				getUserMsg(req.params.username,req.params.articleId,Db,">",function(nextinfo){
+					getUserMsg(req.params.username,req.params.articleId,Db,"<",function(previnfo){
+						Db.modify("user_article",{article_id:req.params.articleId},{pv:datainfo[0].pv+1},function(msg){
+							console.log(msg);
+						})
+						for(var i=0;i<datainfo.length;i++){
+							datainfo[i].create_at=datainfo[i].create_at!=null ? (datainfo[i].create_at).Format("yyyy-MM-dd") : "";
+							datainfo[i].update_at=datainfo[i].update_at!=null ? (datainfo[i].update_at).Format("yyyy-MM-dd") : "";
+						}
+						res.render("front_end/article.html",{
+							title:datainfo[0].title,
+							username:req.session.usermsg ? req.session.usermsg.username : undefined,
+							artinfo:datainfo[0],
+							nextinfo:nextinfo[0] || "wu",
+							previnfo:previnfo[0] || "wu",
+							paramasusername:req.params.username
+
+						})
+					});
+				});
+
+
+			});
 		}
-		
 	})
-	
-	.get("/:id",function(req,res){
-		res.send("artilce ")
+	.get("/:articleId",function(req,res){
+		var Db = new mysqlUtil();
+		getArticle(req.params.articleId,Db,"=",function(datainfo){
+			getArticle(req.params.articleId,Db,">",function(nextinfo){
+				getArticle(req.params.articleId,Db,"<",function(previnfo){
+					Db.modify("user_article",{article_id:req.params.articleId},{pv:datainfo[0].pv+1},function(msg){
+						console.log(msg);
+					})
+					for(var i=0;i<datainfo.length;i++){
+						datainfo[i].create_at=datainfo[i].create_at!=null ? (datainfo[i].create_at).Format("yyyy-MM-dd") : "";
+						datainfo[i].update_at=datainfo[i].update_at!=null ? (datainfo[i].update_at).Format("yyyy-MM-dd") : "";
+					}
+					res.render("front_end/article.html",{
+						title:datainfo[0].title,
+						username:req.session.usermsg ? req.session.usermsg.username : undefined,
+						artinfo:datainfo[0],
+						nextinfo:nextinfo[0] || "wu",
+						previnfo:previnfo[0] || "wu",
+						paramasusername:null
+					})
+				});
+			});
+
+		});
 	})
+
+
+
 module.exports=router;
