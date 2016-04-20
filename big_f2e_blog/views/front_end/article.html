@@ -22,6 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
 	<link rel="stylesheet" href="/cdn/js/vendor/layer/skin/layer.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
 	<style type="text/css">
 		.has-error{
 			color:red;
@@ -47,18 +48,13 @@
 		.has-ok .controls .log{
 			color: #009900;
 		}
-		
 	</style>
-
-
 </head>
-
-
 <body>
-
 	<div class="box">
 		<% include left.html %>
 		<% include head.html %>
+			<%= userid %>
 			<h1>用户信息</h1>
 			<hr>
 			<p>用户名：<%= artinfo.username %></p>
@@ -69,17 +65,12 @@
 					无业
 				<%}else{%>
 					<%= artinfo.job %>
-
 				<%}%>
 			</p> 
 			<p>头像：<%= artinfo.avater %></p> 
 			<p>签名：<%= artinfo.aignature %></p>
-
-
-
 			<h1>文章</h1>
 			<hr>
-
 			<p>文章标题：<%= artinfo.title %> </p>
 			<p>访问量：<%= artinfo.pv %> </p>
 			<p>标签：<%= artinfo.tag %> </p>
@@ -87,73 +78,75 @@
 			<p>内容：<%- artinfo.content %> </p>
 			<p>发布时间：<%= artinfo.create_at %> </p>
 			<p>修改时间：<%= artinfo.update_at %> </p>
-			
-				
-				<%if(paramasusername != null){%>
-					<p>
-						上一篇
-						<%if(previnfo.article_id){%>
-							
-							<a href="/article/<%= previnfo.username %>/<%= previnfo.article_id %>"><%= previnfo.title %> </a>
-						<%}else{%>
-							没有了
-						<%}%>
-					</p>
-					<p>
-						下一篇
-						<%if(nextinfo.article_id){%>
-							<a href="/article/<%= nextinfo.username %>/<%= nextinfo.article_id %>"><%= nextinfo.title %> </a>
-							
-						<%}else{%>
-							没有了
-						<%}%>
-					</p>
-					
-				<%}else{%>
-					<p>
-						上一篇
-						<%if(previnfo.article_id){%>
-							
-							<a href="/article/<%= previnfo.article_id %>"><%= previnfo.title %> </a>
-						<%}else{%>
-							没有了
-						<%}%>
-					</p>
-					<p>
-						下一篇
-						<%if(nextinfo.article_id){%>
-							<a href="/article/<%= nextinfo.article_id %>"><%= nextinfo.title %> </a>
-							
-						<%}else{%>
-							没有了
-						<%}%>
-					</p>
-
-				<%}%>
-				
+			<%if(paramasusername != null){%>
+				<p>
+					上一篇
+					<%if(previnfo.article_id){%>
+						<a href="/article/<%= previnfo.username %>/<%= previnfo.article_id %>"><%= previnfo.title %> </a>
+					<%}else{%>
+						没有了
+					<%}%>
+				</p>
+				<p>
+					下一篇
+					<%if(nextinfo.article_id){%>
+						<a href="/article/<%= nextinfo.username %>/<%= nextinfo.article_id %>"><%= nextinfo.title %> </a>
+						
+					<%}else{%>
+						没有了
+					<%}%>
+				</p>
+			<%}else{%>
+				<p>
+					上一篇
+					<%if(previnfo.article_id){%>
+						
+						<a href="/article/<%= previnfo.article_id %>"><%= previnfo.title %> </a>
+					<%}else{%>
+						没有了
+					<%}%>
+				</p>
+				<p>
+					下一篇
+					<%if(nextinfo.article_id){%>
+						<a href="/article/<%= nextinfo.article_id %>"><%= nextinfo.title %> </a>
+						
+					<%}else{%>
+						没有了
+					<%}%>
+				</p>
+			<%}%>
 		
+			<hr>
 
-			
-			
-		
+			<p>评论</p>
+			<%if(!userid){%>
+				登录后可以发表评论 
+				<a href="/member/login?returns=/article<%= return_this %>" type="button" class="btn btn-default">去登陆</a>
 
-
-
-
-
-
-
-
-
-
+			<%}else{%>
+				<form class="reviewform" id="reviewForm" data-ajaxURL="/review/<%= artinfo.article_id %>">
+					评论表单加载中
+				</form>
+					<script>
+						require(["modules/article"],function(F){
+							F.renderForm();
+							F.review({
+								url:"/review",
+								methoded:"POST"
+							});
+							// F.renderReviewList();
+							// F.submitView();
+						})
+					</script>
+			<%}%>
+			<div class="reviewbox" id="reviewlist" data-ajaxURL="/review/article_review_list/<%= artinfo.article_id %>">
+				评论加载中
+			</div>
 		<% include foot.html %>
 	</div>
-	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
-	<script>
-		// require(["modules/article"],function(F){
-		// 	// F.login();
-		// })
-	</script>
+	
+
 
 </body>
 

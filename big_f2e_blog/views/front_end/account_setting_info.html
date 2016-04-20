@@ -22,6 +22,8 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/css/user.css">
 	<link rel="stylesheet" href="/cdn/js/vendor/layer/skin/layer.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
+
 	
 </head>
 
@@ -157,7 +159,6 @@
 
 
 
-	<script src="/cdn/js/vendor/require.js" data-main="/cdn/js/main"></script>
 	<script>
 		require(["modules/account_setting_info"],function(F){
 			F.set("<%= userInfo.email %>");

@@ -10,13 +10,17 @@ var config=require("../../bin/config")
 var mysql = require("mysql");
 var captchapng = require('captchapng');
 var express = require("express");
+var url=require("url");
+var qs=require("querystring")
 var router=express.Router();
 router
-
 	/**
 	 * 登录视图
 	 */
 	.get("/login",function(req,res){
+		var urlname=url.parse(req.url).query;
+		// console.log(qs.parse(urlname).returns);
+		req.session.returns=qs.parse(urlname).returns;
 		res.render("front_end/login.html",{
 			title:"登录",
 			username:req.session.usermsg ? req.session.usermsg.username : undefined
@@ -65,7 +69,8 @@ router
 						req.session.email_verify=null;
 					}
 					// console.log(req.session.usermsg);
-					res.json({code:200,msg:"登录成功正在跳转个人中心"});
+					res.json({code:200,msg:"登录成功正在跳转个人中心",returns:req.session.returns});
+					req.session.returns=null;
 				}else{
 					// console.log("用户名不存在");
 					res.json({code:401,msg:"用户名不存在"});
@@ -81,6 +86,7 @@ router
 	 */
 	.get("/logout",function(req,res){
 		req.session.usermsg=undefined;
+		req.session.userid=undefined;
 		res.render("front_end/login.html",{
 			title:"登录"
 		})

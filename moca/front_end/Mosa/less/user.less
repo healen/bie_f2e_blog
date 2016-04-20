@@ -80,5 +80,47 @@ input[type="file"].fileava{
 	font-size: 14px;
 }
 
+.toolbar{
+	height: 30px;
+	padding: 5px 1.5%;
+	position: relative;
+	.exprebox{
+		width: 240px;
+		position: absolute;
+		bottom: 33px;
+		left: 1px;
+		display: none;
+		._clearfix();
+		img{
+			    display: block;
+			    float: left;
+			    border: 1px solid #d5d5d5;
+			    margin-left: -1px;
+			    margin-top: -1px;
+			    padding: 5px;
+			    background: #ffffff;
+			    cursor: pointer;
+			    -webkit-transition: all 100ms;
+			    -o-transition: all 100ms;
+			    transition: all 100ms;
+			    &:hover{
+			    	border-color: #0757a6;
+			    	-webkit-transform: scale(1);
+			    	-ms-transform: scale(1);
+			    	-o-transform: scale(1);
+			    	transform: scale(1);
+			    }
+			
+		}
+	}
+
+	// display: none;
+	i{
+		line-height: 30px;
+		display: inline-block;
+		padding-right:15px;
+	}
+}
+
 
 

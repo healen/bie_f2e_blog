@@ -105,7 +105,6 @@ define(["jquery", 'layer'], function(W, layer) {
                     success: function(result) {
                         if (result.code == 200) {
                             log.showSuccessMsg(ele.verify.parents(".myform"), "通过");
-
                             W.ajax({
                                 url: "/member/login",
                                 type: "POST",
@@ -116,11 +115,11 @@ define(["jquery", 'layer'], function(W, layer) {
                                         return;
                                     } else {
                                         // layer.msg(result.msg);
-
-                                        window.location.href = "/account"
-
-
-
+                                        if(result.returns){
+                                            window.location.href = result.returns
+                                        }else{
+                                            window.location.href = "/account"
+                                        }
                                     }
                                 },
                                 error: function(data, status, e) {
@@ -134,7 +133,6 @@ define(["jquery", 'layer'], function(W, layer) {
                             return
 
                         }
-
                     },
                     error: function(data, status, e) {
                         log.showErrorMsg(ele.verify.parents(".myform"), "系统异常");
@@ -148,7 +146,6 @@ define(["jquery", 'layer'], function(W, layer) {
             })
 
             function verify() {
-
                 if ((navigator.userAgent.indexOf('MSIE') >= 0) && (navigator.userAgent.indexOf('Opera') < 0)) {
                     window.location.href = window.location.href;
                 } else {
@@ -159,10 +156,7 @@ define(["jquery", 'layer'], function(W, layer) {
                             W("#piceVerify").attr("src", "/member/captcha?v="+Date.parse(new Date()))
                         }
                     })
-
                 }
-
-
             }
 
             W("#rechangeVerify").on("click", function() {

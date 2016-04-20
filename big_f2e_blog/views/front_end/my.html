@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="/cdn/css/vendor/jquery.Jcrop.min.css">
 	<link rel="stylesheet" href="/cdn/js/vendor/layer/skin/layer.css">
 	<link rel="shortcut icon" href="/cdn/img/ico/favicon.ico">
+	<script src="/cdn/js/vendor/require.js"  data-main="/cdn/js/main"></script>
 
 	
 </head>
@@ -145,7 +146,6 @@
 		<% include foot.html %>
 	</div>
 
-	<script src="/cdn/js/vendor/require.js"  data-main="/cdn/js/main"></script>
 	<script>
 		require(["modules/my"],function(F){
 			F.set("<%= userInfo.email %>");
