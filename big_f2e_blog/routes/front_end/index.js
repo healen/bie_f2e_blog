@@ -15,6 +15,4 @@ router
             username:req.session.usermsg ? req.session.usermsg.username : undefined
         })        
 	})
-
-
 module.exports=router;

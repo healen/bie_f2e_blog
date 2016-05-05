@@ -14,11 +14,12 @@ require.config({
 		underscore:"vendor/underscore",
 		laydate:"vendor/laydate/laydate",
 		layer:"vendor/layer/layer",
+		datefmt:"modules/datefmt",
 		kindeditor:"/kindeditor/kindeditor",
 		kindeditor_cn:"/kindeditor/lang/zh_CN"
 
-	},
-	urlArgs: "t=" + (new Date()).getTime()
+	}//,
+	// urlArgs: "t=" + (new Date()).getTime()
 });
 
 

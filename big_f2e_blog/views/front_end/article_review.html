@@ -2,8 +2,8 @@
 
 <div class="container-fluid">
 	<p>
-		<img src="/uploads/avater/64x64/<%= review_data.avater %>" alt="">
-		<%= review_data.username %>
+		<img src="/uploads/avater/64x64/<%= review_data.avater %>" id="avaterpice" alt="">
+		<span id="thisUsername"><%= review_data.username %></span>
 	</p>
     <!--
 	    <div class="toolbar" id="tool_bar">
@@ -18,7 +18,7 @@
 	-->
 	<input type="hidden" id="userId" value="<%= review_data.user_id %>" />
 	<input type="hidden" id="articleId" value="<%= review_article_id %>" />
-	<textarea name="" id="" cols="30" rows="10" maxlength="255" id="reviewContent" style="width:100%"></textarea>
+	<textarea cols="30" rows="10" maxlength="255" id="reviewContent" style="width:100%"></textarea>
 	<button type="button" class="btn btn-default" id="sendReview">提交评论</button>
 </div>
 

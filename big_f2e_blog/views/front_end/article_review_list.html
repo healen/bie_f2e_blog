@@ -1,0 +1,46 @@
+<% list.forEach(function(data,i){ %>
+	<div class="reviewlist" style="padding:30px;">
+		<span class="loop"><%= i+1 %></span>楼
+		<br />
+		<img src="/uploads/avater/64x64/<%= data.avater %>" alt="" />
+		<span><%= data.username %></span>
+		<br />
+		<%= data.content %>
+		<br />
+		<span class="time">
+
+
+			
+			<a href="javascript:void(0)" class="user_reply_btn"> 
+				回复 
+			</a>
+
+			<%= data.create_at %>
+
+			<% if(typeof username === 'undefined') {%>
+
+
+				
+
+			<%}else{%>
+
+				<div class="replybox" style="display:none" data-username="@<%= data.username %>">
+					<p>
+						<img src="/uploads/avater/64x64/<%= review_data.avater %>" data-id="avaterpice" alt="">
+						<span data-id="thisUsername"><%= review_data.username %></span>
+					</p>
+					<input type="hidden" data-id="userId" value="<%= review_data.user_id %>" />
+					<input type="hidden" data-id="articleId" value="<%= review_article_id %>" />
+					<textarea cols="30" rows="10" maxlength="255" data-id="reviewContent" style="width:100%"></textarea>
+					<button type="button" class="btn btn-default" data-id="sendReview">提交评论</button>
+				</div>
+
+			<%}%>
+
+			
+
+		</span>
+		<hr />
+	</div>
+<%})%>
+

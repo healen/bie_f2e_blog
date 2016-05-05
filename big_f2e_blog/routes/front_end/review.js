@@ -26,8 +26,7 @@ router
 	 */
 	.get("/:articleId",function(req,res){
 		var Db = new mysqlUtil();
-		var $sql="SELECT * FROM user,account WHERE user.user_id="+req.session.userid+" AND user.account_id=account.account_id"
-		console.log($sql);
+		var $sql="SELECT * FROM user,account WHERE user.user_id="+req.session.userid+" AND user.account_id=account.account_id";
 		if(req.session.userid){
 			Db.query($sql,function(data){
 				res.render("front_end/article_review.html",{
@@ -39,9 +38,64 @@ router
 		}
 	})
 	.post("/",function(req,res){
-		
+		var sendReviewData={
+			user_id:req.body.user_id,
+            art_id:req.body.art_id,
+            content:req.body.content,
+            create_at:new Date()
+		}
+
+		console.log(sendReviewData);
+		var Db=new mysqlUtil();
+
+		Db.insert("user_review",sendReviewData,function(insertId){
+			res.json(sendReviewData)
+		})	
 	})
 
+	.post("/reply",function(req,res){
+		var sendReviewData={
+			user_id:req.body.user_id,
+            art_id:req.body.art_id,
+            content:req.body.content,
+            create_at:new Date()
+		}
 
+		console.log(sendReviewData);
+		var Db=new mysqlUtil();
 
+		Db.insert("user_review",sendReviewData,function(insertId){
+			res.json(sendReviewData)
+		})	
+	})
+
+	.get("/article_review_list/:article_id",function(req,res){
+		var Db=new mysqlUtil();
+		var $reviewSql="SELECT user.username,account.avater,user_review.* FROM user,account,user_review ";
+		$reviewSql+="WHERE user_review.user_id=user.user_id AND user.account_id=account.account_id AND user_review.art_id="+req.params.article_id+" ORDER BY create_at DESC";
+		var $sql="SELECT * FROM user,account WHERE user.user_id="+req.session.userid+" AND user.account_id=account.account_id";
+
+		Db.query($reviewSql,function(data){
+			for(var i=0;i<data.length;i++){
+				data[i].create_at=data[i].create_at!=null ? (data[i].create_at).Format("yyyy-MM-dd hh:mm") : "";
+				data[i].update_at=data[i].update_at!=null ? (data[i].update_at).Format("yyyy-MM-dd hh:mm") : "";
+			}
+
+			if(req.session.userid){
+				Db.query($sql,function(review_data){
+						res.render("front_end/article_review_list.html",{
+						username:req.session.usermsg ? req.session.usermsg.username : undefined,
+						review_article_id:req.params.articleId,
+						list:data,
+						review_data:review_data[0]
+					})
+				})
+			}else{
+				res.render("front_end/article_review_list.html",{
+					list:data
+				})
+			}
+		
+		})
+	})
 module.exports=router;
