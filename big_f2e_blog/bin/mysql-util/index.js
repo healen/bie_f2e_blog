@@ -59,10 +59,7 @@ module.exports = function() {
 				callback&&callback("insert bad error="+err);
 			} else{
 				callback&&callback(result.insertId);
-
 			}
-		
-
 		});
 	}
 
@@ -139,24 +136,14 @@ module.exports = function() {
 					}
 				});
 			break;
-
 			default:
-
 				console.log("param err");
-			
-
 			break;
-
-
-
-			
-
 		}
 
 		// if(arguments.length==3){
 
 		// }
-
 
 		// dbClient.query("SELECT * FROM "+arguments[0]+" WHERE "+arguments[1]+" ORDERBY "+)
 
